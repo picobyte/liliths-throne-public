@@ -3,6 +3,7 @@ package com.lilithsthrone.game.sex.managers;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -230,10 +231,10 @@ public interface SexManagerInterface {
 				+"</p>";
 	}
 	
-	public Map<GameCharacter, List<SexAreaInterface>> getAreasBannedMap();
+	public Map<GameCharacter, HashSet<SexAreaInterface>> getAreasAllowedMap();
 
-	public default boolean isAreasBannedMapAppliedToSelfActions(GameCharacter character) {
-		return getAreasBannedMap().containsKey(character);
+	public default boolean isAreasAllowedMapAppliedToSelfActions(GameCharacter character) {
+		return getAreasAllowedMap().containsKey(character);
 	}
 	
 	// Revealing CoverableAreas:

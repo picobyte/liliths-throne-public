@@ -241,7 +241,7 @@ public interface SexActionInterface {
 		if(isBasicCoreRequirementsMet()
 				&& isBaseRequirementsMet()
 				&& isPhysicallyPossible()
-				&& !isBannedFromSexManager()
+				&& isAllowedFromSexManager()
 				&& !Sex.getPosition().isActionBlocked(Sex.getCharacterPerformingAction(), Sex.getCharacterTargetedForSexAction(this), this)) {
 
 			if(this.getActionType()==SexActionType.POSITIONING && !Sex.isPositionChangingAllowed(Sex.getCharacterPerformingAction())) {
@@ -810,19 +810,19 @@ public interface SexActionInterface {
 		};
 	}
 	
-	public default boolean isBannedFromSexManager() {
+	public default boolean isAllowedFromSexManager() {
 		for(SexAreaInterface sArea : this.getSexAreaInteractions().keySet()) {
-			if (Sex.getSexManager().getAreasBannedMap().get(Sex.getCharacterPerformingAction()) != null
-					&& Sex.getSexManager().getAreasBannedMap().get(Sex.getCharacterPerformingAction()).contains(sArea)) {
-				if(this.getParticipantType()==SexParticipantType.NORMAL || Sex.getSexManager().isAreasBannedMapAppliedToSelfActions(Sex.getCharacterPerformingAction())) {
+			if (Sex.getSexManager().getAreasAllowedMap().get(Sex.getCharacterPerformingAction()) != null
+					&& Sex.getSexManager().getAreasAllowedMap().get(Sex.getCharacterPerformingAction()).contains(sArea)) {
+				if(this.getParticipantType()!=SexParticipantType.NORMAL && Sex.getSexManager().isAreasAllowedMapAppliedToSelfActions(Sex.getCharacterPerformingAction())) {
 					return true;
 				}
 			}
 		}
 		for(SexAreaInterface sArea : this.getSexAreaInteractions().values()) {
-			if (Sex.getSexManager().getAreasBannedMap().get(Sex.getCharacterTargetedForSexAction(this)) != null
-					&& Sex.getSexManager().getAreasBannedMap().get(Sex.getCharacterTargetedForSexAction(this)).contains(sArea)) {
-				if(this.getParticipantType()==SexParticipantType.NORMAL || Sex.getSexManager().isAreasBannedMapAppliedToSelfActions(Sex.getCharacterTargetedForSexAction(this))) {
+			if (Sex.getSexManager().getAreasAllowedMap().get(Sex.getCharacterTargetedForSexAction(this)) != null
+					&& Sex.getSexManager().getAreasAllowedMap().get(Sex.getCharacterTargetedForSexAction(this)).contains(sArea)) {
+				if(this.getParticipantType()!=SexParticipantType.NORMAL && Sex.getSexManager().isAreasAllowedMapAppliedToSelfActions(Sex.getCharacterTargetedForSexAction(this))) {
 					return true;
 				}
 			}

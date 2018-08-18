@@ -1,9 +1,13 @@
 package com.lilithsthrone.game.sex.sexActions.universal;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
 import com.lilithsthrone.game.character.attributes.CorruptionLevel;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.sex.ArousalIncrease;
 import com.lilithsthrone.game.sex.Sex;
+import com.lilithsthrone.game.sex.SexAreaInterface;
 import com.lilithsthrone.game.sex.SexAreaOrifice;
 import com.lilithsthrone.game.sex.SexAreaPenetration;
 import com.lilithsthrone.game.sex.SexFlags;
@@ -59,10 +63,8 @@ public class StocksSex {
 
 		@Override
 		public void applyEffects() {
-			Sex.setSexManager(new SMStocks(
-					!Sex.getSexManager().getAreasBannedMap().get(Sex.getCharacterTargetedForSexAction(this)).contains(SexAreaOrifice.VAGINA),
-					!Sex.getSexManager().getAreasBannedMap().get(Sex.getCharacterTargetedForSexAction(this)).contains(SexAreaOrifice.ANUS),
-					!Sex.getSexManager().getAreasBannedMap().get(Sex.getCharacterTargetedForSexAction(this)).contains(SexAreaOrifice.MOUTH),
+			HashSet<SexAreaInterface> allowedSet = Sex.getSexManager().getAreasAllowedMap().get(Sex.getCharacterTargetedForSexAction(this));
+			Sex.setSexManager(new SMStocks(new ArrayList<SexAreaInterface>(allowedSet),
 					Util.newHashMapOfValues(new Value<>(Sex.getCharacterPerformingAction(), SexPositionSlot.STOCKS_FUCKING)),
 					Util.newHashMapOfValues(new Value<>(Sex.getCharacterTargetedForSexAction(this), SexPositionSlot.STOCKS_LOCKED_IN_STOCKS))));
 			
@@ -105,10 +107,8 @@ public class StocksSex {
 
 		@Override
 		public void applyEffects() {
-			Sex.setSexManager(new SMStocks(
-					!Sex.getSexManager().getAreasBannedMap().get(Sex.getCharacterTargetedForSexAction(this)).contains(SexAreaOrifice.VAGINA),
-					!Sex.getSexManager().getAreasBannedMap().get(Sex.getCharacterTargetedForSexAction(this)).contains(SexAreaOrifice.ANUS),
-					!Sex.getSexManager().getAreasBannedMap().get(Sex.getCharacterTargetedForSexAction(this)).contains(SexAreaOrifice.MOUTH),
+			HashSet<SexAreaInterface> allowedSet = Sex.getSexManager().getAreasAllowedMap().get(Sex.getCharacterTargetedForSexAction(this));
+			Sex.setSexManager(new SMStocks(new ArrayList<SexAreaInterface>(allowedSet),
 					Util.newHashMapOfValues(new Value<>(Sex.getCharacterPerformingAction(), SexPositionSlot.STOCKS_PERFORMING_ORAL)),
 					Util.newHashMapOfValues(new Value<>(Sex.getCharacterTargetedForSexAction(this), SexPositionSlot.STOCKS_LOCKED_IN_STOCKS))));
 			
@@ -151,10 +151,8 @@ public class StocksSex {
 
 		@Override
 		public void applyEffects() {
-			Sex.setSexManager(new SMStocks(
-					!Sex.getSexManager().getAreasBannedMap().get(Sex.getCharacterTargetedForSexAction(this)).contains(SexAreaOrifice.VAGINA),
-					!Sex.getSexManager().getAreasBannedMap().get(Sex.getCharacterTargetedForSexAction(this)).contains(SexAreaOrifice.ANUS),
-					!Sex.getSexManager().getAreasBannedMap().get(Sex.getCharacterTargetedForSexAction(this)).contains(SexAreaOrifice.MOUTH),
+			HashSet<SexAreaInterface> allowedSet = Sex.getSexManager().getAreasAllowedMap().get(Sex.getCharacterTargetedForSexAction(this));
+			Sex.setSexManager(new SMStocks(new ArrayList<SexAreaInterface>(allowedSet),
 					Util.newHashMapOfValues(new Value<>(Sex.getCharacterPerformingAction(), SexPositionSlot.STOCKS_RECEIVING_ORAL)),
 					Util.newHashMapOfValues(new Value<>(Sex.getCharacterTargetedForSexAction(this), SexPositionSlot.STOCKS_LOCKED_IN_STOCKS))));
 			

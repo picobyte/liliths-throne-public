@@ -1218,11 +1218,13 @@ public class GamblingDenDialogue {
 		public Response getResponse(int responseTab, int index) {
 			if(index==1) {
 				NPC breeder = breeders.get(breederIndex);
+				ArrayList<SexAreaOrifice> allowedOrifices = new ArrayList<>();
+				allowedOrifices.add(SexAreaOrifice.VAGINA);
 				
 				return new ResponseSex("Front "+breeder.getName(), "Lie on your front, where "+breeder.getName()+" will be the first to move up to fuck you.",
 						null, null, null, null, null, null,
 						true, false,
-						new SMBreedingStallFront(true, false, false,
+						new SMBreedingStallFront(allowedOrifices,
 								Util.newHashMapOfValues(new Value<>(breeder, SexPositionSlot.BREEDING_STALL_FUCKING)),
 								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.BREEDING_STALL_FRONT))) {
 							@Override
@@ -1255,11 +1257,13 @@ public class GamblingDenDialogue {
 				
 			} else if(index==2) {
 				NPC breeder = breeders.get(breederIndex);
-				
+				ArrayList<SexAreaOrifice> allowedOrifices = new ArrayList<>();
+				allowedOrifices.add(SexAreaOrifice.VAGINA);
+
 				return new ResponseSex("Back "+breeder.getName(), "Lie on your back, where "+breeder.getName()+" will be the first to move up to fuck you.",
 						null, null, null, null, null, null,
 						true, false,
-						new SMBreedingStallBack(true, false, false,
+						new SMBreedingStallBack(allowedOrifices,
 								Util.newHashMapOfValues(new Value<>(breeder, SexPositionSlot.BREEDING_STALL_FUCKING)),
 								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.BREEDING_STALL_BACK))) {
 							@Override
@@ -1315,11 +1319,13 @@ public class GamblingDenDialogue {
 			if(breederIndex<breeders.size()) {
 				if(index==1) {
 					NPC breeder = breeders.get(breederIndex);
+					ArrayList<SexAreaOrifice> allowedOrifices = new ArrayList<>();
+					allowedOrifices.add(SexAreaOrifice.VAGINA);
 					
 					return new ResponseSex("Front "+breeder.getName(), "Position yourself so that you're lying on your front, where "+breeder.getName()+" will be the next breeder to move up to fuck you.",
 							null, null, null, null, null, null,
 							true, false,
-							new SMBreedingStallFront(true, false, false,
+							new SMBreedingStallFront(allowedOrifices,
 									Util.newHashMapOfValues(new Value<>(breeder, SexPositionSlot.BREEDING_STALL_FUCKING)),
 									Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.BREEDING_STALL_FRONT))) {
 								@Override
@@ -1352,11 +1358,13 @@ public class GamblingDenDialogue {
 					
 				} else if(index==2) {
 					NPC breeder = breeders.get(breederIndex);
+					ArrayList<SexAreaOrifice> allowedOrifices = new ArrayList<>();
+					allowedOrifices.add(SexAreaOrifice.VAGINA);
 					
 					return new ResponseSex("Back "+breeder.getName(), "Position yourself so that you're lying on your back, where "+breeder.getName()+" will be the next breeder to move up to fuck you.",
 							null, null, null, null, null, null,
 							true, false,
-							new SMBreedingStallBack(true, false, false,
+							new SMBreedingStallBack(allowedOrifices,
 									Util.newHashMapOfValues(new Value<>(breeder, SexPositionSlot.BREEDING_STALL_FUCKING)),
 									Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.BREEDING_STALL_BACK))) {
 								@Override
@@ -1543,13 +1551,15 @@ public class GamblingDenDialogue {
 		@Override
 		public Response getResponse(int responseTab, int index) {
 			if(index==1){
+				ArrayList<SexAreaOrifice> allowedOrifices = new ArrayList<>();
+				allowedOrifices.add(SexAreaOrifice.VAGINA);
 				return new ResponseSex(roll==1?"First":"Your turn",
 						roll==1
 							?"As you rolled a one, you're the first to have a go at fucking the volunteer."
 							:"As the breeder steps away from the volunteer, you step forwards to take your turn at fucking her creampied-pussy.",
 						null, null, null, null, null, null,
 						true, false,
-						new SMBreedingStallBack(true, false, false,
+						new SMBreedingStallBack(allowedOrifices,
 								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.BREEDING_STALL_FUCKING)),
 								Util.newHashMapOfValues(new Value<>(mother, SexPositionSlot.BREEDING_STALL_BACK))) {
 							@Override

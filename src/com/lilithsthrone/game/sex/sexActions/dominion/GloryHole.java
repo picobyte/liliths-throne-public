@@ -2,6 +2,7 @@ package com.lilithsthrone.game.sex.sexActions.dominion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -108,14 +109,15 @@ public class GloryHole {
 		
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Sex.isPositionChangingAllowed(Sex.getCharacterPerformingAction())
-					&& ((Sex.getSexPositionSlot(Sex.getCharacterPerformingAction())==SexPositionSlot.GLORY_HOLE_FUCKED && !Sex.getSexManager().getAreasBannedMap().get(Sex.getCharacterPerformingAction()).contains(SexAreaOrifice.VAGINA))
+			GameCharacter actor = Sex.getCharacterPerformingAction();
+			return Sex.isPositionChangingAllowed(actor)
+					&& ((Sex.getSexPositionSlot(actor)==SexPositionSlot.GLORY_HOLE_FUCKED && Sex.getSexManager().getAreasAllowedMap().get(actor).contains(SexAreaOrifice.VAGINA))
 						|| !Sex.getCharacterTargetedForSexAction(this).equals(Sex.getCharacterInPosition(SexPositionSlot.GLORY_HOLE_FUCKING))
-						|| Sex.getSexPositionSlot(Sex.getCharacterPerformingAction())==SexPositionSlot.GLORY_HOLE_KNEELING)
-					&& Sex.getCharacterPerformingAction().isAbleToAccessCoverableArea(CoverableArea.ANUS, true)
-					&& (Sex.getCharacterPerformingAction().isPlayer()
-							|| (((NPC) Sex.getCharacterPerformingAction()).getSexPositionPreferences(Sex.getCharacterTargetedForSexAction(this)).contains(SexPositionSlot.GLORY_HOLE_FUCKED)
-								&& ((NPC) Sex.getCharacterPerformingAction()).getMainSexPreference(Sex.getCharacterTargetedForSexAction(this)).equals(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.ANUS, SexAreaPenetration.PENIS))));
+						|| Sex.getSexPositionSlot(actor)==SexPositionSlot.GLORY_HOLE_KNEELING)
+					&& actor.isAbleToAccessCoverableArea(CoverableArea.ANUS, true)
+					&& (actor.isPlayer()
+							|| (((NPC) actor).getSexPositionPreferences(Sex.getCharacterTargetedForSexAction(this)).contains(SexPositionSlot.GLORY_HOLE_FUCKED)
+								&& ((NPC) actor).getMainSexPreference(Sex.getCharacterTargetedForSexAction(this)).equals(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.ANUS, SexAreaPenetration.PENIS))));
 		}
 		
 		@Override
@@ -156,8 +158,11 @@ public class GloryHole {
 
 		@Override
 		public void applyEffects() {
-			Map<GameCharacter, List<SexAreaInterface>> bannedAreaMap = new HashMap<>();
-			bannedAreaMap.put(Sex.getCharacterPerformingAction(), Util.newArrayListOfValues(SexAreaOrifice.VAGINA));
+			Map<GameCharacter, HashSet<SexAreaInterface>> allowedAreaMap = new HashMap<>();
+			HashSet<SexAreaInterface> allowedSet = new HashSet<>();
+			allowedSet.add(SexAreaOrifice.ANUS);
+			allowedSet.add(SexAreaOrifice.MOUTH);
+			allowedAreaMap.put(Sex.getCharacterPerformingAction(), allowedSet);
 
 			if(Sex.getTotalParticipantCount(false)==3) {
 				List<GameCharacter> participants = new ArrayList<>(Sex.getAllParticipants());
@@ -172,11 +177,11 @@ public class GloryHole {
 								new Value<>(characterFucking, SexPositionSlot.GLORY_HOLE_FUCKING),
 								new Value<>(participants.get(0), SexPositionSlot.GLORY_HOLE_RECEIVING_ORAL_ONE))) {
 					@Override
-					public Map<GameCharacter, List<SexAreaInterface>> getAreasBannedMap() {
-						return bannedAreaMap;
+					public Map<GameCharacter, HashSet<SexAreaInterface>> getAreasAllowedMap() {
+						return allowedAreaMap;
 					}
 					@Override
-					public boolean isAreasBannedMapAppliedToSelfActions(GameCharacter character) {
+					public boolean isAreasAllowedMapAppliedToSelfActions(GameCharacter character) {
 						return false;
 					}
 				});
@@ -186,11 +191,11 @@ public class GloryHole {
 						Util.newHashMapOfValues(new Value<>(Sex.getCharacterPerformingAction(), SexPositionSlot.GLORY_HOLE_FUCKED)),
 						Util.newHashMapOfValues(new Value<>(Sex.getCharacterTargetedForSexAction(this), SexPositionSlot.GLORY_HOLE_FUCKING))) {
 					@Override
-					public Map<GameCharacter, List<SexAreaInterface>> getAreasBannedMap() {
-						return bannedAreaMap;
+					public Map<GameCharacter, HashSet<SexAreaInterface>> getAreasAllowedMap() {
+						return allowedAreaMap;
 					}
 					@Override
-					public boolean isAreasBannedMapAppliedToSelfActions(GameCharacter character) {
+					public boolean isAreasAllowedMapAppliedToSelfActions(GameCharacter character) {
 						return false;
 					}
 				});
@@ -206,18 +211,19 @@ public class GloryHole {
 			CorruptionLevel.ZERO_PURE,
 			null,
 			SexParticipantType.NORMAL) {
-		
+
 		@Override
 		public boolean isBaseRequirementsMet() {
-			return Sex.isPositionChangingAllowed(Sex.getCharacterPerformingAction())
-					&& ((Sex.getSexPositionSlot(Sex.getCharacterPerformingAction())==SexPositionSlot.GLORY_HOLE_FUCKED && !Sex.getSexManager().getAreasBannedMap().get(Sex.getCharacterPerformingAction()).contains(SexAreaOrifice.ANUS))
+			GameCharacter actor = Sex.getCharacterPerformingAction();
+			return Sex.isPositionChangingAllowed(actor)
+					&& ((Sex.getSexPositionSlot(actor)==SexPositionSlot.GLORY_HOLE_FUCKED && Sex.getSexManager().getAreasAllowedMap().get(actor).contains(SexAreaOrifice.ANUS))
 						|| !Sex.getCharacterTargetedForSexAction(this).equals(Sex.getCharacterInPosition(SexPositionSlot.GLORY_HOLE_FUCKING))
-						|| Sex.getSexPositionSlot(Sex.getCharacterPerformingAction())==SexPositionSlot.GLORY_HOLE_KNEELING)
-					&& Sex.getCharacterPerformingAction().isAbleToAccessCoverableArea(CoverableArea.VAGINA, true)
-					&& Sex.getCharacterPerformingAction().hasVagina()
-					&& (Sex.getCharacterPerformingAction().isPlayer()
-							|| (((NPC) Sex.getCharacterPerformingAction()).getSexPositionPreferences(Sex.getCharacterTargetedForSexAction(this)).contains(SexPositionSlot.GLORY_HOLE_FUCKED)
-								&& ((NPC) Sex.getCharacterPerformingAction()).getMainSexPreference(Sex.getCharacterTargetedForSexAction(this)).equals(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.VAGINA, SexAreaPenetration.PENIS))));
+						|| Sex.getSexPositionSlot(actor)==SexPositionSlot.GLORY_HOLE_KNEELING)
+					&& actor.isAbleToAccessCoverableArea(CoverableArea.VAGINA, true)
+					&& actor.hasVagina()
+					&& (actor.isPlayer()
+							|| (((NPC) actor).getSexPositionPreferences(Sex.getCharacterTargetedForSexAction(this)).contains(SexPositionSlot.GLORY_HOLE_FUCKED)
+								&& ((NPC) actor).getMainSexPreference(Sex.getCharacterTargetedForSexAction(this)).equals(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.VAGINA, SexAreaPenetration.PENIS))));
 		}
 		
 		@Override
@@ -258,8 +264,11 @@ public class GloryHole {
 
 		@Override
 		public void applyEffects() {
-			Map<GameCharacter, List<SexAreaInterface>> bannedAreaMap = new HashMap<>();
-			bannedAreaMap.put(Sex.getCharacterPerformingAction(), Util.newArrayListOfValues(SexAreaOrifice.ANUS));
+			Map<GameCharacter, HashSet<SexAreaInterface>> allowedAreaMap = new HashMap<>();
+			HashSet<SexAreaInterface> allowedSet = new HashSet<>();
+			allowedSet.add(SexAreaOrifice.VAGINA);
+			allowedSet.add(SexAreaOrifice.MOUTH);
+			allowedAreaMap.put(Sex.getCharacterPerformingAction(), allowedSet);
 
 			if(Sex.getTotalParticipantCount(false)==3) {
 				List<GameCharacter> participants = new ArrayList<>(Sex.getAllParticipants());
@@ -274,11 +283,11 @@ public class GloryHole {
 								new Value<>(characterFucking, SexPositionSlot.GLORY_HOLE_FUCKING),
 								new Value<>(participants.get(0), SexPositionSlot.GLORY_HOLE_RECEIVING_ORAL_ONE))) {
 					@Override
-					public Map<GameCharacter, List<SexAreaInterface>> getAreasBannedMap() {
-						return bannedAreaMap;
+					public Map<GameCharacter, HashSet<SexAreaInterface>> getAreasAllowedMap() {
+						return allowedAreaMap;
 					}
 					@Override
-					public boolean isAreasBannedMapAppliedToSelfActions(GameCharacter character) {
+					public boolean isAreasAllowedMapAppliedToSelfActions(GameCharacter character) {
 						return false;
 					}
 				});
@@ -288,11 +297,11 @@ public class GloryHole {
 						Util.newHashMapOfValues(new Value<>(Sex.getCharacterPerformingAction(), SexPositionSlot.GLORY_HOLE_FUCKED)),
 						Util.newHashMapOfValues(new Value<>(Sex.getCharacterTargetedForSexAction(this), SexPositionSlot.GLORY_HOLE_FUCKING))) {
 					@Override
-					public Map<GameCharacter, List<SexAreaInterface>> getAreasBannedMap() {
-						return bannedAreaMap;
+					public Map<GameCharacter, HashSet<SexAreaInterface>> getAreasAllowedMap() {
+						return allowedAreaMap;
 					}
 					@Override
-					public boolean isAreasBannedMapAppliedToSelfActions(GameCharacter character) {
+					public boolean isAreasAllowedMapAppliedToSelfActions(GameCharacter character) {
 						return false;
 					}
 				});

@@ -1,6 +1,7 @@
 package com.lilithsthrone.game.sex.managers.submission;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Map;
 
 import com.lilithsthrone.game.character.GameCharacter;
@@ -16,31 +17,13 @@ import com.lilithsthrone.game.sex.managers.SexManagerDefault;
  */
 public class SMBreedingStallBack extends SexManagerDefault {
 
-	public SMBreedingStallBack(boolean vaginalAllowed, boolean analAllowed, boolean oralAllowed, Map<GameCharacter, SexPositionSlot> dominants, Map<GameCharacter, SexPositionSlot> submissives) {
+	public SMBreedingStallBack(ArrayList<SexAreaOrifice> allowedOrifices, Map<GameCharacter, SexPositionSlot> dominants, Map<GameCharacter, SexPositionSlot> submissives) {
 		super(SexPositionType.BREEDING_STALL_BACK,
 				dominants,
 				submissives);
 		
 		for(GameCharacter character : submissives.keySet()) {
-			orificesBannedMap.put(character, new ArrayList<>());
-		}
-		
-		if(!vaginalAllowed) {
-			for(GameCharacter character : submissives.keySet()) {
-				orificesBannedMap.get(character).add(SexAreaOrifice.VAGINA);
-			}
-		}
-		
-		if(!analAllowed) {
-			for(GameCharacter character : submissives.keySet()) {
-				orificesBannedMap.get(character).add(SexAreaOrifice.ANUS);
-			}
-		}
-		
-		if(!oralAllowed) {
-			for(GameCharacter character : submissives.keySet()) {
-				orificesBannedMap.get(character).add(SexAreaOrifice.MOUTH);
-			}
+			orificesAllowedMap.put(character, new HashSet<>(allowedOrifices));
 		}
 	}
 

@@ -31,6 +31,8 @@ import com.lilithsthrone.game.dialogue.utils.UtilText;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
 import com.lilithsthrone.game.occupantManagement.SlaveJobSetting;
+import com.lilithsthrone.game.sex.SexAreaInterface;
+import com.lilithsthrone.game.sex.SexAreaOrifice;
 import com.lilithsthrone.game.sex.SexPositionSlot;
 import com.lilithsthrone.game.sex.managers.dominion.SMStocks;
 import com.lilithsthrone.main.Main;
@@ -995,6 +997,24 @@ public class SlaverAlleyDialogue {
 			
 			return UtilText.nodeContentSB.toString();
 		}
+		private ArrayList<SexAreaInterface> getSexAreasForSlaveJob(NPC person) {
+			ArrayList<SexAreaInterface> allowedAreas = new ArrayList<>();
+			for (SlaveJobSetting n: person.getSlaveJobSettings()) {
+				switch (n) {
+					case SEX_ORAL:
+						allowedAreas.add(SexAreaOrifice.MOUTH);
+						break;
+					case SEX_VAGINAL:
+						allowedAreas.add(SexAreaOrifice.VAGINA);
+						break;
+					case SEX_ANAL:
+						allowedAreas.add(SexAreaOrifice.ANUS);
+						break;
+					default:
+				}
+			}
+			return allowedAreas;
+		}
 
 		@Override
 		public Response getResponse(int responseTab, int index) {
@@ -1008,10 +1028,7 @@ public class SlaverAlleyDialogue {
 						"Use "+charactersPresent.get(index-1).getName(),
 						UtilText.parse(charactersPresent.get(index-1), "Walk up to [npc.name] and have some fun..."),
 						false, false,
-						new SMStocks(
-								charactersPresent.get(index-1).getSlaveJobSettings().contains(SlaveJobSetting.SEX_VAGINAL),
-								charactersPresent.get(index-1).getSlaveJobSettings().contains(SlaveJobSetting.SEX_ANAL),
-								charactersPresent.get(index-1).getSlaveJobSettings().contains(SlaveJobSetting.SEX_ORAL),
+						new SMStocks(getSexAreasForSlaveJob(charactersPresent.get(index-1)),
 								Util.newHashMapOfValues(new Value<>(Main.game.getPlayer(), SexPositionSlot.STOCKS_FUCKING)),
 								Util.newHashMapOfValues(new Value<>(charactersPresent.get(index-1), SexPositionSlot.STOCKS_LOCKED_IN_STOCKS))),
 						null,
