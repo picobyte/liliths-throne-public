@@ -6,9 +6,11 @@ import java.util.List;
 
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.body.fluid.GirlCum;
+import com.lilithsthrone.game.character.body.Urethra;
 import com.lilithsthrone.game.character.body.types.PenisType;
 import com.lilithsthrone.game.character.body.types.VaginaType;
 import com.lilithsthrone.game.character.body.valueEnums.BodyHair;
+import com.lilithsthrone.game.character.body.valueEnums.Capacity;
 import com.lilithsthrone.game.character.body.valueEnums.LabiaSize;
 import com.lilithsthrone.game.character.body.valueEnums.OrificeElasticity;
 import com.lilithsthrone.game.character.body.valueEnums.OrificeModifier;
@@ -30,7 +32,7 @@ import com.lilithsthrone.utils.Util;
  * @version 0.2.11
  * @author Innoxia
  */
-public class Vagina implements BodyPartInterface, Serializable {
+public class Vagina extends AbstractOrifice implements BodyPartInterface, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -39,35 +41,26 @@ public class Vagina implements BodyPartInterface, Serializable {
 	protected int labiaSize;
 	protected boolean pierced;
 	
-	protected OrificeVagina orificeVagina;
 	protected GirlCum girlcum;
-	protected OrificeVaginaUrethra orificeUrethra;
+	protected Urethra urethra;
+	protected boolean squirter;
 
 	public Vagina(VaginaType type, int labiaSize, int clitSize, int wetness, float capacity, int elasticity, int plasticity, boolean virgin) {
+		super(wetness, capacity, elasticity, plasticity, virgin, type.getDefaultRacialOrificeModifiers());
 		this.type = type;
 		this.labiaSize = labiaSize;
 		this.clitoris = new Clitoris(clitSize, PenisGirth.TWO_AVERAGE.getValue());
 		pierced = false;
-		
-		orificeVagina = new OrificeVagina(wetness, capacity, elasticity, plasticity, virgin, type.getDefaultRacialOrificeModifiers());
+		urethra = new Urethra(type, Wetness.TWO_MOIST.getValue(), 0, OrificeElasticity.ZERO_UNYIELDING.getValue(), OrificePlasticity.THREE_RESILIENT.getValue(), true, new ArrayList<>());
 
-		orificeUrethra = new OrificeVaginaUrethra(Wetness.TWO_MOIST.getValue(), 0, OrificeElasticity.ZERO_UNYIELDING.getValue(), OrificePlasticity.THREE_RESILIENT.getValue(), true, new ArrayList<>());
-		
 		girlcum = new GirlCum(type.getFluidType());
-	}
-
-	public OrificeVagina getOrificeVagina() {
-		return orificeVagina;
+		squirter = wetness > Wetness.THREE_WET.getValue();
 	}
 
 	public GirlCum getGirlcum() {
 		return girlcum;
 	}
 	
-	public OrificeVaginaUrethra getOrificeUrethra() {
-		return orificeUrethra;
-	}
-
 	@Override
 	public VaginaType getType() {
 		return type;
@@ -97,11 +90,11 @@ public class Vagina implements BodyPartInterface, Serializable {
 	public String getDescriptor(GameCharacter owner) {
 		List<String> descriptorList = new ArrayList<>();
 		
-		for(OrificeModifier om : orificeVagina.getOrificeModifiers()) {
+		for(OrificeModifier om : getOrificeModifiers()) {
 			descriptorList.add(om.getName());
 		}
 		
-		String wetnessDescriptor = orificeVagina.getWetness(owner).getDescriptor();
+		String wetnessDescriptor = getWetness(owner).getDescriptor();
 		if(Main.game.isInSex() && Sex.getAllParticipants().contains(owner)) {
 			if(Sex.hasLubricationTypeFromAnyone(owner, SexAreaOrifice.VAGINA)) {
 				wetnessDescriptor = "wet";
@@ -112,21 +105,7 @@ public class Vagina implements BodyPartInterface, Serializable {
 			descriptorList.add("hairy");
 		}
 		descriptorList.add(type.getDescriptor(owner));
-		descriptorList.add(orificeVagina.getCapacity().getDescriptor());
-		
-		return UtilText.returnStringAtRandom(descriptorList.toArray(new String[]{}));
-	}
-	
-	public String getUrethraDescriptor(GameCharacter owner) {
-		List<String> descriptorList = new ArrayList<>();
-		
-		for(OrificeModifier om : orificeUrethra.getOrificeModifiers()) {
-			descriptorList.add(om.getName());
-		}
-		
-		descriptorList.add(type.getDescriptor(owner));
-		
-		descriptorList.add(orificeUrethra.getCapacity().getDescriptor());
+		descriptorList.add(getCapacity().getDescriptor());
 		
 		return UtilText.returnStringAtRandom(descriptorList.toArray(new String[]{}));
 	}
@@ -356,7 +335,7 @@ public class Vagina implements BodyPartInterface, Serializable {
 				}
 				
 				owner.setVaginaVirgin(true);
-				orificeUrethra.setVirgin(true);
+				urethra.setVirgin(true);
 				owner.setPiercedVagina(false);
 				break;
 			case HUMAN:
@@ -863,9 +842,9 @@ public class Vagina implements BodyPartInterface, Serializable {
 				break;
 		}
 		
-		orificeVagina.getOrificeModifiers().clear();
+		getOrificeModifiers().clear();
 		for(OrificeModifier om : type.getDefaultRacialOrificeModifiers()) {
-			orificeVagina.addOrificeModifier(owner, om);
+			addOrificeModifier(owner, om);
 		}
 
 		if (owner.isPlayer()) {
@@ -878,7 +857,7 @@ public class Vagina implements BodyPartInterface, Serializable {
 					+ "Any old modifiers that [npc.her] pussy might have had have [style.boldShrink(transformed away)]!");
 		}
 		
-		if(orificeVagina.getOrificeModifiers().isEmpty()) {
+		if(getOrificeModifiers().isEmpty()) {
 			UtilText.transformationContentSB.append("</p>");
 		} else {
 			if (owner.isPlayer()) {
@@ -891,7 +870,7 @@ public class Vagina implements BodyPartInterface, Serializable {
 						+ "Instead, [npc.her] new pussy is:");
 			}
 			
-			for(OrificeModifier om : orificeVagina.getOrificeModifiers()) {
+			for(OrificeModifier om : getOrificeModifiers()) {
 				UtilText.transformationContentSB.append("<br/>[style.boldGrow("+Util.capitaliseSentence(om.getName())+")]");
 			}
 			UtilText.transformationContentSB.append("</p>");
@@ -1003,5 +982,350 @@ public class Vagina implements BodyPartInterface, Serializable {
 
 	public Clitoris getClitoris() {
 		return clitoris;
+	}
+
+	@Override
+	public String getWetnessChangeDescription(GameCharacter owner, int wetnessChange) {
+
+		if(this.wetness < Wetness.SEVEN_DROOLING.getValue() && owner.getBodyMaterial().isOrificesAlwaysMaximumWetness()) {
+			this.wetness = Wetness.SEVEN_DROOLING.getValue();
+			if(owner.isPlayer())
+				return "<p style='text-align:center;'>[style.colourSex(Due to being made out of "+owner.getBodyMaterial().getName()+", your [pc.pussy] can't be anything but "+Wetness.SEVEN_DROOLING.getDescriptor()+"...)]</p>";
+
+			return UtilText.parse(owner, "<p style='text-align:center;'>[style.colourSex(Due to being made out of "+owner.getBodyMaterial().getName()+", [npc.namePos] [npc.pussy] can't be anything but "+Wetness.SEVEN_DROOLING.getDescriptor()+"...)]</p>");
+		}
+
+		if(wetnessChange == 0) {
+			if(owner.isPlayer())
+				return "<p style='text-align:center;'>[style.colourDisabled(Your [pc.pussy]'s wetness doesn't change...)]</p>";
+
+			return UtilText.parse(owner, "<p style='text-align:center;'>[style.colourDisabled(The wetness of [npc.namePos] [npc.pussy] doesn't change...)]</p>");
+		}
+
+		String wetnessDescriptor = getWetness(owner).getDescriptor();
+		if (wetnessChange > 0) {
+			if (owner.isPlayer())
+				return "<p>"
+				+ "Your [pc.eyes] widen as you feel moisture beading around your [pc.pussy], and you let out [pc.a_moan+] as you realise that it's lubricating itself and [style.boldGrow(getting wetter)].<br/>"
+				+ "The transformation quickly passes, leaving you with [style.boldSex(" + UtilText.generateSingularDeterminer(wetnessDescriptor) + " " + wetnessDescriptor + " pussy)]!"
+				+ "</p>";
+
+			return UtilText.parse(owner, "<p>"
+					+ "[npc.NamePos] [npc.eyes] widen as [npc.she] feels moisture beading around [npc.her] [npc.pussy], and [npc.she] lets out [npc.a_moan+] as [npc.she] realises that it's lubricating itself and [style.boldGrow(getting wetter)].<br/>"
+					+ "The transformation quickly passes, leaving [npc.herHim] with [style.boldSex(" + UtilText.generateSingularDeterminer(wetnessDescriptor) + " " + wetnessDescriptor + " pussy)]!"
+					+ "</p>");
+		}
+		if (owner.isPlayer())
+			return "<p>"
+			+ "You shift about uncomfortably and let out a frustrated groan as you feel your [pc.pussy] [style.boldShrink(getting drier)].<br/>"
+			+ "The transformation quickly passes, leaving you with [style.boldSex(" + UtilText.generateSingularDeterminer(wetnessDescriptor) + " " + wetnessDescriptor + " pussy)]!"
+			+ "</p>";
+
+		return UtilText.parse(owner, "<p>"
+				+ "[npc.Name] shifts about uncomfortably and lets out a frustrated groan as [npc.she] feels [npc.her] [npc.pussy] [style.boldShrink(getting drier)].<br/>"
+				+ "The transformation quickly passes, leaving [npc.herHim] with [style.boldSex(" + UtilText.generateSingularDeterminer(wetnessDescriptor) + " " + wetnessDescriptor + " pussy)]!"
+				+ "</p>");
+	}
+
+	
+	@Override
+	public String isChangeable(GameCharacter owner) {
+		if (!owner.hasVagina()) {
+			if(owner.isPlayer())
+				return "<p style='text-align:center;'>[style.colourDisabled(You lack a vagina, so nothing happens...)]</p>";
+
+			return UtilText.parse(owner, "<p style='text-align:center;'>[style.colourDisabled([npc.Name] lacks a vagina, so nothing happens...)]</p>");
+		}
+		return "";
+	}
+	@Override
+	public String setCapacity(GameCharacter owner, float newCapacity, boolean setStretchedValueToNewValue) {
+		String rebuke = isChangeable(owner);
+		if (rebuke.equals("") == false)
+			return rebuke;
+		
+		newCapacity = Math.max(0, Math.min(newCapacity, Capacity.SEVEN_GAPING.getMaximumValue()));
+		if(setStretchedValueToNewValue) {
+			stretchedCapacity = newCapacity;
+		}
+		return getCapacityChangeDescription(owner, newCapacity - capacity);
+	}
+
+	@Override
+	public String getCapacityChangeDescription(GameCharacter owner, float capacityChange) {
+
+		if (capacityChange == 0) {
+			if (owner.isPlayer())
+				return "<p style='text-align:center;'>[style.colourDisabled(Your [pc.pussy]'s capacity doesn't change...)]</p>";
+
+			return UtilText.parse(owner, "<p style='text-align:center;'>[style.colourDisabled(The capacity of [npc.namePos] [npc.pussy] doesn't change...)]</p>");
+		}
+		String capacityDescriptor = getCapacity().getDescriptor();
+		if (capacityChange > 0) {
+			if (owner.isPlayer())
+				return "<p>"
+				+ "You let out a shocked gasp as you feel your [pc.pussy] dilate and stretch out as its internal [style.boldGrow(capacity increases)].<br/>"
+				+ "The transformation quickly passes, leaving you with [style.boldSex(" + UtilText.generateSingularDeterminer(capacityDescriptor) + " " + capacityDescriptor + " pussy)]!"
+				+ "</p>";
+			return UtilText.parse(owner, "<p>"
+					+ "[npc.Name] lets out a shocked gasp as [npc.she] feels [npc.her] [npc.pussy] dilate and stretch out as its internal [style.boldGrow(capacity increases)].<br/>"
+					+ "The transformation quickly passes, leaving [npc.herHim] with [style.boldSex(" + UtilText.generateSingularDeterminer(capacityDescriptor) + " " + capacityDescriptor + " pussy)]!"
+					+ "</p>");
+		}
+		if (owner.isPlayer())
+			return "<p>"
+			+ "You let out a cry as you feel your [pc.pussy] uncontrollably tighten and clench as its internal [style.boldShrink(capacity decreases)].<br/>"
+			+ "The transformation quickly passes, leaving you with [style.boldSex(" + UtilText.generateSingularDeterminer(capacityDescriptor) + " " + capacityDescriptor + " pussy)]!"
+			+ "</p>";
+		return UtilText.parse(owner, "<p>"
+				+ "[npc.Name] lets out a cry as [npc.she] feels [npc.her] [npc.pussy] uncontrollably tighten and clench as its internal [style.boldShrink(capacity decreases)].<br/>"
+				+ "The transformation quickly passes, leaving [npc.herHim] with [style.boldSex(" + UtilText.generateSingularDeterminer(capacityDescriptor) + " " + capacityDescriptor + " pussy)]!"
+				+ "</p>");
+	}
+
+	@Override
+	public String getElasticityChangeDescription(GameCharacter owner, int elasticityChange) {
+
+		if (elasticityChange == 0) {
+			if(owner.isPlayer())
+				return "<p style='text-align:center;'>[style.colourDisabled(Your [pc.pussy]'s elasticity doesn't change...)]</p>";
+
+			return UtilText.parse(owner, "<p style='text-align:center;'>[style.colourDisabled(The elasticity of [npc.namePos] [npc.pussy] doesn't change...)]</p>");
+		}
+
+		String elasticityDescriptor = getElasticity().getDescriptor();
+		if (elasticityChange > 0) {
+			if (owner.isPlayer())
+				return "<p>"
+				+ "You let out a little gasp as you feel a strange slackening sensation pulsating deep within your [pc.pussy] as its [style.boldGrow(elasticity increases)].<br/>"
+				+ "The transformation quickly passes, leaving you with [style.boldSex(" + UtilText.generateSingularDeterminer(elasticityDescriptor) + " " + elasticityDescriptor + " pussy)]!"
+				+ "</p>";
+
+			return UtilText.parse(owner, "<p>"
+					+ "[npc.Name] lets out a little gasp as [npc.she] feels a strange slackening sensation pulsating deep within [npc.her] [npc.pussy] as its [style.boldGrow(elasticity increases)].<br/>"
+					+ "The transformation quickly passes, leaving [npc.herHim] with [style.boldSex(" + UtilText.generateSingularDeterminer(elasticityDescriptor) + " " + elasticityDescriptor + " pussy)]!"
+					+ "</p>");
+		}
+		if (owner.isPlayer())
+			return "<p>"
+			+ "You let out a little gasp as you feel a strange clenching sensation pulsating deep within your [pc.pussy] as its [style.boldShrink(elasticity decreases)].<br/>"
+			+ "The transformation quickly passes, leaving you with [style.boldSex(" + UtilText.generateSingularDeterminer(elasticityDescriptor) + " " + elasticityDescriptor + " pussy)]!"
+			+ "</p>";
+
+		return UtilText.parse(owner, "<p>"
+				+ "[npc.Name] lets out a little gasp as [npc.she] feels a strange clenching sensation pulsating deep within [npc.her] [npc.pussy] as its [style.boldShrink(elasticity decreases)].<br/>"
+				+ "The transformation quickly passes, leaving [npc.herHim] with [style.boldSex(" + UtilText.generateSingularDeterminer(elasticityDescriptor) + " " + elasticityDescriptor + " pussy)]!"
+				+ "</p>");
+	}
+
+	@Override
+	public String getPlasticityChangeDescription(GameCharacter owner, int plasticityChange) {
+
+		if (plasticityChange == 0) {
+			if(owner.isPlayer())
+				return "<p style='text-align:center;'>[style.colourDisabled(Your [pc.pussy]'s plasticity doesn't change...)]</p>";
+
+			return UtilText.parse(owner, "<p style='text-align:center;'>[style.colourDisabled(The plasticity of [npc.namePos] [npc.pussy] doesn't change...)]</p>");
+		}
+		String plasticityDescriptor = getPlasticity().getDescriptor();
+		if (plasticityChange > 0) {
+			if (owner.isPlayer())
+				return "<p>"
+				+ "You let out a little gasp as you feel a strange moulding sensation pulsating deep within your [pc.pussy] as its [style.boldGrow(plasticity increases)].<br/>"
+				+ "The transformation quickly passes, leaving you with [style.boldSex(" + UtilText.generateSingularDeterminer(plasticityDescriptor) + " " + plasticityDescriptor + " pussy)]!"
+				+ "</p>";
+
+			return UtilText.parse(owner, "<p>"
+					+ "[npc.Name] lets out a little gasp as [npc.she] feels a strange moulding sensation pulsating deep within [npc.her] [npc.pussy] as its [style.boldGrow(plasticity increases)].<br/>"
+					+ "The transformation quickly passes, leaving [npc.herHim] with [style.boldSex(" + UtilText.generateSingularDeterminer(plasticityDescriptor) + " " + plasticityDescriptor + " pussy)]!"
+					+ "</p>");
+
+		}
+		if (owner.isPlayer())
+			return "<p>"
+			+ "You let out a little gasp as you feel a strange softening sensation pulsating deep within your [pc.pussy] as its [style.boldShrink(plasticity decreases)].<br/>"
+			+ "The transformation quickly passes, leaving you with [style.boldSex(" + UtilText.generateSingularDeterminer(plasticityDescriptor) + " " + plasticityDescriptor + " pussy)]!"
+			+ "</p>";
+
+		return UtilText.parse(owner, "<p>"
+				+ "[npc.Name] lets out a little gasp as [npc.she] feels a strange softening sensation pulsating deep within [npc.her] [pc.pussy] as its [style.boldShrink(plasticity decreases)].<br/>"
+				+ "The transformation quickly passes, leaving [npc.herHim] with [style.boldSex(" + UtilText.generateSingularDeterminer(plasticityDescriptor) + " " + plasticityDescriptor + " pussy)]!"
+				+ "</p>");
+	}
+
+	@Override
+	public String addOrificeModifier(GameCharacter owner, OrificeModifier modifier) {
+		if(hasOrificeModifier(modifier)) {
+			return "<p style='text-align:center;'>[style.colourDisabled(Nothing happens...)]</p>";
+		}
+
+		orificeModifiers.add(modifier);
+
+		switch(modifier) {
+		case MUSCLE_CONTROL:
+			if(owner.isPlayer()) {
+				return "<p>"
+						+ "You feel an intense pressure swelling up deep within your [pc.pussy], but before you have any chance to react, the feeling suddenly fades away."
+						+ " With an experimental clench, you discover that the interior of your [pc.pussy] is now lined with [style.boldGrow(extra muscles)], which you can use to expertly grip and squeeze down on any penetrating object.<br/>"
+						+ "[style.boldSex(Your pussy is now lined with an intricate series of muscles!)]"
+						+ "</p>";
+			} else {
+				return "<p>"
+						+ "[npc.Name] lets out a little cry as an intense pressure swells up deep within [npc.her] [npc.pussy], but before [npc.she] has any chance to react, the feeling quickly dissipates."
+						+ " With an experimental clench, [npc.she] discovers that the interior of [npc.her] [npc.pussy] is now lined with [style.boldGrow(extra muscles)],"
+						+ " which [npc.she] can use to expertly grip and squeeze down on any penetrating object.<br/>"
+						+ "[style.boldSex([npc.NamePos] pussy is now lined with an intricate series of muscles!)]"
+						+ "</p>";
+			}
+		case RIBBED:
+			if(owner.isPlayer()) {
+				return "<p>"
+						+ "You feel an intense pressure swelling up deep within your [pc.pussy], but before you have any chance to react, the feeling suddenly fades away."
+						+ " Shifting your [pc.pussy] around a little, you feel that the inside of your [pc.pussy] is now lined with [style.boldGrow(fleshy, highly-sensitive ribs)], which provide extreme pleasure when stimulated.<br/>"
+						+ "[style.boldSex(Your pussy is now lined with fleshy, pleasure-inducing ribs!)]"
+						+ "</p>";
+			} else {
+				return "<p>"
+						+ "[npc.Name] lets out a little cry as an intense pressure swells up deep within [npc.her] [npc.pussy], but before [npc.she] has any chance to react, the feeling quickly dissipates."
+						+ " Shifting [npc.her] [npc.pussy] around a little, [npc.she] discovers that the inside of [npc.her] [npc.pussy] is now lined with [style.boldGrow(fleshy, highly-sensitive ribs)],"
+						+ " which provide extreme pleasure when stimulated.<br/>"
+						+ "[style.boldSex([npc.NamePos] pussy is now lined with fleshy, pleasure-inducing ribs!)]"
+						+ "</p>";
+			}
+		case TENTACLED:
+			if(owner.isPlayer()) {
+				return "<p>"
+						+ "You feel an intense pressure swelling up deep within your [pc.pussy], but before you have any chance to react, the feeling suddenly fades away."
+						+ " A surprised cry bursts out from your mouth as you feel that the inside of your [pc.pussy] is now filled with [style.boldGrow(a series of little wriggling tentacles)], over which you have limited control.<br/>"
+						+ "[style.boldSex(The inside of your pussy is now filled with little tentacles, which wriggle with a mind of their own!)]"
+						+ "</p>";
+			} else {
+				return "<p>"
+						+ "[npc.Name] lets out a little cry as an intense pressure swells up deep within [npc.her] [npc.pussy], but before [npc.she] has any chance to react, the feeling quickly dissipates."
+						+ " With an experimental clench, [npc.she] discovers that the inside of [npc.her] [npc.pussy] is now filled with [style.boldGrow(a series of little wriggling tentacles)], over which [npc.she] has limited control.<br/>"
+						+ "[style.boldSex(The inside of [npc.namePos] pussy is now filled with little tentacles, which wriggle with a mind of their own!)]"
+						+ "</p>";
+			}
+		case PUFFY:
+			if(owner.isPlayer()) {
+				return "<p>"
+						+ "You feel a tingling sensation running over your [pc.pussy], and you let out a little cry as you feel your labia [style.boldGrow(puff up)] into big, swollen pussy lips.<br/>"
+						+ "[style.boldSex(Your labia are now extremely swollen and puffy!)]"
+						+ "</p>";
+			} else {
+				return "<p>"
+						+ "[npc.Name] lets out a little cry as [npc.she] feels a tingling sensation running over [npc.her] [npc.pussy], before [npc.her] labia [style.boldGrow(puffs up)] into big, swollen pussy lips.<br/>"
+						+ "[style.boldSex([npc.NamePos] labia are now extremely swollen and puffy!)]"
+						+ "</p>";
+			}
+		}
+		
+		// Catch:
+		return "<p style='text-align:center;'>[style.colourDisabled(Nothing happens...)]</p>";
+	}
+
+	@Override
+	public String removeOrificeModifier(GameCharacter owner, OrificeModifier modifier) {
+		if(!hasOrificeModifier(modifier)) {
+			return "<p style='text-align:center;'>[style.colourDisabled(Nothing happens...)]</p>";
+		}
+
+		orificeModifiers.remove(modifier);
+
+		switch(modifier) {
+		case MUSCLE_CONTROL:
+			if(owner.isPlayer()) {
+				return "<p>"
+						+ "You feel an intense pressure swelling up deep within your [pc.pussy], but before you have any chance to react, the feeling suddenly fades away."
+						+ " With an experimental clench, you discover that the interior of your [pc.pussy] has lost its [style.boldShrink(extra muscles)].<br/>"
+						+ "[style.boldSex(Your pussy is no longer lined with an intricate series of muscles!)]"
+						+ "</p>";
+			} else {
+				return "<p>"
+						+ "[npc.Name] lets out a little cry as an intense pressure swells up deep within [npc.her] [npc.pussy], but before [npc.she] has any chance to react, the feeling quickly dissipates."
+						+ " With an experimental clench, [npc.she] discovers that the interior of [npc.her] [npc.pussy] has lost its [style.boldShrink(extra muscles)].<br/>"
+						+ "[style.boldSex([npc.NamePos] pussy is no longer lined with an intricate series of muscles!)]"
+						+ "</p>";
+			}
+		case RIBBED:
+			if(owner.isPlayer()) {
+				return "<p>"
+						+ "You feel an intense pressure swelling up deep within your [pc.pussy], but before you have any chance to react, the feeling suddenly fades away."
+						+ " Shifting your [pc.pussy] around a little, you feel that the [style.boldShrink(fleshy, highly-sensitive ribs)] that once lined your [pc.pussy] have vanished.<br/>"
+						+ "[style.boldSex(Your pussy is no longer lined with fleshy, pleasure-inducing ribs!)]"
+						+ "</p>";
+			} else {
+				return "<p>"
+						+ "[npc.Name] lets out a little cry as an intense pressure swells up deep within [npc.her] [npc.pussy], but before [npc.she] has any chance to react, the feeling quickly dissipates."
+						+ " Shifting [npc.her] [npc.pussy] around a little, [npc.she] discovers that the [style.boldShrink(fleshy, highly-sensitive ribs)] that once lined [npc.her] [npc.pussy] have vanished.<br/>"
+						+ "[style.boldSex([npc.NamePos] pussy is no longer lined with fleshy, pleasure-inducing ribs!)]"
+						+ "</p>";
+			}
+		case TENTACLED:
+			if(owner.isPlayer()) {
+				return "<p>"
+						+ "You feel an intense pressure swelling up deep within your [pc.pussy], but before you have any chance to react, the feeling suddenly fades away."
+						+ " A surprised cry bursts out from your mouth as you feel that the [style.boldShrink(series of little wriggling tentacles)] within your [pc.pussy] have all disappeared.<br/>"
+						+ "[style.boldSex(The inside of your pussy is no longer filled with little tentacles!)]"
+						+ "</p>";
+			} else {
+				return "<p>"
+						+ "[npc.Name] lets out a little cry as an intense pressure swells up deep within [npc.her] [npc.pussy], but before [npc.she] has any chance to react, the feeling quickly dissipates."
+						+ " With an experimental clench, [npc.she] discovers that the [style.boldShrink(series of little wriggling tentacles)] within [npc.her] [npc.pussy] have all disappeared.<br/>"
+						+ "[style.boldSex(The inside of [npc.namePos] pussy is no longer filled with little tentacles!)]"
+						+ "</p>";
+			}
+		case PUFFY:
+			if(owner.isPlayer()) {
+				return "<p>"
+						+ "You feel a tingling sensation running over your [pc.pussy], and you let out a little cry as you feel the puffy rim of your [pc.pussy] [style.boldGrow(deflate)] into a more normal-looking shape.<br/>"
+						+ "[style.boldSex(The rim of your pussy is no longer swollen and puffy!)]"
+						+ "</p>";
+			} else {
+				return "<p>"
+						+ "[npc.Name] lets out a little cry as [npc.she] feels a tingling sensation running over [npc.her] [npc.pussy],"
+						+ " before the puffy rim of [npc.her] [npc.pussy] [style.boldShrink(deflates)] into a more normal-looking shape.<br/>"
+						+ "[style.boldSex(The rim of [npc.namePos] pussy is no longer swollen and puffy!)]"
+						+ "</p>";
+			}
+		}
+
+		// Catch:
+		return "<p style='text-align:center;'>[style.colourDisabled(Nothing happens...)]</p>";
+	}
+	public boolean isSquirter() {
+		return squirter;
+	}
+
+	public String setSquirter(GameCharacter owner, boolean squirter) {
+		if(owner == null) {
+			this.squirter = squirter;
+			return "";
+		}
+		if(this.squirter == squirter || !owner.hasVagina()) {
+			return "<p style='text-align:center;'>[style.colourDisabled(Nothing happens...)]</p>";
+		}
+		
+		this.squirter = squirter;
+		
+		if(squirter) {
+			if(owner.isPlayer()) {
+				return "<p>You are now a [style.boldGrow(squirter)]!</p>";
+			} else {
+				return UtilText.parse(owner,
+						"<p>[npc.Name] is now a [style.boldGrow(squirter)]!</p>");
+			}
+		} else {
+			if(owner.isPlayer()) {
+				return "<p>You are no longer a [style.boldShrink(squirter)]!</p>";
+			} else {
+				return UtilText.parse(owner,
+						"<p>[npc.Name] is no longer a [style.boldShrink(squirter)]!</p>");
+			}
+		}
+	}
+
+	public Urethra getUrethra() {
+		return urethra;
 	}
 }

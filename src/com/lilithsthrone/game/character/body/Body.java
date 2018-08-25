@@ -470,18 +470,18 @@ public class Body implements Serializable, XMLSaving {
 
 		Element bodyAnus = doc.createElement("anus");
 		parentElement.appendChild(bodyAnus);
-			CharacterUtils.addAttribute(doc, bodyAnus, "wetness", String.valueOf(this.ass.anus.orificeAnus.wetness));
-			CharacterUtils.addAttribute(doc, bodyAnus, "elasticity", String.valueOf(this.ass.anus.orificeAnus.elasticity));
-			CharacterUtils.addAttribute(doc, bodyAnus, "plasticity", String.valueOf(this.ass.anus.orificeAnus.plasticity));
-			CharacterUtils.addAttribute(doc, bodyAnus, "capacity", String.valueOf(this.ass.anus.orificeAnus.capacity));
-			CharacterUtils.addAttribute(doc, bodyAnus, "stretchedCapacity", String.valueOf(this.ass.anus.orificeAnus.stretchedCapacity));
-			CharacterUtils.addAttribute(doc, bodyAnus, "virgin", String.valueOf(this.ass.anus.orificeAnus.virgin));
+			CharacterUtils.addAttribute(doc, bodyAnus, "wetness", String.valueOf(this.ass.anus.wetness));
+			CharacterUtils.addAttribute(doc, bodyAnus, "elasticity", String.valueOf(this.ass.anus.elasticity));
+			CharacterUtils.addAttribute(doc, bodyAnus, "plasticity", String.valueOf(this.ass.anus.plasticity));
+			CharacterUtils.addAttribute(doc, bodyAnus, "capacity", String.valueOf(this.ass.anus.capacity));
+			CharacterUtils.addAttribute(doc, bodyAnus, "stretchedCapacity", String.valueOf(this.ass.anus.stretchedCapacity));
+			CharacterUtils.addAttribute(doc, bodyAnus, "virgin", String.valueOf(this.ass.anus.virgin));
 			CharacterUtils.addAttribute(doc, bodyAnus, "bleached", String.valueOf(this.ass.anus.bleached));
 			CharacterUtils.addAttribute(doc, bodyAnus, "assHair", this.ass.anus.assHair.toString());
 			Element anusModifiers = doc.createElement("anusModifiers");
 			bodyAnus.appendChild(anusModifiers);
 			for(OrificeModifier om : OrificeModifier.values()) {
-				CharacterUtils.addAttribute(doc, anusModifiers, om.toString(), String.valueOf(this.ass.anus.orificeAnus.hasOrificeModifier(om)));
+				CharacterUtils.addAttribute(doc, anusModifiers, om.toString(), String.valueOf(this.ass.anus.hasOrificeModifier(om)));
 			}
 		
 		// Breasts:
@@ -498,11 +498,11 @@ public class Body implements Serializable, XMLSaving {
 
 		Element bodyNipple = doc.createElement("nipples");
 		parentElement.appendChild(bodyNipple);
-			CharacterUtils.addAttribute(doc, bodyNipple, "elasticity", String.valueOf(this.breast.nipples.orificeNipples.elasticity));
-			CharacterUtils.addAttribute(doc, bodyNipple, "plasticity", String.valueOf(this.breast.nipples.orificeNipples.plasticity));
-			CharacterUtils.addAttribute(doc, bodyNipple, "capacity", String.valueOf(this.breast.nipples.orificeNipples.capacity));
-			CharacterUtils.addAttribute(doc, bodyNipple, "stretchedCapacity", String.valueOf(this.breast.nipples.orificeNipples.stretchedCapacity));
-			CharacterUtils.addAttribute(doc, bodyNipple, "virgin", String.valueOf(this.breast.nipples.orificeNipples.virgin));
+			CharacterUtils.addAttribute(doc, bodyNipple, "elasticity", String.valueOf(this.breast.nipples.elasticity));
+			CharacterUtils.addAttribute(doc, bodyNipple, "plasticity", String.valueOf(this.breast.nipples.plasticity));
+			CharacterUtils.addAttribute(doc, bodyNipple, "capacity", String.valueOf(this.breast.nipples.capacity));
+			CharacterUtils.addAttribute(doc, bodyNipple, "stretchedCapacity", String.valueOf(this.breast.nipples.stretchedCapacity));
+			CharacterUtils.addAttribute(doc, bodyNipple, "virgin", String.valueOf(this.breast.nipples.virgin));
 			CharacterUtils.addAttribute(doc, bodyNipple, "pierced", String.valueOf(this.breast.nipples.pierced));
 			CharacterUtils.addAttribute(doc, bodyNipple, "nippleSize", String.valueOf(this.breast.nipples.nippleSize));
 			CharacterUtils.addAttribute(doc, bodyNipple, "nippleShape", this.breast.nipples.nippleShape.toString());
@@ -511,7 +511,7 @@ public class Body implements Serializable, XMLSaving {
 			Element nippleModifiers = doc.createElement("nippleModifiers");
 			bodyNipple.appendChild(nippleModifiers);
 			for(OrificeModifier om : OrificeModifier.values()) {
-				CharacterUtils.addAttribute(doc, nippleModifiers, om.toString(), String.valueOf(this.breast.nipples.orificeNipples.hasOrificeModifier(om)));
+				CharacterUtils.addAttribute(doc, nippleModifiers, om.toString(), String.valueOf(this.breast.nipples.hasOrificeModifier(om)));
 			}
 			
 		this.breast.milk.saveAsXML(parentElement, doc);
@@ -539,18 +539,18 @@ public class Body implements Serializable, XMLSaving {
 
 		Element bodyMouth = doc.createElement("mouth");
 		parentElement.appendChild(bodyMouth);
-			CharacterUtils.addAttribute(doc, bodyMouth, "elasticity", String.valueOf(this.face.mouth.orificeMouth.elasticity));
-			CharacterUtils.addAttribute(doc, bodyMouth, "plasticity", String.valueOf(this.face.mouth.orificeMouth.plasticity));
-			CharacterUtils.addAttribute(doc, bodyMouth, "capacity", String.valueOf(this.face.mouth.orificeMouth.capacity));
-			CharacterUtils.addAttribute(doc, bodyMouth, "wetness", String.valueOf(this.face.mouth.orificeMouth.wetness));
-			CharacterUtils.addAttribute(doc, bodyMouth, "stretchedCapacity", String.valueOf(this.face.mouth.orificeMouth.stretchedCapacity));
-			CharacterUtils.addAttribute(doc, bodyMouth, "virgin", String.valueOf(this.face.mouth.orificeMouth.virgin));
+			CharacterUtils.addAttribute(doc, bodyMouth, "elasticity", String.valueOf(this.face.mouth.elasticity));
+			CharacterUtils.addAttribute(doc, bodyMouth, "plasticity", String.valueOf(this.face.mouth.plasticity));
+			CharacterUtils.addAttribute(doc, bodyMouth, "capacity", String.valueOf(this.face.mouth.capacity));
+			CharacterUtils.addAttribute(doc, bodyMouth, "wetness", String.valueOf(this.face.mouth.wetness));
+			CharacterUtils.addAttribute(doc, bodyMouth, "stretchedCapacity", String.valueOf(this.face.mouth.stretchedCapacity));
+			CharacterUtils.addAttribute(doc, bodyMouth, "virgin", String.valueOf(this.face.mouth.virgin));
 			CharacterUtils.addAttribute(doc, bodyMouth, "piercedLip", String.valueOf(this.face.mouth.piercedLip));
 			CharacterUtils.addAttribute(doc, bodyMouth, "lipSize", String.valueOf(this.face.mouth.lipSize));
 			Element mouthModifiers = doc.createElement("mouthModifiers");
 			bodyMouth.appendChild(mouthModifiers);
 			for(OrificeModifier om : OrificeModifier.values()) {
-				CharacterUtils.addAttribute(doc, mouthModifiers, om.toString(), String.valueOf(this.face.mouth.orificeMouth.hasOrificeModifier(om)));
+				CharacterUtils.addAttribute(doc, mouthModifiers, om.toString(), String.valueOf(this.face.mouth.hasOrificeModifier(om)));
 			}
 			
 		Element bodyTongue = doc.createElement("tongue");
@@ -597,15 +597,15 @@ public class Body implements Serializable, XMLSaving {
 			for(PenetrationModifier pm : PenetrationModifier.values()) {
 				CharacterUtils.addAttribute(doc, penisModifiers, pm.toString(), String.valueOf(this.penis.hasPenisModifier(pm)));
 			}
-			CharacterUtils.addAttribute(doc, bodyPenis, "elasticity", String.valueOf(this.penis.orificeUrethra.elasticity));
-			CharacterUtils.addAttribute(doc, bodyPenis, "plasticity", String.valueOf(this.penis.orificeUrethra.plasticity));
-			CharacterUtils.addAttribute(doc, bodyPenis, "capacity", String.valueOf(this.penis.orificeUrethra.capacity));
-			CharacterUtils.addAttribute(doc, bodyPenis, "stretchedCapacity", String.valueOf(this.penis.orificeUrethra.stretchedCapacity));
-			CharacterUtils.addAttribute(doc, bodyPenis, "urethraVirgin", String.valueOf(this.penis.orificeUrethra.virgin));
+			CharacterUtils.addAttribute(doc, bodyPenis, "elasticity", String.valueOf(this.penis.urethra.elasticity));
+			CharacterUtils.addAttribute(doc, bodyPenis, "plasticity", String.valueOf(this.penis.urethra.plasticity));
+			CharacterUtils.addAttribute(doc, bodyPenis, "capacity", String.valueOf(this.penis.urethra.capacity));
+			CharacterUtils.addAttribute(doc, bodyPenis, "stretchedCapacity", String.valueOf(this.penis.urethra.stretchedCapacity));
+			CharacterUtils.addAttribute(doc, bodyPenis, "urethraVirgin", String.valueOf(this.penis.urethra.virgin));
 			Element urethraModifiers = doc.createElement("urethraModifiers");
 			bodyPenis.appendChild(urethraModifiers);
 			for(OrificeModifier om : OrificeModifier.values()) {
-				CharacterUtils.addAttribute(doc, urethraModifiers, om.toString(), String.valueOf(this.penis.orificeUrethra.hasOrificeModifier(om)));
+				CharacterUtils.addAttribute(doc, urethraModifiers, om.toString(), String.valueOf(this.penis.urethra.hasOrificeModifier(om)));
 			}
 			
 		Element bodyTesticle = doc.createElement("testicles");
@@ -652,28 +652,28 @@ public class Body implements Serializable, XMLSaving {
 			}
 			CharacterUtils.addAttribute(doc, bodyVagina, "pierced", String.valueOf(this.vagina.pierced));
 			
-			CharacterUtils.addAttribute(doc, bodyVagina, "wetness", String.valueOf(this.vagina.orificeVagina.wetness));
-			CharacterUtils.addAttribute(doc, bodyVagina, "elasticity", String.valueOf(this.vagina.orificeVagina.elasticity));
-			CharacterUtils.addAttribute(doc, bodyVagina, "plasticity", String.valueOf(this.vagina.orificeVagina.plasticity));
-			CharacterUtils.addAttribute(doc, bodyVagina, "capacity", String.valueOf(this.vagina.orificeVagina.capacity));
-			CharacterUtils.addAttribute(doc, bodyVagina, "stretchedCapacity", String.valueOf(this.vagina.orificeVagina.stretchedCapacity));
-			CharacterUtils.addAttribute(doc, bodyVagina, "virgin", String.valueOf(this.vagina.orificeVagina.virgin));
-			CharacterUtils.addAttribute(doc, bodyVagina, "squirter", String.valueOf(this.vagina.orificeVagina.squirter));
+			CharacterUtils.addAttribute(doc, bodyVagina, "wetness", String.valueOf(this.vagina.wetness));
+			CharacterUtils.addAttribute(doc, bodyVagina, "elasticity", String.valueOf(this.vagina.elasticity));
+			CharacterUtils.addAttribute(doc, bodyVagina, "plasticity", String.valueOf(this.vagina.plasticity));
+			CharacterUtils.addAttribute(doc, bodyVagina, "capacity", String.valueOf(this.vagina.capacity));
+			CharacterUtils.addAttribute(doc, bodyVagina, "stretchedCapacity", String.valueOf(this.vagina.stretchedCapacity));
+			CharacterUtils.addAttribute(doc, bodyVagina, "virgin", String.valueOf(this.vagina.virgin));
+			CharacterUtils.addAttribute(doc, bodyVagina, "squirter", String.valueOf(this.vagina.squirter));
 			Element vaginaModifiers = doc.createElement("vaginaModifiers");
 			bodyVagina.appendChild(vaginaModifiers);
 			for(OrificeModifier om : OrificeModifier.values()) {
-				CharacterUtils.addAttribute(doc, vaginaModifiers, om.toString(), String.valueOf(this.vagina.orificeVagina.hasOrificeModifier(om)));
+				CharacterUtils.addAttribute(doc, vaginaModifiers, om.toString(), String.valueOf(this.vagina.hasOrificeModifier(om)));
 			}
 
-			CharacterUtils.addAttribute(doc, bodyVagina, "urethraElasticity", String.valueOf(this.vagina.orificeUrethra.elasticity));
-			CharacterUtils.addAttribute(doc, bodyVagina, "urethraPlasticity", String.valueOf(this.vagina.orificeUrethra.plasticity));
-			CharacterUtils.addAttribute(doc, bodyVagina, "urethraCapacity", String.valueOf(this.vagina.orificeUrethra.capacity));
-			CharacterUtils.addAttribute(doc, bodyVagina, "urethraStretchedCapacity", String.valueOf(this.vagina.orificeUrethra.stretchedCapacity));
-			CharacterUtils.addAttribute(doc, bodyVagina, "urethraVirgin", String.valueOf(this.vagina.orificeUrethra.virgin));
+			CharacterUtils.addAttribute(doc, bodyVagina, "urethraElasticity", String.valueOf(this.vagina.urethra.elasticity));
+			CharacterUtils.addAttribute(doc, bodyVagina, "urethraPlasticity", String.valueOf(this.vagina.urethra.plasticity));
+			CharacterUtils.addAttribute(doc, bodyVagina, "urethraCapacity", String.valueOf(this.vagina.urethra.capacity));
+			CharacterUtils.addAttribute(doc, bodyVagina, "urethraStretchedCapacity", String.valueOf(this.vagina.urethra.stretchedCapacity));
+			CharacterUtils.addAttribute(doc, bodyVagina, "urethraVirgin", String.valueOf(this.vagina.urethra.virgin));
 			urethraModifiers = doc.createElement("urethraModifiers");
 			bodyVagina.appendChild(urethraModifiers);
 			for(OrificeModifier om : OrificeModifier.values()) {
-				CharacterUtils.addAttribute(doc, urethraModifiers, om.toString(), String.valueOf(this.vagina.orificeUrethra.hasOrificeModifier(om)));
+				CharacterUtils.addAttribute(doc, urethraModifiers, om.toString(), String.valueOf(this.vagina.urethra.hasOrificeModifier(om)));
 			}
 			
 		this.vagina.girlcum.saveAsXML(parentElement, doc);
@@ -770,7 +770,7 @@ public class Body implements Serializable, XMLSaving {
 		
 		importedAss.hipSize = Integer.valueOf(ass.getAttribute("hipSize"));
 		
-		importedAss.anus.orificeAnus.stretchedCapacity = (Float.valueOf(anus.getAttribute("stretchedCapacity")));
+		importedAss.anus.stretchedCapacity = (Float.valueOf(anus.getAttribute("stretchedCapacity")));
 		importedAss.anus.bleached = (Boolean.valueOf(anus.getAttribute("bleached")));
 		try {
 			importedAss.anus.assHair = (BodyHair.valueOf(anus.getAttribute("assHair")));
@@ -786,17 +786,17 @@ public class Body implements Serializable, XMLSaving {
 		
 		if (anus != null) {
 			CharacterUtils.appendToImportLog(log, "<br/><br/>Anus:"
-					+ "<br/>wetness: "+importedAss.anus.orificeAnus.wetness
-					+ "<br/>elasticity: "+importedAss.anus.orificeAnus.elasticity
-					+ "<br/>elasticity: "+importedAss.anus.orificeAnus.plasticity
-					+ "<br/>capacity: "+importedAss.anus.orificeAnus.capacity
-					+ "<br/>stretchedCapacity: "+importedAss.anus.orificeAnus.stretchedCapacity
-					+ "<br/>virgin: "+importedAss.anus.orificeAnus.virgin
+					+ "<br/>wetness: "+importedAss.anus.wetness
+					+ "<br/>elasticity: "+importedAss.anus.elasticity
+					+ "<br/>elasticity: "+importedAss.anus.plasticity
+					+ "<br/>capacity: "+importedAss.anus.capacity
+					+ "<br/>stretchedCapacity: "+importedAss.anus.stretchedCapacity
+					+ "<br/>virgin: "+importedAss.anus.virgin
 					+ "<br/>bleached: "+importedAss.anus.bleached
 					+ "<br/>assHair: "+importedAss.anus.assHair
 					+"<br/>Modifiers:");
 			Element anusModifiersElement = (Element)anus.getElementsByTagName("anusModifiers").item(0);
-			Collection<OrificeModifier> anusModifiers = importedAss.anus.orificeAnus.orificeModifiers;
+			Collection<OrificeModifier> anusModifiers = importedAss.anus.orificeModifiers;
 			anusModifiers.clear();
 			handleLoadingOfModifiers(OrificeModifier.values(), log, anusModifiersElement, anusModifiers);
 		}
@@ -843,7 +843,7 @@ public class Body implements Serializable, XMLSaving {
 		} catch(Exception ex) {
 		}
 		
-		importedBreast.nipples.orificeNipples.stretchedCapacity = (Float.valueOf(nipples.getAttribute("stretchedCapacity")));
+		importedBreast.nipples.stretchedCapacity = (Float.valueOf(nipples.getAttribute("stretchedCapacity")));
 		importedBreast.nipples.pierced = (Boolean.valueOf(nipples.getAttribute("pierced")));
 		importedBreast.nipples.areolaeShape = (AreolaeShape.valueOf(nipples.getAttribute("areolaeShape")));
 		
@@ -855,11 +855,11 @@ public class Body implements Serializable, XMLSaving {
 				+ "<br/>nippleCountPer: "+importedBreast.getNippleCountPerBreast()
 				
 				+ "<br/><br/>Nipples:"
-				+ "<br/>elasticity: "+importedBreast.nipples.orificeNipples.getElasticity()
-				+ "<br/>plasticity: "+importedBreast.nipples.orificeNipples.getPlasticity()
-				+ "<br/>capacity: "+importedBreast.nipples.orificeNipples.getRawCapacityValue()
-				+ "<br/>stretchedCapacity: "+importedBreast.nipples.orificeNipples.getStretchedCapacity()
-				+ "<br/>virgin: "+importedBreast.nipples.orificeNipples.isVirgin()
+				+ "<br/>elasticity: "+importedBreast.nipples.getElasticity()
+				+ "<br/>plasticity: "+importedBreast.nipples.getPlasticity()
+				+ "<br/>capacity: "+importedBreast.nipples.getRawCapacityValue()
+				+ "<br/>stretchedCapacity: "+importedBreast.nipples.getStretchedCapacity()
+				+ "<br/>virgin: "+importedBreast.nipples.isVirgin()
 				+ "<br/>pierced: "+importedBreast.nipples.isPierced()
 				+ "<br/>nippleSize: "+importedBreast.nipples.getNippleSize()
 				+ "<br/>nippleShape: "+importedBreast.nipples.getNippleShape()
@@ -869,7 +869,7 @@ public class Body implements Serializable, XMLSaving {
 		
 		Element nippleModifiersElement = (Element)nipples.getElementsByTagName("nippleModifiers").item(0);
 		
-		Collection<OrificeModifier> nippleOrificeModifiers = importedBreast.nipples.orificeNipples.orificeModifiers;
+		Collection<OrificeModifier> nippleOrificeModifiers = importedBreast.nipples.orificeModifiers;
 		nippleOrificeModifiers.clear();
 		handleLoadingOfModifiers(OrificeModifier.values(), log, nippleModifiersElement, nippleOrificeModifiers);
 		
@@ -950,30 +950,30 @@ public class Body implements Serializable, XMLSaving {
 				
 				+ "<br/><br/>Mouth: ");
 		
-		importedFace.mouth.orificeMouth.elasticity = (Integer.valueOf(mouth.getAttribute("elasticity")));
-		importedFace.mouth.orificeMouth.plasticity = (Integer.valueOf(mouth.getAttribute("plasticity")));
-		importedFace.mouth.orificeMouth.capacity = (Float.valueOf(mouth.getAttribute("capacity")));
+		importedFace.mouth.elasticity = (Integer.valueOf(mouth.getAttribute("elasticity")));
+		importedFace.mouth.plasticity = (Integer.valueOf(mouth.getAttribute("plasticity")));
+		importedFace.mouth.capacity = (Float.valueOf(mouth.getAttribute("capacity")));
 		try {
-			importedFace.mouth.orificeMouth.wetness = (Integer.valueOf(mouth.getAttribute("wetness")));
+			importedFace.mouth.wetness = (Integer.valueOf(mouth.getAttribute("wetness")));
 		} catch(Exception ex) {
 		}
-		importedFace.mouth.orificeMouth.stretchedCapacity = (Float.valueOf(mouth.getAttribute("stretchedCapacity")));
-		importedFace.mouth.orificeMouth.virgin = (Boolean.valueOf(mouth.getAttribute("virgin")));
+		importedFace.mouth.stretchedCapacity = (Float.valueOf(mouth.getAttribute("stretchedCapacity")));
+		importedFace.mouth.virgin = (Boolean.valueOf(mouth.getAttribute("virgin")));
 		importedFace.mouth.piercedLip = (Boolean.valueOf(mouth.getAttribute("piercedLip")));
 		
 		CharacterUtils.appendToImportLog(log, 
-				"<br/>elasticity: "+importedFace.mouth.orificeMouth.getElasticity()
-				+ "<br/>plasticity: "+importedFace.mouth.orificeMouth.getPlasticity()
-				+ "<br/>capacity: "+importedFace.mouth.orificeMouth.getCapacity()
-				+ "<br/>stretchedCapacity: "+importedFace.mouth.orificeMouth.getStretchedCapacity()
-				+ "<br/>virgin: "+importedFace.mouth.orificeMouth.isVirgin()
+				"<br/>elasticity: "+importedFace.mouth.getElasticity()
+				+ "<br/>plasticity: "+importedFace.mouth.getPlasticity()
+				+ "<br/>capacity: "+importedFace.mouth.getCapacity()
+				+ "<br/>stretchedCapacity: "+importedFace.mouth.getStretchedCapacity()
+				+ "<br/>virgin: "+importedFace.mouth.isVirgin()
 				+ "<br/>piercedLip: "+importedFace.mouth.isPiercedLip()
 				+ "<br/>lipSize: "+importedFace.mouth.getLipSize()
 				+ "<br/>Modifiers: ");
 			
 		Element mouthModifiersElement = (Element)mouth.getElementsByTagName("mouthModifiers").item(0);
 		
-		Collection<OrificeModifier> mouthOrificeModifiers = importedFace.mouth.orificeMouth.orificeModifiers;
+		Collection<OrificeModifier> mouthOrificeModifiers = importedFace.mouth.orificeModifiers;
 		mouthOrificeModifiers.clear();
 		handleLoadingOfModifiers(OrificeModifier.values(), log, mouthModifiersElement, mouthOrificeModifiers);
 
@@ -1139,27 +1139,27 @@ public class Body implements Serializable, XMLSaving {
 			handleLoadingOfModifiers(PenetrationModifier.values(), log, penisModifiersElement, penisModifiers);
 		}
 		
-		importedPenis.orificeUrethra.elasticity = (Integer.valueOf(penis.getAttribute("elasticity")));
-		importedPenis.orificeUrethra.plasticity = (Integer.valueOf(penis.getAttribute("plasticity")));
-		importedPenis.orificeUrethra.capacity = (Float.valueOf(penis.getAttribute("capacity")));
-		importedPenis.orificeUrethra.stretchedCapacity = (Float.valueOf(penis.getAttribute("stretchedCapacity")));
+		importedPenis.urethra.elasticity = (Integer.valueOf(penis.getAttribute("elasticity")));
+		importedPenis.urethra.plasticity = (Integer.valueOf(penis.getAttribute("plasticity")));
+		importedPenis.urethra.capacity = (Float.valueOf(penis.getAttribute("capacity")));
+		importedPenis.urethra.stretchedCapacity = (Float.valueOf(penis.getAttribute("stretchedCapacity")));
 		if(!penis.getAttribute("urethraVirgin").isEmpty()) {
-			importedPenis.orificeUrethra.virgin = (Boolean.valueOf(penis.getAttribute("urethraVirgin")));
+			importedPenis.urethra.virgin = (Boolean.valueOf(penis.getAttribute("urethraVirgin")));
 		} else {
-			importedPenis.orificeUrethra.virgin = true;
+			importedPenis.urethra.virgin = true;
 		}
 		
 		CharacterUtils.appendToImportLog(log, 
-				"<br/>elasticity: "+importedPenis.orificeUrethra.getElasticity()
-				+ "<br/>plasticity: "+importedPenis.orificeUrethra.getPlasticity()
-				+ "<br/>capacity: "+importedPenis.orificeUrethra.getCapacity()
-				+ "<br/>stretchedCapacity: "+importedPenis.orificeUrethra.getStretchedCapacity()
-				+ "<br/>virgin: "+importedPenis.orificeUrethra.isVirgin()
+				"<br/>elasticity: "+importedPenis.urethra.getElasticity()
+				+ "<br/>plasticity: "+importedPenis.urethra.getPlasticity()
+				+ "<br/>capacity: "+importedPenis.urethra.getCapacity()
+				+ "<br/>stretchedCapacity: "+importedPenis.urethra.getStretchedCapacity()
+				+ "<br/>virgin: "+importedPenis.urethra.isVirgin()
 				+ "<br/>Urethra Modifiers:");
 		
 		Element urethraModifiersElement = (Element)penis.getElementsByTagName("urethraModifiers").item(0);
 		
-		Collection<OrificeModifier> urethraOrificeModifiers = importedPenis.orificeUrethra.orificeModifiers;
+		Collection<OrificeModifier> urethraOrificeModifiers = importedPenis.urethra.orificeModifiers;
 		urethraOrificeModifiers.clear();
 		handleLoadingOfModifiers(OrificeModifier.values(), log, urethraModifiersElement, urethraOrificeModifiers);
 		
@@ -1272,9 +1272,9 @@ public class Body implements Serializable, XMLSaving {
 		}
 		
 		importedVagina.pierced = (Boolean.valueOf(vagina.getAttribute("pierced")));
-		importedVagina.orificeVagina.stretchedCapacity = (Float.valueOf(vagina.getAttribute("stretchedCapacity")));
+		importedVagina.stretchedCapacity = (Float.valueOf(vagina.getAttribute("stretchedCapacity")));
 		try {
-			importedVagina.orificeVagina.squirter = (Boolean.valueOf(vagina.getAttribute("squirter")));
+			importedVagina.squirter = (Boolean.valueOf(vagina.getAttribute("squirter")));
 		} catch(Exception ex) {
 		}
 		
@@ -1283,35 +1283,35 @@ public class Body implements Serializable, XMLSaving {
 				+ "<br/>clitSize: "+importedVagina.clitoris.getClitorisSize()
 				+ "<br/>pierced: "+importedVagina.isPierced()
 
-				+ "<br/>wetness: "+importedVagina.orificeVagina.wetness
-				+ "<br/>elasticity: "+importedVagina.orificeVagina.getElasticity()
-				+ "<br/>plasticity: "+importedVagina.orificeVagina.getPlasticity()
-				+ "<br/>capacity: "+importedVagina.orificeVagina.getCapacity()
-				+ "<br/>stretchedCapacity: "+importedVagina.orificeVagina.getStretchedCapacity()
-				+ "<br/>virgin: "+importedVagina.orificeVagina.isVirgin());
+				+ "<br/>wetness: "+importedVagina.wetness
+				+ "<br/>elasticity: "+importedVagina.getElasticity()
+				+ "<br/>plasticity: "+importedVagina.getPlasticity()
+				+ "<br/>capacity: "+importedVagina.getCapacity()
+				+ "<br/>stretchedCapacity: "+importedVagina.getStretchedCapacity()
+				+ "<br/>virgin: "+importedVagina.isVirgin());
 		
 		Element vaginaModifiers = (Element)vagina.getElementsByTagName("vaginaModifiers").item(0);
 		
-		Collection<OrificeModifier> vaginaOrificeModifiers = importedVagina.orificeVagina.orificeModifiers;
+		Collection<OrificeModifier> vaginaOrificeModifiers = importedVagina.orificeModifiers;
 		vaginaOrificeModifiers.clear();
 		if(vaginaModifiers!=null) {
 			handleLoadingOfModifiers(OrificeModifier.values(), log, vaginaModifiers, vaginaOrificeModifiers);
 		}
 		
 		try {
-			importedVagina.orificeUrethra.elasticity = (Integer.valueOf(vagina.getAttribute("urethraElasticity")));
-			importedVagina.orificeUrethra.plasticity = (Integer.valueOf(vagina.getAttribute("urethraPlasticity")));
-			importedVagina.orificeUrethra.capacity = (Float.valueOf(vagina.getAttribute("urethraCapacity")));
-			importedVagina.orificeUrethra.stretchedCapacity = (Float.valueOf(vagina.getAttribute("urethraStretchedCapacity")));
+			importedVagina.urethra.elasticity = (Integer.valueOf(vagina.getAttribute("urethraElasticity")));
+			importedVagina.urethra.plasticity = (Integer.valueOf(vagina.getAttribute("urethraPlasticity")));
+			importedVagina.urethra.capacity = (Float.valueOf(vagina.getAttribute("urethraCapacity")));
+			importedVagina.urethra.stretchedCapacity = (Float.valueOf(vagina.getAttribute("urethraStretchedCapacity")));
 			if(!vagina.getAttribute("urethraVirgin").isEmpty()) {
-				importedVagina.orificeUrethra.virgin = (Boolean.valueOf(vagina.getAttribute("urethraVirgin")));
+				importedVagina.urethra.virgin = (Boolean.valueOf(vagina.getAttribute("urethraVirgin")));
 			} else {
-				importedVagina.orificeUrethra.virgin = true;
+				importedVagina.urethra.virgin = true;
 			}
 			
 			urethraModifiersElement = (Element)vagina.getElementsByTagName("urethraModifiers").item(0);
 			
-			Collection<OrificeModifier> vaginaUrethraOrificeModifiers = importedVagina.orificeUrethra.orificeModifiers;
+			Collection<OrificeModifier> vaginaUrethraOrificeModifiers = importedVagina.urethra.orificeModifiers;
 			vaginaUrethraOrificeModifiers.clear();
 			handleLoadingOfModifiers(OrificeModifier.values(), log, urethraModifiersElement, vaginaUrethraOrificeModifiers);
 		} catch(Exception ex) {
@@ -2360,10 +2360,10 @@ public class Body implements Serializable, XMLSaving {
 		
 		
 		if (owner.isPlayer()) {
-			if (face.getMouth().getOrificeMouth().isVirgin()) {
+			if (face.getMouth().isVirgin()) {
 				sb.append(" <span style='color:" + Colour.GENERIC_SEX.toWebHexString() + ";'>You've never given head before, so you don't know what you could fit down your throat.</span>");
 			} else {
-				switch(face.getMouth().getOrificeMouth().getCapacity().getMaximumSizeComfortableWithLube()) {
+				switch(face.getMouth().getCapacity().getMaximumSizeComfortableWithLube()) {
 					case NEGATIVE_UTILITY_VALUE:
 					case ZERO_MICROSCOPIC:
 						sb.append(" [style.colourSex(You're terrible at giving head)], and struggle to fit the tip of even a tiny cock into your mouth without gagging.");
@@ -2393,7 +2393,7 @@ public class Body implements Serializable, XMLSaving {
 				
 
 				// Throat wetness:
-				switch (face.getMouth().getOrificeMouth().getWetness(owner)) {
+				switch (face.getMouth().getWetness(owner)) {
 					case ZERO_DRY:
 						sb.append(" Your mouth and throat are [style.colourWetness(very dry)], and you struggle to produce any saliva at all.");
 						break;
@@ -2422,7 +2422,7 @@ public class Body implements Serializable, XMLSaving {
 				
 				// Elasticity & plasticity:
 				sb.append(" Your throat");
-				switch (face.getMouth().getOrificeMouth().getElasticity()) {
+				switch (face.getMouth().getElasticity()) {
 					case ZERO_UNYIELDING:
 						sb.append(" is [style.colourElasticity(extremely unyielding)],");
 						break;
@@ -2449,7 +2449,7 @@ public class Body implements Serializable, XMLSaving {
 						break;
 				}
 				sb.append(" and after being used,");
-				switch (face.getMouth().getOrificeMouth().getPlasticity()) {
+				switch (face.getMouth().getPlasticity()) {
 					case ZERO_RUBBERY:
 						sb.append(" [style.colourPlasticity(instantly returns to its original size)].");
 						break;
@@ -2487,10 +2487,10 @@ public class Body implements Serializable, XMLSaving {
 			
 		} else {
 			if (owner.isAreaKnownByCharacter(CoverableArea.MOUTH, Main.game.getPlayer())) {
-				if (face.getMouth().getOrificeMouth().isVirgin()) {
+				if (face.getMouth().isVirgin()) {
 					sb.append(" <span style='color:" + Colour.GENERIC_SEX.toWebHexString() + ";'>[npc.sheIs] never given head before.</span>");
 				} else {
-					switch(face.getMouth().getOrificeMouth().getCapacity().getMaximumSizeComfortableWithLube()) {
+					switch(face.getMouth().getCapacity().getMaximumSizeComfortableWithLube()) {
 						case NEGATIVE_UTILITY_VALUE:
 						case ZERO_MICROSCOPIC:
 							sb.append(" <span style='color:" + Colour.GENERIC_SEX.toWebHexString() + ";'>[npc.sheIs] terrible at giving head</span>, and struggles to fit the tip of even the smallest of cocks into [npc.her] mouth without gagging.");
@@ -2519,7 +2519,7 @@ public class Body implements Serializable, XMLSaving {
 					}
 					
 					// Throat wetness:
-					switch (face.getMouth().getOrificeMouth().getWetness(owner)) {
+					switch (face.getMouth().getWetness(owner)) {
 						case ZERO_DRY:
 							sb.append(" [npc.Her] mouth and throat are [style.colourWetness(very dry)], and [npc.she] struggles to produce any saliva at all.");
 							break;
@@ -2549,7 +2549,7 @@ public class Body implements Serializable, XMLSaving {
 
 					// Elasticity & plasticity:
 					sb.append(" [npc.Her] throat");
-				switch (face.getMouth().getOrificeMouth().getElasticity()) {
+				switch (face.getMouth().getElasticity()) {
 					case ZERO_UNYIELDING:
 						sb.append(" is [style.colourElasticity(extremely unyielding)],");
 						break;
@@ -2576,7 +2576,7 @@ public class Body implements Serializable, XMLSaving {
 						break;
 				}
 				sb.append(" and after being used,");
-				switch (face.getMouth().getOrificeMouth().getPlasticity()) {
+				switch (face.getMouth().getPlasticity()) {
 					case ZERO_RUBBERY:
 						sb.append(" [style.colourPlasticity(instantly returns to its original size)].");
 						break;
@@ -2700,10 +2700,10 @@ public class Body implements Serializable, XMLSaving {
 					breast.getNipples().getNippleShape(),
 					breast.getNipples().getAreolaeSizeValue(),
 					breast.getNippleCountPerBreast(),
-					breast.getNipples().getOrificeNipples().getRawCapacityValue(),
-					breast.getNipples().getOrificeNipples().getElasticity().getValue(),
-					breast.getNipples().getOrificeNipples().getPlasticity().getValue(),
-					breast.getNipples().getOrificeNipples().isVirgin());
+					breast.getNipples().getRawCapacityValue(),
+					breast.getNipples().getElasticity().getValue(),
+					breast.getNipples().getPlasticity().getValue(),
+					breast.getNipples().isVirgin());
 			sb.append(" <i style='color:"+Colour.PSYCHOACTIVE.toWebHexString()+";'>The psychoactive milk you recently ingested is causing your view of "+(owner.isPlayer()?"your":"[npc.namePos]")+" breasts to be distorted!</i>");
 		}
 		if(owner.isPlayer()){
@@ -4043,11 +4043,11 @@ public class Body implements Serializable, XMLSaving {
 			}
 		}
 
-		descriptionSB.append(" <span style='color:" + Colour.GENERIC_SEX.toWebHexString() + ";'>It is "+Capacity.getCapacityFromValue(ass.getAnus().getOrificeAnus().getStretchedCapacity()).getDescriptor()+", and can comfortably take "
-				+ Capacity.getCapacityFromValue(ass.getAnus().getOrificeAnus().getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " cocks with enough lube.</span>");
+		descriptionSB.append(" <span style='color:" + Colour.GENERIC_SEX.toWebHexString() + ";'>It is "+Capacity.getCapacityFromValue(ass.getAnus().getStretchedCapacity()).getDescriptor()+", and can comfortably take "
+				+ Capacity.getCapacityFromValue(ass.getAnus().getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " cocks with enough lube.</span>");
 		
 		if (isPlayer) {
-			if (ass.getAnus().getOrificeAnus().isVirgin()){
+			if (ass.getAnus().isVirgin()){
 				descriptionSB.append(" <span style='color:" + Colour.GENERIC_GOOD.toWebHexString() + ";'>You have retained your anal virginity.</span>");
 			}else{
 				boolean virginityLossFound = false;
@@ -4066,7 +4066,7 @@ public class Body implements Serializable, XMLSaving {
 				}
 			}
 		} else {
-			if (ass.getAnus().getOrificeAnus().isVirgin()){
+			if (ass.getAnus().isVirgin()){
 				descriptionSB.append(" <span style='color:" + Colour.GENERIC_GOOD.toWebHexString() + ";'>[npc.She] has retained [npc.her] anal virginity.</span>");
 			} else {
 				descriptionSB.append(" <span style='color:" + Colour.GENERIC_ARCANE.toWebHexString() + ";'>[npc.She] has lost [npc.her] anal virginity.</span>");
@@ -4074,7 +4074,7 @@ public class Body implements Serializable, XMLSaving {
 		}
 		
 		// Ass wetness:
-		switch (ass.getAnus().getOrificeAnus().getWetness(owner)) {
+		switch (ass.getAnus().getWetness(owner)) {
 			case ZERO_DRY:
 				descriptionSB.append(" It is [style.colourWetness(completely dry)], and would need lubricating before sex.");
 				break;
@@ -4101,7 +4101,7 @@ public class Body implements Serializable, XMLSaving {
 				break;
 		}
 		// Ass elasticity & plasticity:
-		switch (ass.getAnus().getOrificeAnus().getElasticity()) {
+		switch (ass.getAnus().getElasticity()) {
 			case ZERO_UNYIELDING:
 				descriptionSB.append(" It is [style.colourElasticity(extremely unyielding)],");
 				break;
@@ -4127,7 +4127,7 @@ public class Body implements Serializable, XMLSaving {
 				descriptionSB.append(" It is [style.colourElasticity(extremely elastic)],");
 				break;
 		}
-		switch (ass.getAnus().getOrificeAnus().getPlasticity()) {
+		switch (ass.getAnus().getPlasticity()) {
 			case ZERO_RUBBERY:
 				descriptionSB.append(" and will [style.colourPlasticity(instantly return to its original size)].");
 				break;
@@ -4304,14 +4304,14 @@ public class Body implements Serializable, XMLSaving {
 			if(owner.getNippleCapacity() != Capacity.ZERO_IMPENETRABLE) {
 				if (viewedBreast.isFuckable()) {
 					descriptionSB.append("<br/>Your [pc.breasts] have internal, [pc.nippleSecondaryColour(true)] channels, allowing your [pc.breastCapacity] [pc.nipples] to be comfortably penetrated by "
-							+ Capacity.getCapacityFromValue(viewedBreast.getNipples().getOrificeNipples().getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " objects with sufficient lubrication.");
+							+ Capacity.getCapacityFromValue(viewedBreast.getNipples().getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " objects with sufficient lubrication.");
 					
 				} else {
 					descriptionSB.append("<br/>Your [pc.breasts] have internal, [pc.nippleSecondaryColour(true)] channels, but you'd need at least D-cups before your [pc.breastCapacity] [pc.nipples] could be penetrated.");
 				}
 				
 				// Nipple elasticity & plasticity:
-				switch (viewedBreast.getNipples().getOrificeNipples().getElasticity()) {
+				switch (viewedBreast.getNipples().getElasticity()) {
 					case ZERO_UNYIELDING:
 						descriptionSB.append(" They are [style.colourElasticity(extremely unyielding)],");
 						break;
@@ -4337,7 +4337,7 @@ public class Body implements Serializable, XMLSaving {
 						descriptionSB.append(" They are [style.colourElasticity(extremely elastic)],");
 						break;
 				}
-				switch (viewedBreast.getNipples().getOrificeNipples().getPlasticity()) {
+				switch (viewedBreast.getNipples().getPlasticity()) {
 					case ZERO_RUBBERY:
 						descriptionSB.append(" and will [style.colourPlasticity(instantly return to their original size)].");
 						break;
@@ -4383,7 +4383,7 @@ public class Body implements Serializable, XMLSaving {
 					}
 				}
 				
-				if (!viewedBreast.getNipples().getOrificeNipples().isVirgin()) {
+				if (!viewedBreast.getNipples().isVirgin()) {
 					for(SexAreaPenetration pt : SexAreaPenetration.values()) {
 						if(owner.getVirginityLoss(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.NIPPLE, pt))!=null) {
 							descriptionSB.append(" [style.colourArcane(You lost your nipple virginity to "
@@ -4514,14 +4514,14 @@ public class Body implements Serializable, XMLSaving {
 			if(owner.getNippleCapacity() != Capacity.ZERO_IMPENETRABLE) {
 				if (viewedBreast.isFuckable()) {
 					descriptionSB.append("<br/>[npc.Her] [npc.breasts] have internal, [npc.nippleSecondaryColour(true)] channels, allowing [npc.her] [npc.breastCapacity] [npc.nipples] to be comfortably penetrated by "
-							+ Capacity.getCapacityFromValue(viewedBreast.getNipples().getOrificeNipples().getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " objects with sufficient lubrication.");
+							+ Capacity.getCapacityFromValue(viewedBreast.getNipples().getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " objects with sufficient lubrication.");
 					
 				} else {
 					descriptionSB.append("<br/>[npc.Her] [npc.breasts] have internal, [npc.nippleSecondaryColour(true)] channels, but [npc.sheIs] need at least D-cups before [npc.her] [npc.breastCapacity] [npc.nipples] could be penetrated.");
 				}
 
 				// Nipple elasticity & plasticity:
-				switch (viewedBreast.getNipples().getOrificeNipples().getElasticity()) {
+				switch (viewedBreast.getNipples().getElasticity()) {
 					case ZERO_UNYIELDING:
 						descriptionSB.append(" They are [style.colourElasticity(extremely unyielding)],");
 						break;
@@ -4547,7 +4547,7 @@ public class Body implements Serializable, XMLSaving {
 						descriptionSB.append(" They are [style.colourElasticity(extremely elastic)],");
 						break;
 				}
-				switch (viewedBreast.getNipples().getOrificeNipples().getPlasticity()) {
+				switch (viewedBreast.getNipples().getPlasticity()) {
 					case ZERO_RUBBERY:
 						descriptionSB.append(" and will [style.colourPlasticity(instantly return to their original size)].");
 						break;
@@ -4593,7 +4593,7 @@ public class Body implements Serializable, XMLSaving {
 					}
 				}
 				
-				if (!viewedBreast.getNipples().getOrificeNipples().isVirgin()) {
+				if (!viewedBreast.getNipples().isVirgin()) {
 					for(SexAreaPenetration pt : SexAreaPenetration.values()) {
 						if(owner.getVirginityLoss(new SexType(SexParticipantType.NORMAL, SexAreaOrifice.NIPPLE, pt))!=null) {
 							descriptionSB.append(" [style.colourArcane([npc.Name] lost [npc.her] nipple virginity to "
@@ -4867,16 +4867,16 @@ public class Body implements Serializable, XMLSaving {
 		}
 		
 		// Capacity:
-		if (Capacity.getCapacityFromValue(viewedPenis.getOrificeUrethra().getStretchedCapacity()) != Capacity.ZERO_IMPENETRABLE) {
+		if (Capacity.getCapacityFromValue(viewedPenis.urethra.getStretchedCapacity()) != Capacity.ZERO_IMPENETRABLE) {
 			if (isPlayer) {
 				descriptionSB.append("<br/>Your cock's urethra has been loosened enough that it presents a ready orifice for penetration,"
-						+ " [style.colourSex(and can be comfortably penetrated by "+ Capacity.getCapacityFromValue(viewedPenis.getOrificeUrethra().getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " cocks with sufficient lubrication.)]");
+						+ " [style.colourSex(and can be comfortably penetrated by "+ Capacity.getCapacityFromValue(viewedPenis.urethra.getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " cocks with sufficient lubrication.)]");
 			} else {
 				descriptionSB.append("<br/>[npc.Her] cock's urethra has been loosened enough that it presents a ready orifice for penetration,"
-						+ " [style.colourSex(and can be comfortably penetrated by "+ Capacity.getCapacityFromValue(viewedPenis.getOrificeUrethra().getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " cocks with sufficient lubrication.)]");
+						+ " [style.colourSex(and can be comfortably penetrated by "+ Capacity.getCapacityFromValue(viewedPenis.urethra.getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " cocks with sufficient lubrication.)]");
 			}
 
-			switch (viewedPenis.getOrificeUrethra().getElasticity()) {
+			switch (viewedPenis.urethra.getElasticity()) {
 				case ZERO_UNYIELDING:
 					descriptionSB.append(" It is [style.colourElasticity(extremely unyielding)],");
 					break;
@@ -4902,7 +4902,7 @@ public class Body implements Serializable, XMLSaving {
 					descriptionSB.append(" It is [style.colourElasticity(extremely elastic)],");
 					break;
 			}
-			switch (viewedPenis.getOrificeUrethra().getPlasticity()) {
+			switch (viewedPenis.urethra.getPlasticity()) {
 				case ZERO_RUBBERY:
 					descriptionSB.append(" and will [style.colourPlasticity(instantly return to its original size)].");
 					break;
@@ -5330,10 +5330,10 @@ public class Body implements Serializable, XMLSaving {
 					vagina.getRawLabiaSizeValue(),
 					vagina.getClitoris().getRawClitorisSizeValue(),
 					Wetness.SEVEN_DROOLING.getValue(),
-					vagina.getOrificeVagina().getRawCapacityValue() *3,
-					vagina.getOrificeVagina().getElasticity().getValue(),
-					vagina.getOrificeVagina().getPlasticity().getValue(),
-					vagina.getOrificeVagina().isVirgin());
+					vagina.getRawCapacityValue() *3,
+					vagina.getElasticity().getValue(),
+					vagina.getPlasticity().getValue(),
+					vagina.isVirgin());
 			viewedVagina.setPierced(owner, vagina.isPierced());
 			descriptionSB.append("<i style='color:"+Colour.PSYCHOACTIVE.toWebHexString()+";'>The psychoactive girlcum which you recently ingested is causing your view of "+(owner.isPlayer()?"your":"[npc.namePos]")+" pussy to be distorted!</i> ");
 		}
@@ -5463,18 +5463,18 @@ public class Body implements Serializable, XMLSaving {
 		}
 		
 		// Virgin/capacity:
-		if (viewedVagina.getOrificeVagina().isVirgin()) {
+		if (viewedVagina.isVirgin()) {
 			if (isPlayer) {
-				descriptionSB.append(" [style.colourSex(Within your " + Capacity.getCapacityFromValue(viewedVagina.getOrificeVagina().getStretchedCapacity()).getDescriptor() + " [pc.pussy], your hymen is still intact, as it has never been penetrated before.)]"
+				descriptionSB.append(" [style.colourSex(Within your " + Capacity.getCapacityFromValue(viewedVagina.getStretchedCapacity()).getDescriptor() + " [pc.pussy], your hymen is still intact, as it has never been penetrated before.)]"
 						+ " [style.colourGood(You have retained your vaginal virginity.)]");
 			} else {
-				descriptionSB.append(" [style.colourSex(Within [npc.her] " + Capacity.getCapacityFromValue(viewedVagina.getOrificeVagina().getStretchedCapacity()).getDescriptor() + " [npc.pussy], [npc.her] hymen is still intact, as it has never been penetrated before.)]"
+				descriptionSB.append(" [style.colourSex(Within [npc.her] " + Capacity.getCapacityFromValue(viewedVagina.getStretchedCapacity()).getDescriptor() + " [npc.pussy], [npc.her] hymen is still intact, as it has never been penetrated before.)]"
 						+ " [style.colourGood([npc.She] has retained [npc.her] vaginal virginity.)]");
 			}
 		} else {
 			if (isPlayer) {
-				descriptionSB.append(" [style.colourSex(Your pussy is " + Capacity.getCapacityFromValue(viewedVagina.getOrificeVagina().getStretchedCapacity()).getDescriptor() + ", and can comfortably take "
-						+ Capacity.getCapacityFromValue(viewedVagina.getOrificeVagina().getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " cocks with sufficient lubrication.)]");
+				descriptionSB.append(" [style.colourSex(Your pussy is " + Capacity.getCapacityFromValue(viewedVagina.getStretchedCapacity()).getDescriptor() + ", and can comfortably take "
+						+ Capacity.getCapacityFromValue(viewedVagina.getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " cocks with sufficient lubrication.)]");
 				
 				boolean virginityLossFound = false;
 				for(SexAreaPenetration pt : SexAreaPenetration.values()) {
@@ -5492,14 +5492,14 @@ public class Body implements Serializable, XMLSaving {
 				}
 				
 			} else{
-				descriptionSB.append(" [style.colourSex([npc.Her] pussy is " + Capacity.getCapacityFromValue(viewedVagina.getOrificeVagina().getStretchedCapacity()).getDescriptor() + ", and can comfortably take "
-						+ Capacity.getCapacityFromValue(viewedVagina.getOrificeVagina().getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " cocks with sufficient lubrication.)]"
+				descriptionSB.append(" [style.colourSex([npc.Her] pussy is " + Capacity.getCapacityFromValue(viewedVagina.getStretchedCapacity()).getDescriptor() + ", and can comfortably take "
+						+ Capacity.getCapacityFromValue(viewedVagina.getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " cocks with sufficient lubrication.)]"
 						+ " <span style='color:" + Colour.GENERIC_ARCANE.toWebHexString() + ";'>[npc.She] has lost [npc.her] virginity.</span>");
 			}
 		}
 		
 		// Wetness:
-		switch (viewedVagina.getOrificeVagina().getWetness(owner)) {
+		switch (viewedVagina.getWetness(owner)) {
 			case ZERO_DRY:
 				if (isPlayer) {
 					descriptionSB.append(" It's [style.colourWetness(completely dry and never gets wet)], no matter how aroused you are.");
@@ -5558,7 +5558,7 @@ public class Body implements Serializable, XMLSaving {
 				break;
 		}
 		
-		if(viewedVagina.getOrificeVagina().isSquirter()) {
+		if(viewedVagina.isSquirter()) {
 			if (isPlayer) {
 				descriptionSB.append(" You are a [style.colourArcane(squirter)], and [style.colourWetness(produce a considerable amount of female ejaculate)] each time you orgasm.");
 			} else {
@@ -5567,7 +5567,7 @@ public class Body implements Serializable, XMLSaving {
 		}
 		
 		// Elasticity & plasticity:
-		switch (viewedVagina.getOrificeVagina().getElasticity()) {
+		switch (viewedVagina.getElasticity()) {
 			case ZERO_UNYIELDING:
 				descriptionSB.append(" It is [style.colourElasticity(extremely unyielding)],");
 				break;
@@ -5593,7 +5593,7 @@ public class Body implements Serializable, XMLSaving {
 				descriptionSB.append(" It is [style.colourElasticity(extremely elastic)],");
 				break;
 		}
-		switch (viewedVagina.getOrificeVagina().getPlasticity()) {
+		switch (viewedVagina.getPlasticity()) {
 			case ZERO_RUBBERY:
 				descriptionSB.append(" and will [style.colourPlasticity(instantly return to its original size)].");
 				break;
@@ -5659,19 +5659,19 @@ public class Body implements Serializable, XMLSaving {
 		descriptionSB.append("<br/>");
 		
 		// Urethra:
-		if (Capacity.getCapacityFromValue(viewedVagina.getOrificeUrethra().getStretchedCapacity()) != Capacity.ZERO_IMPENETRABLE) {
+		if (Capacity.getCapacityFromValue(viewedVagina.urethra.getStretchedCapacity()) != Capacity.ZERO_IMPENETRABLE) {
 			if (isPlayer) {
 				descriptionSB.append("Your vagina's urethra has been loosened enough that it presents a ready orifice for penetration,"
 						+ " [style.colourSex(and can be comfortably penetrated by "
-							+ Capacity.getCapacityFromValue(viewedVagina.getOrificeUrethra().getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " cocks with sufficient lubrication.)]");
+							+ Capacity.getCapacityFromValue(viewedVagina.urethra.getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " cocks with sufficient lubrication.)]");
 			} else {
 				descriptionSB.append("[npc.Her] vagina's urethra has been loosened enough that it presents a ready orifice for penetration,"
 						+ " [style.colourSex(and can be comfortably penetrated by "
-							+ Capacity.getCapacityFromValue(viewedVagina.getOrificeUrethra().getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " cocks with sufficient lubrication.)]");
+							+ Capacity.getCapacityFromValue(viewedVagina.urethra.getStretchedCapacity()).getMaximumSizeComfortableWithLube().getDescriptor() + " cocks with sufficient lubrication.)]");
 			}
 			
 			// Elasticity & plasticity:
-			switch (viewedVagina.getOrificeUrethra().getElasticity()) {
+			switch (viewedVagina.urethra.getElasticity()) {
 				case ZERO_UNYIELDING:
 					descriptionSB.append(" It is [style.colourElasticity(extremely unyielding)],");
 					break;
@@ -5697,7 +5697,7 @@ public class Body implements Serializable, XMLSaving {
 					descriptionSB.append(" It is [style.colourElasticity(extremely elastic)],");
 					break;
 			}
-			switch (viewedVagina.getOrificeUrethra().getPlasticity()) {
+			switch (viewedVagina.urethra.getPlasticity()) {
 				case ZERO_RUBBERY:
 					descriptionSB.append(" and will [style.colourPlasticity(instantly return to its original size)].");
 					break;

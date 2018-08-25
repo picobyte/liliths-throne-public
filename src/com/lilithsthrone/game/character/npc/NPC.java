@@ -1359,7 +1359,7 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		
 		if(Main.game.getPlayer().getVaginaType() != VaginaType.NONE && getPreferredBody().getVagina().getType() != VaginaType.NONE) {
 			// Vagina wetness:
-			if(Main.game.getPlayer().getVaginaWetness().getValue() < getPreferredBody().getVagina().getOrificeVagina().getWetness(Main.game.getGenericAndrogynousNPC()).getValue()) {
+			if(Main.game.getPlayer().getVaginaWetness().getValue() < getPreferredBody().getVagina().getWetness(Main.game.getGenericAndrogynousNPC()).getValue()) {
 				possibleEffects.put(new ItemEffect(itemType.getEnchantmentEffect(), TFModifier.TF_VAGINA, TFModifier.TF_MOD_WETNESS, TFPotency.MINOR_BOOST, 1), "Your pussy isn't wet enough!");
 			}
 		}
@@ -1615,12 +1615,12 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		//Ass:
 		if(hasFetish(Fetish.FETISH_ANAL_GIVING)) {
 			if(this.getAttributeValue(Attribute.MAJOR_CORRUPTION) >= CorruptionLevel.THREE_DIRTY.getMinimumValue()) {
-				body.getAss().getAnus().getOrificeAnus().addOrificeModifier(genericOwner, OrificeModifier.RIBBED);
-				body.getAss().getAnus().getOrificeAnus().addOrificeModifier(genericOwner, OrificeModifier.MUSCLE_CONTROL);
-				body.getAss().getAnus().getOrificeAnus().addOrificeModifier(genericOwner, OrificeModifier.PUFFY);
+				body.getAss().getAnus().addOrificeModifier(genericOwner, OrificeModifier.RIBBED);
+				body.getAss().getAnus().addOrificeModifier(genericOwner, OrificeModifier.MUSCLE_CONTROL);
+				body.getAss().getAnus().addOrificeModifier(genericOwner, OrificeModifier.PUFFY);
 			}
 			if(this.getAttributeValue(Attribute.MAJOR_CORRUPTION) >= CorruptionLevel.FOUR_LUSTFUL.getMinimumValue()) {
-				body.getAss().getAnus().getOrificeAnus().addOrificeModifier(genericOwner, OrificeModifier.TENTACLED);
+				body.getAss().getAnus().addOrificeModifier(genericOwner, OrificeModifier.TENTACLED);
 			}
 			
 			body.getAss().setAssSize(genericOwner, AssSize.FIVE_HUGE.getValue());
@@ -1653,15 +1653,15 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		
 		// Face:
 		if(hasFetish(Fetish.FETISH_ORAL_RECEIVING)) {
-			body.getFace().getMouth().getOrificeMouth().addOrificeModifier(genericOwner, OrificeModifier.PUFFY);
+			body.getFace().getMouth().addOrificeModifier(genericOwner, OrificeModifier.PUFFY);
 			body.getFace().getMouth().setLipSize(genericOwner, LipSize.FOUR_HUGE.getValue());
 			
 			if(this.getAttributeValue(Attribute.MAJOR_CORRUPTION) >= CorruptionLevel.THREE_DIRTY.getMinimumValue()) {
-				body.getFace().getMouth().getOrificeMouth().addOrificeModifier(genericOwner, OrificeModifier.RIBBED);
-				body.getFace().getMouth().getOrificeMouth().addOrificeModifier(genericOwner, OrificeModifier.MUSCLE_CONTROL);
+				body.getFace().getMouth().addOrificeModifier(genericOwner, OrificeModifier.RIBBED);
+				body.getFace().getMouth().addOrificeModifier(genericOwner, OrificeModifier.MUSCLE_CONTROL);
 			}
 			if(this.getAttributeValue(Attribute.MAJOR_CORRUPTION) >= CorruptionLevel.FOUR_LUSTFUL.getMinimumValue()) {
-				body.getFace().getMouth().getOrificeMouth().addOrificeModifier(genericOwner, OrificeModifier.TENTACLED);
+				body.getFace().getMouth().addOrificeModifier(genericOwner, OrificeModifier.TENTACLED);
 			}
 		}
 		
@@ -1687,14 +1687,14 @@ public abstract class NPC extends GameCharacter implements XMLSaving {
 		// Vagina:
 		if(body.getVagina().getType()!=VaginaType.NONE) {
 			if(this.getAttributeValue(Attribute.MAJOR_CORRUPTION) >= CorruptionLevel.THREE_DIRTY.getMinimumValue()) {
-				body.getVagina().getOrificeVagina().addOrificeModifier(genericOwner, OrificeModifier.RIBBED);
-				body.getVagina().getOrificeVagina().addOrificeModifier(genericOwner, OrificeModifier.MUSCLE_CONTROL);
+				body.getVagina().addOrificeModifier(genericOwner, OrificeModifier.RIBBED);
+				body.getVagina().addOrificeModifier(genericOwner, OrificeModifier.MUSCLE_CONTROL);
 			}
 			if(this.getAttributeValue(Attribute.MAJOR_CORRUPTION) >= CorruptionLevel.FOUR_LUSTFUL.getMinimumValue()) {
-				body.getVagina().getOrificeVagina().addOrificeModifier(genericOwner, OrificeModifier.TENTACLED);
+				body.getVagina().addOrificeModifier(genericOwner, OrificeModifier.TENTACLED);
 			}
 			
-			body.getVagina().getOrificeVagina().setWetness(genericOwner, Wetness.THREE_WET.getValue() + Util.random.nextInt(4));
+			body.getVagina().setWetness(genericOwner, Wetness.THREE_WET.getValue() + Util.random.nextInt(4));
 		}
 		
 		return body;

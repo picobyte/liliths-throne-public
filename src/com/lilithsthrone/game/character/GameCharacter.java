@@ -15044,68 +15044,68 @@ public abstract class GameCharacter implements XMLSaving {
 	// Orifice stats:
 	// Wetness:
 	public Wetness getAssWetness() {
-		return body.getAss().getAnus().getOrificeAnus().getWetness(this);
+		return body.getAss().getAnus().getWetness(this);
 	}
 	public String setAssWetness(int wetness) {
-		return body.getAss().getAnus().getOrificeAnus().setWetness(this, wetness);
+		return body.getAss().getAnus().setWetness(this, wetness);
 	}
 	public String setAssWetness(Wetness wetness) {
-		return body.getAss().getAnus().getOrificeAnus().setWetness(this, wetness.getValue());
+		return body.getAss().getAnus().setWetness(this, wetness.getValue());
 	}
 	public String incrementAssWetness(int increment) {
-		return body.getAss().getAnus().getOrificeAnus().setWetness(this, getAssWetness().getValue() + increment);
+		return body.getAss().getAnus().setWetness(this, getAssWetness().getValue() + increment);
 	}
 	// Capacity:
 	public Capacity getAssCapacity() {
-		return body.getAss().getAnus().getOrificeAnus().getCapacity();
+		return body.getAss().getAnus().getCapacity();
 	}
 	public float getAssRawCapacityValue() {
-		return body.getAss().getAnus().getOrificeAnus().getRawCapacityValue();
+		return body.getAss().getAnus().getRawCapacityValue();
 	}
 	public float getAssStretchedCapacity() {
-		return body.getAss().getAnus().getOrificeAnus().getStretchedCapacity();
+		return body.getAss().getAnus().getStretchedCapacity();
 	}
 	public void setAssStretchedCapacity(float capacity){
-		body.getAss().getAnus().getOrificeAnus().setStretchedCapacity(capacity);
+		body.getAss().getAnus().setStretchedCapacity(capacity);
 	}
 	public void incrementAssStretchedCapacity(float increment){
-		body.getAss().getAnus().getOrificeAnus().setStretchedCapacity(getAssStretchedCapacity() + increment);
+		body.getAss().getAnus().setStretchedCapacity(getAssStretchedCapacity() + increment);
 	}
 	public String setAssCapacity(float capacity, boolean setStretchedValueToNewValue) {
-		return body.getAss().getAnus().getOrificeAnus().setCapacity(this, capacity, setStretchedValueToNewValue);
+		return body.getAss().getAnus().setCapacity(this, capacity, setStretchedValueToNewValue);
 	}
 	public String setAssCapacity(Capacity capacity, boolean setStretchedValueToNewValue) {
-		return body.getAss().getAnus().getOrificeAnus().setCapacity(this, capacity.getMedianValue(), setStretchedValueToNewValue);
+		return body.getAss().getAnus().setCapacity(this, capacity.getMedianValue(), setStretchedValueToNewValue);
 	}
 	public String incrementAssCapacity(float increment, boolean setStretchedValueToNewValue) {
 		return setAssCapacity(getAssRawCapacityValue() + increment, setStretchedValueToNewValue);
 	}
 	// Elasticity:
 	public OrificeElasticity getAssElasticity() {
-		return body.getAss().getAnus().getOrificeAnus().getElasticity();
+		return body.getAss().getAnus().getElasticity();
 	}
 	public String setAssElasticity(int elasticity) {
-		return body.getAss().getAnus().getOrificeAnus().setElasticity(this, elasticity);
+		return body.getAss().getAnus().setElasticity(this, elasticity);
 	}
 	public String incrementAssElasticity(int increment) {
 		return setAssElasticity(getAssElasticity().getValue() + increment);
 	}
 	// Plasticity:
 	public OrificePlasticity getAssPlasticity() {
-		return body.getAss().getAnus().getOrificeAnus().getPlasticity();
+		return body.getAss().getAnus().getPlasticity();
 	}
 	public String setAssPlasticity(int plasticity) {
-		return body.getAss().getAnus().getOrificeAnus().setPlasticity(this, plasticity);
+		return body.getAss().getAnus().setPlasticity(this, plasticity);
 	}
 	public String incrementAssPlasticity(int increment) {
 		return setAssPlasticity(getAssPlasticity().getValue() + increment);
 	}
 	// Virginity:
 	public boolean isAssVirgin() {
-		return body.getAss().getAnus().getOrificeAnus().isVirgin();
+		return body.getAss().getAnus().isVirgin();
 	}
 	public void setAssVirgin(boolean virgin) {
-		body.getAss().getAnus().getOrificeAnus().setVirgin(virgin);
+		body.getAss().getAnus().setVirgin(virgin);
 	}
 	// Bleaching:
 	public boolean isAssBleached() {
@@ -15116,16 +15116,16 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 	// Modifiers:
 	public Set<OrificeModifier> getAssOrificeModifiers() {
-		return body.getAss().getAnus().getOrificeAnus().getOrificeModifiers();
+		return body.getAss().getAnus().getOrificeModifiers();
 	}
 	public boolean hasAssOrificeModifier(OrificeModifier modifier) {
-		return body.getAss().getAnus().getOrificeAnus().hasOrificeModifier(modifier);
+		return body.getAss().getAnus().hasOrificeModifier(modifier);
 	}
 	public String addAssOrificeModifier(OrificeModifier modifier) {
-		return body.getAss().getAnus().getOrificeAnus().addOrificeModifier(this, modifier);
+		return body.getAss().getAnus().addOrificeModifier(this, modifier);
 	}
 	public String removeAssOrificeModifier(OrificeModifier modifier) {
-		return body.getAss().getAnus().getOrificeAnus().removeOrificeModifier(this, modifier);
+		return body.getAss().getAnus().removeOrificeModifier(this, modifier);
 	}
 	
 	
@@ -15512,69 +15512,69 @@ public abstract class GameCharacter implements XMLSaving {
 	// Orifice stats:
 	// Wetness:
 	public Wetness getNippleWetness() {
-		return body.getBreast().getNipples().getOrificeNipples().getWetness(this);
+		return body.getBreast().getNipples().getWetness(this);
 	}
 	// Capacity:
 	public Capacity getNippleCapacity() {
-		return body.getBreast().getNipples().getOrificeNipples().getCapacity();
+		return body.getBreast().getNipples().getCapacity();
 	}
 	public float getNippleRawCapacityValue() {
-		return body.getBreast().getNipples().getOrificeNipples().getRawCapacityValue();
+		return body.getBreast().getNipples().getRawCapacityValue();
 	}
 	public float getNippleStretchedCapacity() {
-		return body.getBreast().getNipples().getOrificeNipples().getStretchedCapacity();
+		return body.getBreast().getNipples().getStretchedCapacity();
 	}
 	public void setNippleStretchedCapacity(float capacity){
-		body.getBreast().getNipples().getOrificeNipples().setStretchedCapacity(capacity);
+		body.getBreast().getNipples().setStretchedCapacity(capacity);
 	}
 	public void incrementNippleStretchedCapacity(float increment){
-		body.getBreast().getNipples().getOrificeNipples().setStretchedCapacity(getNippleStretchedCapacity() + increment);
+		body.getBreast().getNipples().setStretchedCapacity(getNippleStretchedCapacity() + increment);
 	}
 	public String setNippleCapacity(float capacity, boolean setStretchedValueToNewValue) {
-		return body.getBreast().getNipples().getOrificeNipples().setCapacity(this, capacity, setStretchedValueToNewValue);
+		return body.getBreast().getNipples().setCapacity(this, capacity, setStretchedValueToNewValue);
 	}
 	public String incrementNippleCapacity(float increment, boolean setStretchedValueToNewValue) {
 		return setNippleCapacity(getNippleRawCapacityValue() + increment, setStretchedValueToNewValue);
 	}
 	// Elasticity:
 	public OrificeElasticity getNippleElasticity() {
-		return body.getBreast().getNipples().getOrificeNipples().getElasticity();
+		return body.getBreast().getNipples().getElasticity();
 	}
 	public String setNippleElasticity(int elasticity) {
-		return body.getBreast().getNipples().getOrificeNipples().setElasticity(this, elasticity);
+		return body.getBreast().getNipples().setElasticity(this, elasticity);
 	}
 	public String incrementNippleElasticity(int increment) {
 		return setNippleElasticity(getNippleElasticity().getValue() + increment);
 	}
 	// Plasticity:
 	public OrificePlasticity getNipplePlasticity() {
-		return body.getBreast().getNipples().getOrificeNipples().getPlasticity();
+		return body.getBreast().getNipples().getPlasticity();
 	}
 	public String setNipplePlasticity(int plasticity) {
-		return body.getBreast().getNipples().getOrificeNipples().setPlasticity(this, plasticity);
+		return body.getBreast().getNipples().setPlasticity(this, plasticity);
 	}
 	public String incrementNipplePlasticity(int increment) {
 		return setNipplePlasticity(getNipplePlasticity().getValue() + increment);
 	}
 	// Virginity:
 	public boolean isNippleVirgin() {
-		return body.getBreast().getNipples().getOrificeNipples().isVirgin();
+		return body.getBreast().getNipples().isVirgin();
 	}
 	public void setNippleVirgin(boolean virgin) {
-		body.getBreast().getNipples().getOrificeNipples().setVirgin(virgin);
+		body.getBreast().getNipples().setVirgin(virgin);
 	}
 	// Modifiers:
 	public Set<OrificeModifier> getNippleOrificeModifiers() {
-		return body.getBreast().getNipples().getOrificeNipples().getOrificeModifiers();
+		return body.getBreast().getNipples().getOrificeModifiers();
 	}
 	public boolean hasNippleOrificeModifier(OrificeModifier modifier) {
-		return body.getBreast().getNipples().getOrificeNipples().hasOrificeModifier(modifier);
+		return body.getBreast().getNipples().hasOrificeModifier(modifier);
 	}
 	public String addNippleOrificeModifier(OrificeModifier modifier) {
-		return body.getBreast().getNipples().getOrificeNipples().addOrificeModifier(this, modifier);
+		return body.getBreast().getNipples().addOrificeModifier(this, modifier);
 	}
 	public String removeNippleOrificeModifier(OrificeModifier modifier) {
-		return body.getBreast().getNipples().getOrificeNipples().removeOrificeModifier(this, modifier);
+		return body.getBreast().getNipples().removeOrificeModifier(this, modifier);
 	}
 	
 	// Milk:
@@ -15938,81 +15938,81 @@ public abstract class GameCharacter implements XMLSaving {
 	// Orifice stats:
 	// Wetness:
 	public Wetness getFaceWetness() {
-		return body.getFace().getMouth().getOrificeMouth().getWetness(this);
+		return body.getFace().getMouth().getWetness(this);
 	}
 	public String setFaceWetness(int wetness) {
-		return body.getFace().getMouth().getOrificeMouth().setWetness(this, wetness);
+		return body.getFace().getMouth().setWetness(this, wetness);
 	}
 	public String incrementFaceWetness(int increment) {
-		return body.getFace().getMouth().getOrificeMouth().setWetness(this, getFaceWetness().getValue() + increment);
+		return body.getFace().getMouth().setWetness(this, getFaceWetness().getValue() + increment);
 	}
 	// Capacity:
 	public Capacity getFaceCapacity() {
-		return body.getFace().getMouth().getOrificeMouth().getCapacity();
+		return body.getFace().getMouth().getCapacity();
 	}
 	public float getFaceRawCapacityValue() {
-		return body.getFace().getMouth().getOrificeMouth().getRawCapacityValue();
+		return body.getFace().getMouth().getRawCapacityValue();
 	}
 	public float getFaceStretchedCapacity() {
-		return body.getFace().getMouth().getOrificeMouth().getStretchedCapacity();
+		return body.getFace().getMouth().getStretchedCapacity();
 	}
 	public void setFaceStretchedCapacity(float capacity){
-		body.getFace().getMouth().getOrificeMouth().setStretchedCapacity(capacity);
+		body.getFace().getMouth().setStretchedCapacity(capacity);
 	}
 	public void incrementFaceStretchedCapacity(float increment){
-		body.getFace().getMouth().getOrificeMouth().setStretchedCapacity(getFaceStretchedCapacity() + increment);
+		body.getFace().getMouth().setStretchedCapacity(getFaceStretchedCapacity() + increment);
 	}
 	public String setFaceCapacity(Capacity capacity, boolean setStretchedValueToNewValue) {
-		return body.getFace().getMouth().getOrificeMouth().setCapacity(this, capacity.getMedianValue(), setStretchedValueToNewValue);
+		return body.getFace().getMouth().setCapacity(this, capacity.getMedianValue(), setStretchedValueToNewValue);
 	}
 	public String setFaceCapacity(float capacity, boolean setStretchedValueToNewValue) {
-		return body.getFace().getMouth().getOrificeMouth().setCapacity(this, capacity, setStretchedValueToNewValue);
+		return body.getFace().getMouth().setCapacity(this, capacity, setStretchedValueToNewValue);
 	}
 	public String incrementFaceCapacity(float increment, boolean setStretchedValueToNewValue) {
 		return setFaceCapacity(getFaceRawCapacityValue() + increment, setStretchedValueToNewValue);
 	}
 	// Elasticity:
 	public OrificeElasticity getFaceElasticity() {
-		return body.getFace().getMouth().getOrificeMouth().getElasticity();
+		return body.getFace().getMouth().getElasticity();
 	}
 	public String setFaceElasticity(int elasticity) {
-		return body.getFace().getMouth().getOrificeMouth().setElasticity(this, elasticity);
+		return body.getFace().getMouth().setElasticity(this, elasticity);
 	}
 	public String setFaceElasticity(OrificeElasticity elasticity) {
-		return body.getFace().getMouth().getOrificeMouth().setElasticity(this, elasticity.getValue());
+		return body.getFace().getMouth().setElasticity(this, elasticity.getValue());
 	}
 	public String incrementFaceElasticity(int increment) {
 		return setFaceElasticity(getFaceElasticity().getValue() + increment);
 	}
 	// Plasticity:
 	public OrificePlasticity getFacePlasticity() {
-		return body.getFace().getMouth().getOrificeMouth().getPlasticity();
+		return body.getFace().getMouth().getPlasticity();
 	}
 	public String setFacePlasticity(int plasticity) {
-		return body.getFace().getMouth().getOrificeMouth().setPlasticity(this, plasticity);
+		return body.getFace().getMouth().setPlasticity(this, plasticity);
 	}
 	public String incrementFacePlasticity(int increment) {
 		return setFacePlasticity(getFacePlasticity().getValue() + increment);
 	}
 	// Virginity:
 	public boolean isFaceVirgin() {
-		return body.getFace().getMouth().getOrificeMouth().isVirgin();
+		return body.getFace().getMouth().isVirgin();
 	}
 	public void setFaceVirgin(boolean virgin) {
-		body.getFace().getMouth().getOrificeMouth().setVirgin(virgin);
+		body.getFace().getMouth().setVirgin(virgin);
 	}
 	// Modifiers:
 	public Set<OrificeModifier> getFaceOrificeModifiers() {
-		return body.getFace().getMouth().getOrificeMouth().getOrificeModifiers();
+		return body.getFace().getMouth().getOrificeModifiers();
 	}
 	public boolean hasFaceOrificeModifier(OrificeModifier modifier) {
-		return body.getFace().getMouth().getOrificeMouth().hasOrificeModifier(modifier);
+		return body.getFace().getMouth().hasOrificeModifier(modifier);
 	}
 	public String addFaceOrificeModifier(OrificeModifier modifier) {
-		return body.getFace().getMouth().getOrificeMouth().addOrificeModifier(this, modifier);
+		return body.getFace().getMouth().addOrificeModifier(this, modifier);
 	}
 	public String removeFaceOrificeModifier(OrificeModifier modifier) {
-		return body.getFace().getMouth().getOrificeMouth().removeOrificeModifier(this, modifier);
+		return body.getFace().getMouth().removeOrificeModifier(this, modifier);
 	}
 	
 	
@@ -16462,66 +16462,66 @@ public abstract class GameCharacter implements XMLSaving {
 		return getCurrentPenis().getUrethraDescriptor(this);
 	}
 	public boolean isUrethraFuckable() {
-		return getCurrentPenis().getOrificeUrethra().getRawCapacityValue()>0;
+		return getCurrentPenis().getUrethra().getRawCapacityValue()>0;
 	}
 	// Capacity:
 	public Capacity getPenisCapacity() {
-		return getCurrentPenis().getOrificeUrethra().getCapacity();
+		return getCurrentPenis().getUrethra().getCapacity();
 	}
 	public String setPenisCapacity(float capacity, boolean setStretchedValueToNewValue) {
-		return getCurrentPenis().getOrificeUrethra().setCapacity(this, capacity, setStretchedValueToNewValue);
+		return getCurrentPenis().getUrethra().setCapacity(this, capacity, setStretchedValueToNewValue);
 	}
 	public String incrementPenisCapacity(float increment, boolean setStretchedValueToNewValue) {
 		return setPenisCapacity(getPenisRawCapacityValue() + increment, setStretchedValueToNewValue);
 	}
 	public float getPenisRawCapacityValue() {
-		return getCurrentPenis().getOrificeUrethra().getRawCapacityValue();
+		return getCurrentPenis().getUrethra().getRawCapacityValue();
 	}
 	public float getPenisStretchedCapacity() {
-		return getCurrentPenis().getOrificeUrethra().getStretchedCapacity();
+		return getCurrentPenis().getUrethra().getStretchedCapacity();
 	}
 	public void setPenisStretchedCapacity(float capacity){
-		getCurrentPenis().getOrificeUrethra().setStretchedCapacity(capacity);
+		getCurrentPenis().getUrethra().setStretchedCapacity(capacity);
 	}
 	public void incrementPenisStretchedCapacity(float increment){
-		getCurrentPenis().getOrificeUrethra().setStretchedCapacity(getPenisStretchedCapacity() + increment);
+		getCurrentPenis().getUrethra().setStretchedCapacity(getPenisStretchedCapacity() + increment);
 	}
 	// Elasticity:
 	public OrificeElasticity getUrethraElasticity() {
-		return getCurrentPenis().getOrificeUrethra().getElasticity();
+		return getCurrentPenis().getUrethra().getElasticity();
 	}
 	public String setUrethraElasticity(int elasticity) {
-		return getCurrentPenis().getOrificeUrethra().setElasticity(this, elasticity);
+		return getCurrentPenis().getUrethra().setElasticity(this, elasticity);
 	}
 	public String incrementUrethraElasticity(int increment) {
 		return setUrethraElasticity(getUrethraElasticity().getValue() + increment);
 	}
 	// Plasticity:
 	public OrificePlasticity getUrethraPlasticity() {
-		return getCurrentPenis().getOrificeUrethra().getPlasticity();
+		return getCurrentPenis().getUrethra().getPlasticity();
 	}
 	public String setUrethraPlasticity(int plasticity) {
-		return getCurrentPenis().getOrificeUrethra().setPlasticity(this, plasticity);
+		return getCurrentPenis().getUrethra().setPlasticity(this, plasticity);
 	}
 	public String incrementUrethraPlasticity(int increment) {
 		return setUrethraPlasticity(getUrethraPlasticity().getValue() + increment);
 	}
 	// Virgin:
 	public boolean isUrethraVirgin() {
-		return getCurrentPenis().getOrificeUrethra().isVirgin();
+		return getCurrentPenis().getUrethra().isVirgin();
 	}
 	public void setUrethraVirgin(boolean virgin) {
-		getCurrentPenis().getOrificeUrethra().setVirgin(virgin);
+		getCurrentPenis().getUrethra().setVirgin(virgin);
 	}
 	// Modifiers:
 	public boolean hasUrethraOrificeModifier(OrificeModifier modifier) {
-		return getCurrentPenis().getOrificeUrethra().hasOrificeModifier(modifier);
+		return getCurrentPenis().getUrethra().hasOrificeModifier(modifier);
 	}
 	public String addUrethraOrificeModifier(OrificeModifier modifier) {
-		return getCurrentPenis().getOrificeUrethra().addOrificeModifier(this, modifier);
+		return getCurrentPenis().getUrethra().addOrificeModifier(this, modifier);
 	}
 	public String removeUrethraOrificeModifier(OrificeModifier modifier) {
-		return getCurrentPenis().getOrificeUrethra().removeOrificeModifier(this, modifier);
+		return getCurrentPenis().getUrethra().removeOrificeModifier(this, modifier);
 	}
 	
 	// ------------------------------ Second Penis: ------------------------------ //
@@ -16586,62 +16586,62 @@ public abstract class GameCharacter implements XMLSaving {
 	// Urethra:
 	// Capacity:
 	public Capacity getSecondPenisCapacity() {
-		return body.getSecondPenis().getOrificeUrethra().getCapacity();
+		return body.getSecondPenis().getUrethra().getCapacity();
 	}
 	public String setSecondPenisCapacity(float capacity, boolean setStretchedValueToNewValue) {
-		return body.getSecondPenis().getOrificeUrethra().setCapacity(this, capacity, setStretchedValueToNewValue);
+		return body.getSecondPenis().getUrethra().setCapacity(this, capacity, setStretchedValueToNewValue);
 	}
 	public String incrementSecondPenisCapacity(float increment, boolean setStretchedValueToNewValue) {
 		return setSecondPenisCapacity(getSecondPenisRawCapacityValue() + increment, setStretchedValueToNewValue);
 	}
 	public float getSecondPenisRawCapacityValue() {
-		return body.getSecondPenis().getOrificeUrethra().getRawCapacityValue();
+		return body.getSecondPenis().getUrethra().getRawCapacityValue();
 	}
 	public float getSecondPenisStretchedCapacity() {
-		return body.getSecondPenis().getOrificeUrethra().getStretchedCapacity();
+		return body.getSecondPenis().getUrethra().getStretchedCapacity();
 	}
 	public void setSecondPenisStretchedCapacity(float capacity){
-		body.getSecondPenis().getOrificeUrethra().setStretchedCapacity(capacity);
+		body.getSecondPenis().getUrethra().setStretchedCapacity(capacity);
 	}
 	public void incrementSecondPenisStretchedCapacity(float increment){
-		body.getSecondPenis().getOrificeUrethra().setStretchedCapacity(getSecondPenisStretchedCapacity() + increment);
+		body.getSecondPenis().getUrethra().setStretchedCapacity(getSecondPenisStretchedCapacity() + increment);
 	}
 	// Elasticity:
 	public OrificeElasticity getSecondUrethraElasticity() {
-		return body.getSecondPenis().getOrificeUrethra().getElasticity();
+		return body.getSecondPenis().getUrethra().getElasticity();
 	}
 	public String setSecondUrethraElasticity(int elasticity) {
-		return body.getSecondPenis().getOrificeUrethra().setElasticity(this, elasticity);
+		return body.getSecondPenis().getUrethra().setElasticity(this, elasticity);
 	}
 	public String incrementSecondUrethraElasticity(int increment) {
 		return setUrethraElasticity(getUrethraElasticity().getValue() + increment);
 	}
 	// Plasticity:
 	public OrificePlasticity getSecondUrethraPlasticity() {
-		return body.getSecondPenis().getOrificeUrethra().getPlasticity();
+		return body.getSecondPenis().getUrethra().getPlasticity();
 	}
 	public String setSecondUrethraPlasticity(int plasticity) {
-		return body.getSecondPenis().getOrificeUrethra().setPlasticity(this, plasticity);
+		return body.getSecondPenis().getUrethra().setPlasticity(this, plasticity);
 	}
 	public String incrementSecondUrethraPlasticity(int increment) {
 		return setUrethraPlasticity(getUrethraPlasticity().getValue() + increment);
 	}
 	// Virgin:
 	public boolean isSecondUrethraVirgin() {
-		return body.getSecondPenis().getOrificeUrethra().isVirgin();
+		return body.getSecondPenis().getUrethra().isVirgin();
 	}
 	public void setSecondUrethraVirgin(boolean virgin) {
-		body.getSecondPenis().getOrificeUrethra().setVirgin(virgin);
+		body.getSecondPenis().getUrethra().setVirgin(virgin);
 	}
 	// Modifiers:
 	public boolean hasSecondUrethraOrificeModifier(OrificeModifier modifier) {
-		return body.getSecondPenis().getOrificeUrethra().hasOrificeModifier(modifier);
+		return body.getSecondPenis().getUrethra().hasOrificeModifier(modifier);
 	}
 	public String addSecondUrethraOrificeModifier(OrificeModifier modifier) {
-		return body.getSecondPenis().getOrificeUrethra().addOrificeModifier(this, modifier);
+		return body.getSecondPenis().getUrethra().addOrificeModifier(this, modifier);
 	}
 	public String removeSecondUrethraOrificeModifier(OrificeModifier modifier) {
-		return body.getSecondPenis().getOrificeUrethra().removeOrificeModifier(this, modifier);
+		return body.getSecondPenis().getUrethra().removeOrificeModifier(this, modifier);
 	}
 
 	// ------------------------------ Testicles: ------------------------------ //
@@ -17166,88 +17166,88 @@ public abstract class GameCharacter implements XMLSaving {
 	// Orifice stats:
 	// Wetness:
 	public Wetness getVaginaWetness() {
-		return body.getVagina().getOrificeVagina().getWetness(this);
+		return body.getVagina().getWetness(this);
 	}
 	public String setVaginaWetness(int wetness) {
-		return body.getVagina().getOrificeVagina().setWetness(this, wetness);
+		return body.getVagina().setWetness(this, wetness);
 	}
 	public String setVaginaWetness(Wetness wetness) {
-		return body.getVagina().getOrificeVagina().setWetness(this, wetness.getValue());
+		return body.getVagina().setWetness(this, wetness.getValue());
 	}
 	public String incrementVaginaWetness(int increment) {
-		return body.getVagina().getOrificeVagina().setWetness(this, getVaginaWetness().getValue() + increment);
+		return body.getVagina().setWetness(this, getVaginaWetness().getValue() + increment);
 	}
 	// Capacity:
 	public Capacity getVaginaCapacity() {
-		return body.getVagina().getOrificeVagina().getCapacity();
+		return body.getVagina().getCapacity();
 	}
 	public float getVaginaRawCapacityValue() {
-		return body.getVagina().getOrificeVagina().getRawCapacityValue();
+		return body.getVagina().getRawCapacityValue();
 	}
 	public float getVaginaStretchedCapacity() {
-		return body.getVagina().getOrificeVagina().getStretchedCapacity();
+		return body.getVagina().getStretchedCapacity();
 	}
 	public void setVaginaStretchedCapacity(float capacity){
-		body.getVagina().getOrificeVagina().setStretchedCapacity(capacity);
+		body.getVagina().setStretchedCapacity(capacity);
 	}
 	public void incrementVaginaStretchedCapacity(float increment){
-		body.getVagina().getOrificeVagina().setStretchedCapacity(getVaginaStretchedCapacity() + increment);
+		body.getVagina().setStretchedCapacity(getVaginaStretchedCapacity() + increment);
 	}
 	public String setVaginaCapacity(float capacity, boolean setStretchedValueToNewValue) {
-		return body.getVagina().getOrificeVagina().setCapacity(this, capacity, setStretchedValueToNewValue);
+		return body.getVagina().setCapacity(this, capacity, setStretchedValueToNewValue);
 	}
 	public String setVaginaCapacity(Capacity capacity, boolean setStretchedValueToNewValue) {
-		return body.getVagina().getOrificeVagina().setCapacity(this, capacity.getMedianValue(), setStretchedValueToNewValue);
+		return body.getVagina().setCapacity(this, capacity.getMedianValue(), setStretchedValueToNewValue);
 	}
 	public String incrementVaginaCapacity(float increment, boolean setStretchedValueToNewValue) {
 		return setVaginaCapacity(getVaginaRawCapacityValue() + increment, setStretchedValueToNewValue);
 	}
 	// Elasticity:
 	public OrificeElasticity getVaginaElasticity() {
-		return body.getVagina().getOrificeVagina().getElasticity();
+		return body.getVagina().getElasticity();
 	}
 	public String setVaginaElasticity(int elasticity) {
-		return body.getVagina().getOrificeVagina().setElasticity(this, elasticity);
+		return body.getVagina().setElasticity(this, elasticity);
 	}
 	public String incrementVaginaElasticity(int increment) {
 		return setVaginaElasticity(getVaginaElasticity().getValue() + increment);
 	}
 	// Plasticity:
 	public OrificePlasticity getVaginaPlasticity() {
-		return body.getVagina().getOrificeVagina().getPlasticity();
+		return body.getVagina().getPlasticity();
 	}
 	public String setVaginaPlasticity(int plasticity) {
-		return body.getVagina().getOrificeVagina().setPlasticity(this, plasticity);
+		return body.getVagina().setPlasticity(this, plasticity);
 	}
 	public String incrementVaginaPlasticity(int increment) {
 		return setVaginaPlasticity(getVaginaPlasticity().getValue() + increment);
 	}
 	// Virginity:
 	public boolean isVaginaVirgin() {
-		return body.getVagina().getOrificeVagina().isVirgin();
+		return body.getVagina().isVirgin();
 	}
 	public void setVaginaVirgin(boolean virgin) {
-		body.getVagina().getOrificeVagina().setVirgin(virgin);
+		body.getVagina().setVirgin(virgin);
 	}
 	// Squirter:
 	public boolean isVaginaSquirter() {
-		return body.getVagina().getOrificeVagina().isSquirter();
+		return body.getVagina().isSquirter();
 	}
 	public String setVaginaSquirter(boolean squirter) {
-		return body.getVagina().getOrificeVagina().setSquirter(this, squirter);
+		return body.getVagina().setSquirter(this, squirter);
 	}
 	// Modifiers:
 	public Set<OrificeModifier> getVaginaOrificeModifiers() {
-		return body.getVagina().getOrificeVagina().getOrificeModifiers();
+		return body.getVagina().getOrificeModifiers();
 	}
 	public boolean hasVaginaOrificeModifier(OrificeModifier modifier) {
-		return body.getVagina().getOrificeVagina().hasOrificeModifier(modifier);
+		return body.getVagina().hasOrificeModifier(modifier);
 	}
 	public String addVaginaOrificeModifier(OrificeModifier modifier) {
-		return body.getVagina().getOrificeVagina().addOrificeModifier(this, modifier);
+		return body.getVagina().addOrificeModifier(this, modifier);
 	}
 	public String removeVaginaOrificeModifier(OrificeModifier modifier) {
-		return body.getVagina().getOrificeVagina().removeOrificeModifier(this, modifier);
+		return body.getVagina().removeOrificeModifier(this, modifier);
 	}
 	
 	//Clitoris:
@@ -17331,69 +17331,69 @@ public abstract class GameCharacter implements XMLSaving {
 	// Urethra:
 
 	public String getVaginaUrethraDescriptor() {
-		return body.getVagina().getUrethraDescriptor(this);
+		return body.getVagina().getUrethra().getDescriptor(this);
 	}
 	public boolean isVaginaUrethraFuckable() {
-		return body.getVagina().getOrificeUrethra().getRawCapacityValue()>0;
+		return body.getVagina().getUrethra().getRawCapacityValue()>0;
 	}
 	// Capacity:
 	public Capacity getVaginaUrethraCapacity() {
-		return body.getVagina().getOrificeUrethra().getCapacity();
+		return body.getVagina().getUrethra().getCapacity();
 	}
 	public String setVaginaUrethraCapacity(float capacity, boolean setStretchedValueToNewValue) {
-		return body.getVagina().getOrificeUrethra().setCapacity(this, capacity, setStretchedValueToNewValue);
+		return body.getVagina().getUrethra().setCapacity(this, capacity, setStretchedValueToNewValue);
 	}
 	public String incrementVaginaUrethraCapacity(float increment, boolean setStretchedValueToNewValue) {
 		return setVaginaUrethraCapacity(getVaginaUrethraRawCapacityValue() + increment, setStretchedValueToNewValue);
 	}
 	public float getVaginaUrethraRawCapacityValue() {
-		return body.getVagina().getOrificeUrethra().getRawCapacityValue();
+		return body.getVagina().getUrethra().getRawCapacityValue();
 	}
 	public float getVaginaUrethraStretchedCapacity() {
-		return body.getVagina().getOrificeUrethra().getStretchedCapacity();
+		return body.getVagina().getUrethra().getStretchedCapacity();
 	}
 	public void setVaginaUrethraStretchedCapacity(float capacity){
-		body.getVagina().getOrificeUrethra().setStretchedCapacity(capacity);
+		body.getVagina().getUrethra().setStretchedCapacity(capacity);
 	}
 	public void incrementVaginaUrethraStretchedCapacity(float increment){
-		body.getVagina().getOrificeUrethra().setStretchedCapacity(getVaginaUrethraStretchedCapacity() + increment);
+		body.getVagina().getUrethra().setStretchedCapacity(getVaginaUrethraStretchedCapacity() + increment);
 	}
 	// Elasticity:
 	public OrificeElasticity getVaginaUrethraElasticity() {
-		return body.getVagina().getOrificeUrethra().getElasticity();
+		return body.getVagina().getUrethra().getElasticity();
 	}
 	public String setVaginaUrethraElasticity(int elasticity) {
-		return body.getVagina().getOrificeUrethra().setElasticity(this, elasticity);
+		return body.getVagina().getUrethra().setElasticity(this, elasticity);
 	}
 	public String incrementVaginaUrethraElasticity(int increment) {
 		return setUrethraElasticity(getVaginaUrethraElasticity().getValue() + increment);
 	}
 	// Plasticity:
 	public OrificePlasticity getVaginaUrethraPlasticity() {
-		return body.getVagina().getOrificeUrethra().getPlasticity();
+		return body.getVagina().getUrethra().getPlasticity();
 	}
 	public String setVaginaUrethraPlasticity(int plasticity) {
-		return body.getVagina().getOrificeUrethra().setPlasticity(this, plasticity);
+		return body.getVagina().getUrethra().setPlasticity(this, plasticity);
 	}
 	public String incrementVaginaUrethraPlasticity(int increment) {
 		return setUrethraPlasticity(getVaginaUrethraPlasticity().getValue() + increment);
 	}
 	// Virgin:
 	public boolean isVaginaUrethraVirgin() {
-		return body.getVagina().getOrificeUrethra().isVirgin();
+		return body.getVagina().getUrethra().isVirgin();
 	}
 	public void setVaginaUrethraVirgin(boolean virgin) {
-		body.getVagina().getOrificeUrethra().setVirgin(virgin);
+		body.getVagina().getUrethra().setVirgin(virgin);
 	}
 	// Modifiers:
 	public boolean hasVaginaUrethraOrificeModifier(OrificeModifier modifier) {
-		return body.getVagina().getOrificeUrethra().hasOrificeModifier(modifier);
+		return body.getVagina().getUrethra().hasOrificeModifier(modifier);
 	}
 	public String addVaginaUrethraOrificeModifier(OrificeModifier modifier) {
-		return body.getVagina().getOrificeUrethra().addOrificeModifier(this, modifier);
+		return body.getVagina().getUrethra().addOrificeModifier(this, modifier);
 	}
 	public String removeVaginaUrethraOrificeModifier(OrificeModifier modifier) {
-		return body.getVagina().getOrificeUrethra().removeOrificeModifier(this, modifier);
+		return body.getVagina().getUrethra().removeOrificeModifier(this, modifier);
 	}
 		
 	

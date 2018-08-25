@@ -41,7 +41,7 @@ public class Penis implements BodyPartInterface, Serializable {
 	protected Set<PenetrationModifier> penisModifiers;
 	
 	protected Testicle testicle;
-	protected OrificePenisUrethra orificeUrethra;
+	protected Urethra urethra;
 
 	public Penis(PenisType type, int size, int girth, int testicleSize, int cumProduction, int testicleCount) {
 		this.type = type;
@@ -52,7 +52,7 @@ public class Penis implements BodyPartInterface, Serializable {
 		
 		testicle = new Testicle(type.getTesticleType(), testicleSize, cumProduction, testicleCount);
 		
-		orificeUrethra = new OrificePenisUrethra(testicle.getCumStorage().getAssociatedWetness().getValue(), 0, OrificeElasticity.ZERO_UNYIELDING.getValue(), OrificePlasticity.THREE_RESILIENT.getValue(), true, new ArrayList<>());
+		urethra = new Urethra(type, testicle.getCumStorage().getAssociatedWetness().getValue(), 0, OrificeElasticity.ZERO_UNYIELDING.getValue(), OrificePlasticity.THREE_RESILIENT.getValue(), true, new ArrayList<>());
 		
 		this.penisModifiers = new HashSet<>();
 		this.penisModifiers.addAll(type.getDefaultPenisModifiers());
@@ -67,8 +67,8 @@ public class Penis implements BodyPartInterface, Serializable {
 		return testicle;
 	}
 	
-	public OrificePenisUrethra getOrificeUrethra() {
-		return orificeUrethra;
+	public Urethra getUrethra() {
+		return urethra;
 	}
 	
 	@Override
@@ -114,13 +114,13 @@ public class Penis implements BodyPartInterface, Serializable {
 	public String getUrethraDescriptor(GameCharacter owner) {
 		List<String> descriptorList = new ArrayList<>();
 		
-		for(OrificeModifier om : orificeUrethra.getOrificeModifiers()) {
+		for(OrificeModifier om : urethra.getOrificeModifiers()) {
 			descriptorList.add(om.getName());
 		}
 		
 		descriptorList.add(type.getDescriptor(owner));
 		
-		descriptorList.add(orificeUrethra.getCapacity().getDescriptor());
+		descriptorList.add(urethra.getCapacity().getDescriptor());
 		
 		return UtilText.returnStringAtRandom(descriptorList.toArray(new String[]{}));
 	}
@@ -259,7 +259,7 @@ public class Penis implements BodyPartInterface, Serializable {
 							+ "[npc.Name] now has [style.boldSex(no penis)]."
 							+ "</p>");
 				}
-				orificeUrethra.setVirgin(true);
+				urethra.setVirgin(true);
 				owner.setPiercedPenis(false);
 				break;
 			case HUMAN:

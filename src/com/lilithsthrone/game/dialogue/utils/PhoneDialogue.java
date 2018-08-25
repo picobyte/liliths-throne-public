@@ -1890,7 +1890,7 @@ public class PhoneDialogue {
 									+ "</tr>"
 									+ "<tr>"
 										+ "<td>Vagina capacity</td>"
-										+ "<td>"+Util.capitaliseSentence(femaleBody.getVagina().getOrificeVagina().getCapacity().getDescriptor())+"</td>"
+										+ "<td>"+Util.capitaliseSentence(femaleBody.getVagina().getCapacity().getDescriptor())+"</td>"
 										+ "<td>-</td>"
 									+ "</tr>"
 								+ "</table>"

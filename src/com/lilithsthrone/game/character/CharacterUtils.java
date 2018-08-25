@@ -519,20 +519,20 @@ public class CharacterUtils {
 					if(inheritsFromMotherBreasts && inheritsFromFatherBreasts) {
 						if(Math.random()>=takesAfterMotherChance) {
 							if(mother.hasNippleOrificeModifier(om)) {
-								body.getBreast().getNipples().getOrificeNipples().addOrificeModifier(blankNPC, om);
+								body.getBreast().getNipples().addOrificeModifier(blankNPC, om);
 							}
 						} else {
 							if(father.hasNippleOrificeModifier(om)) {
-								body.getBreast().getNipples().getOrificeNipples().addOrificeModifier(blankNPC, om);
+								body.getBreast().getNipples().addOrificeModifier(blankNPC, om);
 							}
 						}
 					} else if(inheritsFromMotherBreasts) {
 						if(mother.hasNippleOrificeModifier(om)) {
-							body.getBreast().getNipples().getOrificeNipples().addOrificeModifier(blankNPC, om);
+							body.getBreast().getNipples().addOrificeModifier(blankNPC, om);
 						}
 					} else if(inheritsFromFatherBreasts) {
 						if(father.hasNippleOrificeModifier(om)) {
-							body.getBreast().getNipples().getOrificeNipples().addOrificeModifier(blankNPC, om);
+							body.getBreast().getNipples().addOrificeModifier(blankNPC, om);
 						}
 					}
 				}
@@ -584,11 +584,11 @@ public class CharacterUtils {
 			if(Math.random()>=0.5) {
 				if(Math.random()>=takesAfterMotherChance) {
 					if(mother.hasFaceOrificeModifier(om)) {
-						body.getFace().getMouth().getOrificeMouth().addOrificeModifier(blankNPC, om);
+						body.getFace().getMouth().addOrificeModifier(blankNPC, om);
 					}
 				} else {
 					if(father.hasFaceOrificeModifier(om)) {
-						body.getFace().getMouth().getOrificeMouth().addOrificeModifier(blankNPC, om);
+						body.getFace().getMouth().addOrificeModifier(blankNPC, om);
 					}
 				}
 			}
@@ -683,20 +683,20 @@ public class CharacterUtils {
 					if(inheritsFromMotherPenis && inheritsFromFatherPenis) {
 						if(Math.random()>=takesAfterMotherChance) {
 							if(mother.hasUrethraOrificeModifier(om)) {
-								body.getPenis().getOrificeUrethra().addOrificeModifier(blankNPC, om);
+								body.getPenis().getUrethra().addOrificeModifier(blankNPC, om);
 							}
 						} else {
 							if(father.hasUrethraOrificeModifier(om)) {
-								body.getPenis().getOrificeUrethra().addOrificeModifier(blankNPC, om);
+								body.getPenis().getUrethra().addOrificeModifier(blankNPC, om);
 							}
 						}
 					} else if(inheritsFromMotherPenis) {
 						if(mother.hasUrethraOrificeModifier(om)) {
-							body.getPenis().getOrificeUrethra().addOrificeModifier(blankNPC, om);
+							body.getPenis().getUrethra().addOrificeModifier(blankNPC, om);
 						}
 					} else if(inheritsFromFatherPenis) {
 						if(father.hasUrethraOrificeModifier(om)) {
-							body.getPenis().getOrificeUrethra().addOrificeModifier(blankNPC, om);
+							body.getPenis().getUrethra().addOrificeModifier(blankNPC, om);
 						}
 					}
 				}
@@ -779,13 +779,13 @@ public class CharacterUtils {
 					inheritsFromMotherVagina, mother.getVaginaRawLabiaSizeValue(),
 					inheritsFromFatherVagina, father.getVaginaRawLabiaSizeValue()));
 //			// Capacity:
-//			body.getVagina().getOrificeVagina().setCapacity(blankNPC, getSizeFromGenetics(
-//					(int) body.getVagina().getOrificeVagina().getRawCapacityValue(),
+//			body.getVagina().setCapacity(blankNPC, getSizeFromGenetics(
+//					(int) body.getVagina().getRawCapacityValue(),
 //					inheritsFromMotherVagina, (int) mother.getVaginaRawCapacityValue(),
 //					inheritsFromFatherVagina, (int) father.getVaginaRawCapacityValue()));
 			// Wetness:
-			body.getVagina().getOrificeVagina().setWetness(blankNPC, getSizeFromGenetics(
-					body.getVagina().getOrificeVagina().getWetness(blankNPC).getValue(),
+			body.getVagina().setWetness(blankNPC, getSizeFromGenetics(
+					body.getVagina().getWetness(blankNPC).getValue(),
 					inheritsFromMotherVagina, mother.getVaginaWetness().getValue(),
 					inheritsFromFatherVagina, father.getVaginaWetness().getValue()));
 			// Modifiers:
@@ -794,20 +794,20 @@ public class CharacterUtils {
 					if(inheritsFromMotherVagina && inheritsFromFatherVagina) {
 						if(Math.random()>=takesAfterMotherChance) {
 							if(mother.hasVaginaOrificeModifier(om)) {
-								body.getVagina().getOrificeVagina().addOrificeModifier(blankNPC, om);
+								body.getVagina().addOrificeModifier(blankNPC, om);
 							}
 						} else {
 							if(father.hasVaginaOrificeModifier(om)) {
-								body.getVagina().getOrificeVagina().addOrificeModifier(blankNPC, om);
+								body.getVagina().addOrificeModifier(blankNPC, om);
 							}
 						}
 					} else if(inheritsFromMotherVagina) {
 						if(mother.hasVaginaOrificeModifier(om)) {
-							body.getVagina().getOrificeVagina().addOrificeModifier(blankNPC, om);
+							body.getVagina().addOrificeModifier(blankNPC, om);
 						}
 					} else if(inheritsFromFatherVagina) {
 						if(father.hasVaginaOrificeModifier(om)) {
-							body.getVagina().getOrificeVagina().addOrificeModifier(blankNPC, om);
+							body.getVagina().addOrificeModifier(blankNPC, om);
 						}
 					}
 				}
@@ -1399,7 +1399,7 @@ public class CharacterUtils {
 				prostituteChance += 0.15f; // Bonus for vagina.
 			 }
 			 
-			 if(character.body.getBreast().getNipples().getOrificeNipples().getRawCapacityValue() >= 4) {
+			 if(character.body.getBreast().getNipples().getRawCapacityValue() >= 4) {
 				prostituteChance += 0.05f; //Bonus for fuckable nipples.
 			 }
 			 
@@ -1851,7 +1851,7 @@ public class CharacterUtils {
 			prostitutePrice += Math.min((prostitute.getBody().getPenis().getRawSizeValue() - 5) * 0.01f, 0.10f); // Penalises small penises, but adds price if penis is large.
 		}
 
-		if (prostitute.getBody().getBreast().getNipples().getOrificeNipples().getRawCapacityValue() >= 4) {
+		if (prostitute.getBody().getBreast().getNipples().getRawCapacityValue() >= 4) {
 			prostitutePrice += 0.05f;  // Fuckable nipples add to price.
 		}
 
