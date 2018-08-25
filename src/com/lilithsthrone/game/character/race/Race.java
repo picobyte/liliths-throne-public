@@ -29,7 +29,6 @@ public enum Race {
 			0.5f,
 			1,
 			1,
-			0.02f,
 			Attribute.DAMAGE_HUMAN,
 			Attribute.RESISTANCE_HUMAN,
 			FurryPreference.NORMAL,
@@ -54,7 +53,6 @@ public enum Race {
 			0.5f,
 			1,
 			1,
-			0.02f,
 			Attribute.DAMAGE_HUMAN,
 			Attribute.RESISTANCE_HUMAN,
 			FurryPreference.NORMAL,
@@ -79,7 +77,6 @@ public enum Race {
 			0.25f,
 			1,
 			1,
-			0.01f,
 			Attribute.DAMAGE_ANGEL,
 			Attribute.RESISTANCE_ANGEL,
 			FurryPreference.NORMAL,
@@ -105,7 +102,6 @@ public enum Race {
 			0.75f,
 			2,
 			3,
-			0.04f,
 			Attribute.DAMAGE_DEMON,
 			Attribute.RESISTANCE_DEMON,
 			FurryPreference.MAXIMUM,
@@ -129,7 +125,6 @@ public enum Race {
 //			0.75f,
 //			2,
 //			3,
-//			0.04f,
 //			Attribute.DAMAGE_IMP,
 //			Attribute.RESISTANCE_IMP,
 //			FurryPreference.MAXIMUM,
@@ -154,7 +149,6 @@ public enum Race {
 			0.5f,
 			1,
 			1,
-			0.04f,
 			Attribute.DAMAGE_COW_MORPH,
 			Attribute.RESISTANCE_COW_MORPH,
 			FurryPreference.NORMAL,
@@ -177,7 +171,6 @@ public enum Race {
 			0.5f,
 			1,
 			2,
-			0.05f,
 			Attribute.DAMAGE_DOG_MORPH,
 			Attribute.RESISTANCE_DOG_MORPH,
 			FurryPreference.NORMAL,
@@ -201,7 +194,6 @@ public enum Race {
 			0.5f,
 			1,
 			2,
-			0.05f,
 			Attribute.DAMAGE_WOLF_MORPH,
 			Attribute.RESISTANCE_WOLF_MORPH,
 			FurryPreference.NORMAL,
@@ -226,7 +218,6 @@ public enum Race {
 			0.5f,
 			1,
 			2,
-			0.02f,
 			Attribute.DAMAGE_FOX_MORPH,
 			Attribute.RESISTANCE_FOX_MORPH,
 			FurryPreference.NORMAL,
@@ -251,7 +242,6 @@ public enum Race {
 			0.5f,
 			1,
 			2,
-			0.03f,
 			Attribute.DAMAGE_CAT_MORPH,
 			Attribute.RESISTANCE_CAT_MORPH,
 			FurryPreference.NORMAL,
@@ -276,7 +266,6 @@ public enum Race {
 			0.5f,
 			1,
 			1,
-			0.03f,
 			Attribute.DAMAGE_HORSE_MORPH,
 			Attribute.RESISTANCE_HORSE_MORPH,
 			FurryPreference.NORMAL,
@@ -301,7 +290,6 @@ public enum Race {
 			0.5f,
 			1,
 			2,
-			0.02f,
 			Attribute.DAMAGE_REINDEER_MORPH,
 			Attribute.RESISTANCE_REINDEER_MORPH,
 			FurryPreference.NORMAL,
@@ -325,7 +313,6 @@ public enum Race {
 			0.5f,
 			1,
 			2,
-			0.01f,
 			Attribute.DAMAGE_SQUIRREL_MORPH,
 			Attribute.RESISTANCE_SQUIRREL_MORPH,
 			FurryPreference.NORMAL,
@@ -349,7 +336,6 @@ public enum Race {
 			0.5f,
 			1,
 			4,
-			0.02f,
 			Attribute.DAMAGE_RAT_MORPH,
 			Attribute.RESISTANCE_RAT_MORPH,
 			FurryPreference.NORMAL,
@@ -373,7 +359,6 @@ public enum Race {
 			0.5f,
 			2,
 			8,
-			0.02f,
 			Attribute.DAMAGE_RABBIT_MORPH,
 			Attribute.RESISTANCE_RABBIT_MORPH,
 			FurryPreference.NORMAL,
@@ -397,7 +382,6 @@ public enum Race {
 			0.5f,
 			1,
 			2,
-			0.02f,
 			Attribute.DAMAGE_BAT_MORPH,
 			Attribute.RESISTANCE_BAT_MORPH,
 			FurryPreference.NORMAL,
@@ -421,7 +405,6 @@ public enum Race {
 			0.5f,
 			1,
 			4,
-			0.01f,
 			Attribute.DAMAGE_ALLIGATOR_MORPH,
 			Attribute.RESISTANCE_ALLIGATOR_MORPH,
 			FurryPreference.NORMAL,
@@ -444,7 +427,6 @@ public enum Race {
 			0.5f,
 			1,
 			1,
-			0.05f,
 			Attribute.DAMAGE_SLIME,
 			Attribute.RESISTANCE_SLIME,
 			FurryPreference.MAXIMUM,
@@ -469,7 +451,6 @@ public enum Race {
 			0.5f,
 			3,
 			4,
-			0.02f,
 			Attribute.DAMAGE_HARPY,
 			Attribute.RESISTANCE_HARPY,
 			FurryPreference.NORMAL,
@@ -495,7 +476,6 @@ public enum Race {
 			0.5f,
 			1,
 			1,
-			0.02f,
 			Attribute.DAMAGE_ELEMENTAL_EARTH,
 			Attribute.RESISTANCE_ELEMENTAL_EARTH,
 			FurryPreference.MAXIMUM,
@@ -519,7 +499,6 @@ public enum Race {
 			0.5f,
 			1,
 			1,
-			0.02f,
 			Attribute.DAMAGE_ELEMENTAL_WATER,
 			Attribute.RESISTANCE_ELEMENTAL_WATER,
 			FurryPreference.MAXIMUM,
@@ -543,7 +522,6 @@ public enum Race {
 			0.5f,
 			1,
 			1,
-			0.02f,
 			Attribute.DAMAGE_ELEMENTAL_AIR,
 			Attribute.RESISTANCE_ELEMENTAL_AIR,
 			FurryPreference.MAXIMUM,
@@ -568,7 +546,6 @@ public enum Race {
 			0.5f,
 			1,
 			1,
-			0.02f,
 			Attribute.DAMAGE_ELEMENTAL_FIRE,
 			Attribute.RESISTANCE_ELEMENTAL_FIRE,
 			FurryPreference.MAXIMUM,
@@ -592,7 +569,6 @@ public enum Race {
 			0.5f,
 			1,
 			1,
-			0.02f,
 			Attribute.DAMAGE_ELEMENTAL_ARCANE,
 			Attribute.RESISTANCE_ELEMENTAL_ARCANE,
 			FurryPreference.MAXIMUM,
@@ -1342,7 +1318,6 @@ public enum Race {
 	private boolean vulnerableToLilithsLustStorm;
 	private int numberOfOffspringLow, numberOfOffspringHigh;
 	private float chanceForMaleOffspring;
-	private float digestionSpeed;
 	private Attribute damageMultiplier, resistanceMultiplier;
 	private FurryPreference defaultFemininePreference, defaultMasculinePreference;
 	private boolean affectedByFurryPreference;
@@ -1364,8 +1339,6 @@ public enum Race {
 			int numberOfOffspringLow,
 			int numberOfOffspringHigh,
 			
-			float digestionSpeed,
-
 			Attribute damageMultiplier,
 			Attribute resistanceMultiplier,
 			
@@ -1388,8 +1361,6 @@ public enum Race {
 		
 		this.numberOfOffspringLow = numberOfOffspringLow;
 		this.numberOfOffspringHigh = numberOfOffspringHigh;
-		
-		this.digestionSpeed = digestionSpeed;
 
 		this.damageMultiplier = damageMultiplier;
 		this.resistanceMultiplier = resistanceMultiplier;
@@ -1440,13 +1411,6 @@ public enum Race {
 		return chanceForMaleOffspring;
 	}
 
-	public float getUresis(float pressure) {
-		return digestionSpeed + 0.004f * pressure;
-	}
-
-	public float getDigestionSpeed() {
-		return digestionSpeed;
-	}
 	public Attribute getDamageMultiplier() {
 		return damageMultiplier;
 	}

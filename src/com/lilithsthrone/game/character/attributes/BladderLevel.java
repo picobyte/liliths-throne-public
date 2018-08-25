@@ -107,45 +107,38 @@ public enum BladderLevel {
 	}
 
 	public String getStatusEffectDescription(boolean consensual, GameCharacter character) {
-		    switch(this) {
-			    case ZERO_JUST_PEED:
-				    if (character.isPlayer()) {
-					    return "You currently feel no need at all to go to the john.";
-				    } else {
-					    return UtilText.parse(character, "[npc.Name] has no need to go to the john at all.");
-				    }
-			    case ONE_RECENTLY_PEED:
-				    if (character.isPlayer()) {
-					    return "You recently went to the john, you don't feel any need to go.";
-				    } else {
-					    return UtilText.parse(character, "[npc.Name] recently went to the john, [npc.she] doesn't feel the need to go.");
-				    }
-			    case TWO_PEED_A_WHILE_AGO:
-				    if (character.isPlayer()) {
-					    return "It's been some time ago that you peed. You could go, but there's no urgency yet.";
-				    } else {
-					    return UtilText.parse(character, "[npc.Name] could go to the john, but there's no urgency yet.");
-				    }
-			    case THREE_MAY_WANT_TO_GO:
-				    if (character.isPlayer()) {
-					    return "You feel the urgency to go rising. Better go when you're able to, just to be sure.";
-				    } else {
-					    return UtilText.parse(character, "[npc.Name] could go to the john just now.");
-				    }
-			    case FOUR_NEED_TO_GO:
-				    if (character.isPlayer()) {
-					    return "Oh no, you need to go to the john urgently! Is there a toilet anywhere near?";
-				    } else {
-					    return UtilText.parse(character, "[npc.Name] really needs to go to the john! Is there a toilet anywhere nearby?");
-				    }
-			    case FIVE_BARELY_HOLD_IT:
-				    if (character.isPlayer()) {
-						    return "You cannot hold it any longer! You'll just have to do it here, or you'll have an accident!";
-					    } else {
-					    return UtilText.parse(character, "[npc.Name] cannot hold it any longer! [npc.She]'ll just have to do it here, or there will be an accident!");
-				    }
-		    }
+		switch(this) {
+		case ZERO_JUST_PEED:
+			if (character.isPlayer()) {
+				return "You currently feel no need at all to go to the john.";
+			}
+			return UtilText.parse(character, "[npc.Name] has no need to go to the john at all.");
+		case ONE_RECENTLY_PEED:
+			if (character.isPlayer()) {
+				return "You recently went to the john, you don't feel any need to go.";
+			}
+			return UtilText.parse(character, "[npc.Name] recently went to the john, [npc.she] doesn't feel the need to go.");
+		case TWO_PEED_A_WHILE_AGO:
+			if (character.isPlayer()) {
+				return "It's been some time ago that you peed. You could go, but there's no urgency yet.";
+			}
+			return UtilText.parse(character, "[npc.Name] could go to the john, but there's no urgency yet.");
+		case THREE_MAY_WANT_TO_GO:
+			if (character.isPlayer()) {
+				return "You feel the urgency to go rising. Better go when you're able to, just to be sure.";
+			}
+			return UtilText.parse(character, "[npc.Name] could go to the john just now.");
+		case FOUR_NEED_TO_GO:
+			if (character.isPlayer()) {
+				return "Oh no, you need to go to the john urgently! Is there a toilet anywhere near?";
+			}
+			return UtilText.parse(character, "[npc.Name] really needs to go to the john! Is there a toilet anywhere nearby?");
+		case FIVE_BARELY_HOLD_IT:
+			if (character.isPlayer()) {
+				return "You cannot hold it any longer! You'll just have to do it here, or you'll have an accident!";
+			}
+			return UtilText.parse(character, "[npc.Name] cannot hold it any longer! [npc.She]'ll just have to do it here, or there will be an accident!");
+		}
 		return "";
-
 	}
 }

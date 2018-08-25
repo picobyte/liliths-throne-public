@@ -172,27 +172,6 @@ public enum Attribute {
 				}
 			},
 
-	BLADDER_PRESSURE(0,
-			0,
-			100,
-			"bladder",
-			"Bladder",
-			"bladderIcon",
-			Colour.ATTRIBUTE_BLADDER,
-			"urge",
-			"relieved",
-			null) {
-				@Override
-				public String getDescription(GameCharacter owner) {
-					if(owner.isPlayer()) {
-						return "How much faster you need to pee.";
-					} else {
-						return UtilText.parse(owner,
-								"How much faster [npc.name] needs to pee.");
-					}
-				}
-			},
-
 	MAJOR_PHYSIQUE(0,
 			0,
 			100,

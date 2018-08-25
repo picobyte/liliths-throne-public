@@ -13361,7 +13361,7 @@ public abstract class GameCharacter implements XMLSaving {
 		String ret = "";
 		if (Main.game.isBladderEnabled()) {
 			float bladder = getBonusAttributeValue(Attribute.BLADDER);
-			float bladder_inc = getRace().getUresis(getAttributeValue(Attribute.BLADDER_PRESSURE));
+			float bladder_inc = 0.004f;
 			if (bladder + bladder_inc > 100) {
 				// pee in pants, BODY_CUM is for various kinds of fluids, it seems.
 				addDirtySlot(InventorySlot.GROIN);
@@ -13373,7 +13373,7 @@ public abstract class GameCharacter implements XMLSaving {
 		}
 		if(Main.game.isMetabolismEnabled()) {
 			float hunger = getBonusAttributeValue(Attribute.HUNGER);
-			float digest = getRace().getDigestionSpeed()/8f;
+			float digest = 0.004f;
 			if (hunger + digest > 100) {
 				// damage.
 				incrementBonusAttribute(Attribute.DAMAGE_PHYSICAL, -0.1f);
@@ -13383,7 +13383,7 @@ public abstract class GameCharacter implements XMLSaving {
 			incrementBonusAttribute(Attribute.HUNGER, digest);
 
 			float thirst = getBonusAttributeValue(Attribute.THIRST);
-			float swallow = getRace().getDigestionSpeed()/7f;
+			float swallow = 0.004f;
 			if (thirst + swallow > 100) {
 				// damage.
 				incrementBonusAttribute(Attribute.DAMAGE_PHYSICAL, -0.1f);
