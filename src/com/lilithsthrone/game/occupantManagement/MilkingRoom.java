@@ -12,9 +12,9 @@ import org.w3c.dom.NodeList;
 
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.body.FluidCum;
-import com.lilithsthrone.game.character.body.FluidGirlCum;
-import com.lilithsthrone.game.character.body.FluidMilk;
+import com.lilithsthrone.game.character.body.fluid.Cum;
+import com.lilithsthrone.game.character.body.fluid.GirlCum;
+import com.lilithsthrone.game.character.body.fluid.Milk;
 import com.lilithsthrone.main.Main;
 import com.lilithsthrone.utils.Vector2i;
 import com.lilithsthrone.utils.XMLSaving;
@@ -36,9 +36,9 @@ public class MilkingRoom implements XMLSaving {
 	private WorldType worldType;
 	private Vector2i location;
 	
-	private Map<FluidMilk, Float> milkStorage;
-	private Map<FluidCum, Float> cumStorage;
-	private Map<FluidGirlCum, Float> girlcumStorage;
+	private Map<Milk, Float> milkStorage;
+	private Map<Cum, Float> cumStorage;
+	private Map<GirlCum, Float> girlcumStorage;
 	
 	public MilkingRoom(WorldType worldType, Vector2i location) {
 		autoSellMilk = false;
@@ -64,7 +64,7 @@ public class MilkingRoom implements XMLSaving {
 		CharacterUtils.addAttribute(doc, element, "autoSellCum", String.valueOf(this.isAutoSellCum()));
 		CharacterUtils.addAttribute(doc, element, "autoSellGirlcum", String.valueOf(this.isAutoSellGirlcum()));
 		
-		for(Entry<FluidMilk, Float> entry : milkStorage.entrySet()) {
+		for(Entry<Milk, Float> entry : milkStorage.entrySet()) {
 			Element milkElement = doc.createElement("milkStorage");
 			element.appendChild(milkElement);
 
@@ -72,7 +72,7 @@ public class MilkingRoom implements XMLSaving {
 			entry.getKey().saveAsXML(milkElement, doc);
 		}
 		
-		for(Entry<FluidCum, Float> entry : cumStorage.entrySet()) {
+		for(Entry<Cum, Float> entry : cumStorage.entrySet()) {
 			Element cumElement = doc.createElement("cumStorage");
 			element.appendChild(cumElement);
 
@@ -80,7 +80,7 @@ public class MilkingRoom implements XMLSaving {
 			entry.getKey().saveAsXML(cumElement, doc);
 		}
 
-		for(Entry<FluidGirlCum, Float> entry : girlcumStorage.entrySet()) {
+		for(Entry<GirlCum, Float> entry : girlcumStorage.entrySet()) {
 			Element cumElement = doc.createElement("girlcumStorage");
 			element.appendChild(cumElement);
 
@@ -111,7 +111,7 @@ public class MilkingRoom implements XMLSaving {
 			for(int i=0; i<milkStorageElements.getLength(); i++){
 				Element milkStorageElement = (Element)milkStorageElements.item(i);
 				Float quantity = Float.valueOf(milkStorageElement.getAttribute("milkQuantity"));
-				FluidMilk milk = FluidMilk.loadFromXML(milkStorageElement, doc);
+				Milk milk = Milk.loadFromXML(milkStorageElement, doc);
 				room.incrementMilkStorage(milk, quantity);
 			}
 
@@ -119,7 +119,7 @@ public class MilkingRoom implements XMLSaving {
 			for(int i=0; i<cumStorageElements.getLength(); i++){
 				Element cumStorageElement = (Element)cumStorageElements.item(i);
 				Float quantity = Float.valueOf(cumStorageElement.getAttribute("cumQuantity"));
-				FluidCum cum = FluidCum.loadFromXML(cumStorageElement, doc);
+				Cum cum = Cum.loadFromXML(cumStorageElement, doc);
 				room.incrementCumStorage(cum, quantity);
 			}
 
@@ -127,7 +127,7 @@ public class MilkingRoom implements XMLSaving {
 			for(int i=0; i<girlCumStorageElements.getLength(); i++){
 				Element cumStorageElement = (Element)girlCumStorageElements.item(i);
 				Float quantity = Float.valueOf(cumStorageElement.getAttribute("girlcumQuantity"));
-				FluidGirlCum cum = FluidGirlCum.loadFromXML(cumStorageElement, doc);
+				GirlCum cum = GirlCum.loadFromXML(cumStorageElement, doc);
 				room.incrementGirlcumStorage(cum, quantity);
 			}
 			
@@ -290,11 +290,11 @@ public class MilkingRoom implements XMLSaving {
 		return location;
 	}
 
-	public Map<FluidMilk, Float> getMilkStorage() {
+	public Map<Milk, Float> getMilkStorage() {
 		return milkStorage;
 	}
 	
-	public void incrementMilkStorage(FluidMilk milk, float quantity) {
+	public void incrementMilkStorage(Milk milk, float quantity) {
 		milkStorage.putIfAbsent(milk, 0f);
 		milkStorage.put(milk, milkStorage.get(milk)+quantity);
 		if(milkStorage.get(milk)==0) {
@@ -302,11 +302,11 @@ public class MilkingRoom implements XMLSaving {
 		}
 	}
 	
-	public Map<FluidCum, Float> getCumStorage() {
+	public Map<Cum, Float> getCumStorage() {
 		return cumStorage;
 	}
 
-	public void incrementCumStorage(FluidCum cum, float quantity) {
+	public void incrementCumStorage(Cum cum, float quantity) {
 		cumStorage.putIfAbsent(cum, 0f);
 		cumStorage.put(cum, cumStorage.get(cum)+quantity);
 		if(cumStorage.get(cum)==0) {
@@ -314,11 +314,11 @@ public class MilkingRoom implements XMLSaving {
 		}
 	}
 	
-	public Map<FluidGirlCum, Float> getGirlcumStorage() {
+	public Map<GirlCum, Float> getGirlcumStorage() {
 		return girlcumStorage;
 	}
 
-	public void incrementGirlcumStorage(FluidGirlCum girlcum, float quantity) {
+	public void incrementGirlcumStorage(GirlCum girlcum, float quantity) {
 		girlcumStorage.putIfAbsent(girlcum, 0f);
 		girlcumStorage.put(girlcum, girlcumStorage.get(girlcum)+quantity);
 		if(girlcumStorage.get(girlcum)==0) {

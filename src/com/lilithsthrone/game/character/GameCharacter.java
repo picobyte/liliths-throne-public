@@ -48,11 +48,11 @@ import com.lilithsthrone.game.character.body.BodyPartInterface;
 import com.lilithsthrone.game.character.body.CoverableArea;
 import com.lilithsthrone.game.character.body.Covering;
 import com.lilithsthrone.game.character.body.Dildo;
-import com.lilithsthrone.game.character.body.FluidCum;
-import com.lilithsthrone.game.character.body.FluidGirlCum;
-import com.lilithsthrone.game.character.body.FluidMilk;
 import com.lilithsthrone.game.character.body.Penis;
 import com.lilithsthrone.game.character.body.Testicle;
+import com.lilithsthrone.game.character.body.fluid.Cum;
+import com.lilithsthrone.game.character.body.fluid.GirlCum;
+import com.lilithsthrone.game.character.body.fluid.Milk;
 import com.lilithsthrone.game.character.body.types.AntennaType;
 import com.lilithsthrone.game.character.body.types.ArmType;
 import com.lilithsthrone.game.character.body.types.AssType;
@@ -15578,7 +15578,7 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 	
 	// Milk:
-	public FluidMilk getMilk() {
+	public Milk getMilk() {
 		return body.getBreast().getMilk();
 	}
 	public FluidType getMilkType() {
@@ -16772,7 +16772,7 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 	
 	// Cum:
-	public FluidCum getCum() {
+	public Cum getCum() {
 		return getCurrentPenis().getTesticle().getCum();
 	}
 	public FluidType getCumType() {
@@ -17297,7 +17297,7 @@ public abstract class GameCharacter implements XMLSaving {
 	}
 	
 	// Girlcum:
-	public FluidGirlCum getGirlcum() {
+	public GirlCum getGirlcum() {
 		return body.getVagina().getGirlcum();
 	}
 	public FluidType getGirlcumType() {

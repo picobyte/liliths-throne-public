@@ -3,10 +3,10 @@ package com.lilithsthrone.game.character;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.lilithsthrone.game.character.body.FluidCum;
-import com.lilithsthrone.game.character.body.FluidGirlCum;
-import com.lilithsthrone.game.character.body.FluidInterface;
-import com.lilithsthrone.game.character.body.FluidMilk;
+import com.lilithsthrone.game.character.body.fluid.Cum;
+import com.lilithsthrone.game.character.body.fluid.GirlCum;
+import com.lilithsthrone.game.character.body.fluid.FluidInterface;
+import com.lilithsthrone.game.character.body.fluid.Milk;
 import com.lilithsthrone.game.character.body.valueEnums.FluidModifier;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
 import com.lilithsthrone.utils.XMLSaving;
@@ -19,15 +19,15 @@ import com.lilithsthrone.utils.XMLSaving;
 public class FluidStored implements XMLSaving {
 	
 	private String charactersFluidID;
-	private FluidCum cum;
-	private FluidMilk milk;
-	private FluidGirlCum girlCum;
+	private Cum cum;
+	private Milk milk;
+	private GirlCum girlCum;
 	private int millilitres;
 	
-	public FluidStored(String charactersFluidID, FluidCum cum, int millilitres) {
+	public FluidStored(String charactersFluidID, Cum cum, int millilitres) {
 		this.charactersFluidID = charactersFluidID;
 
-		this.cum = new FluidCum(cum.getType());
+		this.cum = new Cum(cum.getType());
 		this.cum.clearFluidModifiers();
 		
 		this.cum.setFlavour(null, cum.getFlavour());
@@ -41,10 +41,10 @@ public class FluidStored implements XMLSaving {
 		this.millilitres = millilitres;
 	}
 
-	public FluidStored(String charactersFluidID, FluidMilk milk, int millilitres) {
+	public FluidStored(String charactersFluidID, Milk milk, int millilitres) {
 		this.charactersFluidID = charactersFluidID;
 		
-		this.milk = new FluidMilk(milk.getType());
+		this.milk = new Milk(milk.getType());
 		this.milk.clearFluidModifiers();
 		
 		this.milk.setFlavour(null, milk.getFlavour());
@@ -58,10 +58,10 @@ public class FluidStored implements XMLSaving {
 		this.millilitres = millilitres;
 	}
 	
-	public FluidStored(String charactersFluidID, FluidGirlCum girlCum, int millilitres) {
+	public FluidStored(String charactersFluidID, GirlCum girlCum, int millilitres) {
 		this.charactersFluidID = charactersFluidID;
 		
-		this.girlCum = new FluidGirlCum(girlCum.getType());
+		this.girlCum = new GirlCum(girlCum.getType());
 		this.girlCum.clearFluidModifiers();
 		
 		this.girlCum.setFlavour(null, girlCum.getFlavour());
@@ -102,14 +102,14 @@ public class FluidStored implements XMLSaving {
 		int millimetres = Integer.parseInt(parentElement.getAttribute("millilitres"));
 		
 		if(parentElement.getElementsByTagName("milk").item(0)!=null) {
-			return new FluidStored(ID, FluidMilk.loadFromXML(parentElement, doc), millimetres);
+			return new FluidStored(ID, Milk.loadFromXML(parentElement, doc), millimetres);
 		}
 		
 		if(parentElement.getElementsByTagName("cum").item(0)!=null) {
-			return new FluidStored(ID, FluidCum.loadFromXML(parentElement, doc), millimetres);
+			return new FluidStored(ID, Cum.loadFromXML(parentElement, doc), millimetres);
 		}
 
-		return new FluidStored(ID, FluidGirlCum.loadFromXML(parentElement, doc), millimetres);
+		return new FluidStored(ID, GirlCum.loadFromXML(parentElement, doc), millimetres);
 		
 	}
 	

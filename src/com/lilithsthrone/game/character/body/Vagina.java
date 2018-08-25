@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lilithsthrone.game.character.GameCharacter;
+import com.lilithsthrone.game.character.body.fluid.GirlCum;
 import com.lilithsthrone.game.character.body.types.PenisType;
 import com.lilithsthrone.game.character.body.types.VaginaType;
 import com.lilithsthrone.game.character.body.valueEnums.BodyHair;
@@ -39,7 +40,7 @@ public class Vagina implements BodyPartInterface, Serializable {
 	protected boolean pierced;
 	
 	protected OrificeVagina orificeVagina;
-	protected FluidGirlCum girlcum;
+	protected GirlCum girlcum;
 	protected OrificeVaginaUrethra orificeUrethra;
 
 	public Vagina(VaginaType type, int labiaSize, int clitSize, int wetness, float capacity, int elasticity, int plasticity, boolean virgin) {
@@ -52,14 +53,14 @@ public class Vagina implements BodyPartInterface, Serializable {
 
 		orificeUrethra = new OrificeVaginaUrethra(Wetness.TWO_MOIST.getValue(), 0, OrificeElasticity.ZERO_UNYIELDING.getValue(), OrificePlasticity.THREE_RESILIENT.getValue(), true, new ArrayList<>());
 		
-		girlcum = new FluidGirlCum(type.getFluidType());
+		girlcum = new GirlCum(type.getFluidType());
 	}
 
 	public OrificeVagina getOrificeVagina() {
 		return orificeVagina;
 	}
 
-	public FluidGirlCum getGirlcum() {
+	public GirlCum getGirlcum() {
 		return girlcum;
 	}
 	

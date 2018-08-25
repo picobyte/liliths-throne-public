@@ -3,6 +3,7 @@ package com.lilithsthrone.game.character.body;
 import java.io.Serializable;
 
 import com.lilithsthrone.game.character.GameCharacter;
+import com.lilithsthrone.game.character.body.fluid.Milk;
 import com.lilithsthrone.game.character.body.types.BreastType;
 import com.lilithsthrone.game.character.body.valueEnums.BreastShape;
 import com.lilithsthrone.game.character.body.valueEnums.Capacity;
@@ -36,7 +37,7 @@ public class Breast implements BodyPartInterface, Serializable {
 	protected int nippleCountPerBreast;
 	
 	protected Nipples nipples;
-	protected FluidMilk milk;
+	protected Milk milk;
 	
 	/**
 	 * @param size in inches from bust to underbust using the UK system.
@@ -54,7 +55,7 @@ public class Breast implements BodyPartInterface, Serializable {
 		
 		nipples = new Nipples(type.getNippleType(), nippleSize, nippleShape, areolaeSize, Lactation.getLactationFromInt(milkStorage).getAssociatedWetness().getValue(), capacity, elasticity, plasticity, virgin);
 		
-		milk = new FluidMilk(type.getFluidType());
+		milk = new Milk(type.getFluidType());
 	}
 	
 	@Override
@@ -110,7 +111,7 @@ public class Breast implements BodyPartInterface, Serializable {
 		return nipples;
 	}
 
-	public FluidMilk getMilk() {
+	public Milk getMilk() {
 		return milk;
 	}
 	

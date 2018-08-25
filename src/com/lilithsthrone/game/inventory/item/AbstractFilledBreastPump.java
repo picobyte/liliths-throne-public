@@ -9,7 +9,7 @@ import org.w3c.dom.Element;
 
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.body.FluidMilk;
+import com.lilithsthrone.game.character.body.fluid.Milk;
 import com.lilithsthrone.game.character.body.types.FluidType;
 import com.lilithsthrone.game.character.body.valueEnums.FluidModifier;
 import com.lilithsthrone.game.inventory.enchanting.ItemEffect;
@@ -29,14 +29,14 @@ public class AbstractFilledBreastPump extends AbstractItem implements Serializab
 	private static final long serialVersionUID = 1L;
 	
 	private String milkProvidor;
-	private FluidMilk milk;
+	private Milk milk;
 	private int millilitresStored;
 	
-	public AbstractFilledBreastPump(AbstractItemType itemType, Colour colour, GameCharacter milkProvidor, FluidMilk milk, int millilitresStored) {
+	public AbstractFilledBreastPump(AbstractItemType itemType, Colour colour, GameCharacter milkProvidor, Milk milk, int millilitresStored) {
 		super(itemType);
 		
 		this.milkProvidor = milkProvidor.getId();
-		this.milk = new FluidMilk(milk.getType());
+		this.milk = new Milk(milk.getType());
 		this.milk.setFlavour(milkProvidor, milk.getFlavour());
 		for(FluidModifier fm : milk.getFluidModifiers()) {
 			this.milk.addFluidModifier(milkProvidor, fm);
@@ -46,11 +46,11 @@ public class AbstractFilledBreastPump extends AbstractItem implements Serializab
 		this.millilitresStored = millilitresStored;
 	}
 	
-	public AbstractFilledBreastPump(AbstractItemType itemType, Colour colour, String milkProvidorId, FluidMilk milk, int millilitresStored) {
+	public AbstractFilledBreastPump(AbstractItemType itemType, Colour colour, String milkProvidorId, Milk milk, int millilitresStored) {
 		super(itemType);
 		
 		this.milkProvidor = milkProvidorId;
-		this.milk = new FluidMilk(milk.getType());
+		this.milk = new Milk(milk.getType());
 		this.milk.setFlavour(null, milk.getFlavour());
 		for(FluidModifier fm : milk.getFluidModifiers()) {
 			this.milk.addFluidModifier(null, fm);
@@ -108,8 +108,8 @@ public class AbstractFilledBreastPump extends AbstractItem implements Serializab
 				Colour.valueOf(parentElement.getAttribute("colour")),
 				parentElement.getAttribute("milkProvidor"),
 				((Element) parentElement.getElementsByTagName("milk").item(0)==null
-					?new FluidMilk(FluidType.MILK_HUMAN)
-					:FluidMilk.loadFromXML((Element) parentElement.getElementsByTagName("milk").item(0), doc)),
+					?new Milk(FluidType.MILK_HUMAN)
+					:Milk.loadFromXML((Element) parentElement.getElementsByTagName("milk").item(0), doc)),
 				(parentElement.getAttribute("millilitresStored").isEmpty()
 					?25
 					:Integer.valueOf(parentElement.getAttribute("millilitresStored"))));
@@ -153,7 +153,7 @@ public class AbstractFilledBreastPump extends AbstractItem implements Serializab
 		return Main.game.getNPCById(milkProvidor);
 	}
 
-	public FluidMilk getMilk() {
+	public Milk getMilk() {
 		return milk;
 	}
 

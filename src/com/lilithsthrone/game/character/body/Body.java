@@ -20,6 +20,9 @@ import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.Litter;
 import com.lilithsthrone.game.character.PregnancyPossibility;
+import com.lilithsthrone.game.character.body.fluid.Cum;
+import com.lilithsthrone.game.character.body.fluid.GirlCum;
+import com.lilithsthrone.game.character.body.fluid.Milk;
 import com.lilithsthrone.game.character.body.types.AntennaType;
 import com.lilithsthrone.game.character.body.types.ArmType;
 import com.lilithsthrone.game.character.body.types.AssType;
@@ -872,9 +875,9 @@ public class Body implements Serializable, XMLSaving {
 		
 		CharacterUtils.appendToImportLog(log, "<br/><br/>Milk:");
 		
-		importedBreast.milk = FluidMilk.loadFromXML(parentElement, doc, importedBreast.getType().getFluidType());
+		importedBreast.milk = Milk.loadFromXML(parentElement, doc, importedBreast.getType().getFluidType());
 		if(Main.isVersionOlderThan(Main.VERSION_NUMBER, "0.2.5.1")) {
-			importedBreast.milk.type = importedBreast.getType().getFluidType();
+			importedBreast.milk.setType(importedBreast.getType().getFluidType());
 		}
 
 		
@@ -1178,9 +1181,9 @@ public class Body implements Serializable, XMLSaving {
 		
 		CharacterUtils.appendToImportLog(log, "<br/><br/>Cum:");
 		
-		importedPenis.testicle.cum = FluidCum.loadFromXML(parentElement, doc, importedPenis.getType().getTesticleType().getFluidType());
+		importedPenis.testicle.cum = Cum.loadFromXML(parentElement, doc, importedPenis.getType().getTesticleType().getFluidType());
 		if(Main.isVersionOlderThan(Main.VERSION_NUMBER, "0.2.5.1")) {
-			importedPenis.testicle.cum.type = importedPenis.getType().getTesticleType().getFluidType();
+			importedPenis.testicle.cum.setType(importedPenis.getType().getTesticleType().getFluidType());
 		}
 
 		
@@ -1316,9 +1319,9 @@ public class Body implements Serializable, XMLSaving {
 		
 		CharacterUtils.appendToImportLog(log, "<br/><br/>Girlcum:");
 		
-		importedVagina.girlcum = FluidGirlCum.loadFromXML(parentElement, doc, importedVagina.getType().getFluidType());
+		importedVagina.girlcum = GirlCum.loadFromXML(parentElement, doc, importedVagina.getType().getFluidType());
 		if(Main.isVersionOlderThan(Main.VERSION_NUMBER, "0.2.5.1")) {
-			importedVagina.girlcum.type = importedVagina.getType().getFluidType();
+			importedVagina.girlcum.setType(importedVagina.getType().getFluidType());
 		}
 		
 		// **************** Wing **************** //
@@ -1431,7 +1434,7 @@ public class Body implements Serializable, XMLSaving {
 		return body;
 	}
 
-	static <T extends Enum<T>> void handleLoadingOfModifiers(T[] enumValues, StringBuilder log, Element modifiersElement, Collection<T> modifiers) {
+	public static <T extends Enum<T>> void handleLoadingOfModifiers(T[] enumValues, StringBuilder log, Element modifiersElement, Collection<T> modifiers) {
 		for(T enumValue : enumValues) {
 			String attributeValue = modifiersElement.getAttribute(enumValue.toString());
 			if(Boolean.valueOf(attributeValue)) {

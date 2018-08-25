@@ -8,6 +8,9 @@ import com.lilithsthrone.game.Game;
 import com.lilithsthrone.game.PropertyValue;
 import com.lilithsthrone.game.character.GameCharacter;
 import com.lilithsthrone.game.character.body.*;
+import com.lilithsthrone.game.character.body.fluid.Cum;
+import com.lilithsthrone.game.character.body.fluid.GirlCum;
+import com.lilithsthrone.game.character.body.fluid.Milk;
 import com.lilithsthrone.game.character.body.types.*;
 import com.lilithsthrone.game.character.body.valueEnums.*;
 import com.lilithsthrone.game.character.effects.Perk;
@@ -1104,7 +1107,7 @@ public class MainControllerInitMethod {
 			if(Main.game.getPlayer().getLocationPlace().getPlaceUpgrades().contains(PlaceUpgrade.LILAYA_MILKING_ROOM)) {
 				MilkingRoom room = Main.game.getOccupancyUtil().getMilkingRoom(Main.game.getPlayerCell().getType(), Main.game.getPlayerCell().getLocation());
 
-				for(Entry<FluidMilk, Float> entry : room.getMilkStorage().entrySet()) {
+				for(Entry<Milk, Float> entry : room.getMilkStorage().entrySet()) {
 					id ="MILK_DRINK_SMALL_"+entry.hashCode();
 					if (((EventTarget) MainController.document.getElementById(id)) != null) {
 						int milkAmount = (int) (Math.min(room.getMilkStorage().get(entry.getKey()), 100));
@@ -1166,7 +1169,7 @@ public class MainControllerInitMethod {
 					}
 				}
 				
-				for(Entry<FluidCum, Float> entry : room.getCumStorage().entrySet()) {
+				for(Entry<Cum, Float> entry : room.getCumStorage().entrySet()) {
 					id ="CUM_DRINK_SMALL_"+entry.hashCode();
 					if (((EventTarget) MainController.document.getElementById(id)) != null) {
 						int cumAmount = (int) (Math.min(room.getCumStorage().get(entry.getKey()), 100));
@@ -1228,7 +1231,7 @@ public class MainControllerInitMethod {
 					}
 				}
 				
-				for(Entry<FluidGirlCum, Float> entry : room.getGirlcumStorage().entrySet()) {
+				for(Entry<GirlCum, Float> entry : room.getGirlcumStorage().entrySet()) {
 					id ="GIRLCUM_DRINK_SMALL_"+entry.hashCode();
 					if (((EventTarget) MainController.document.getElementById(id)) != null) {
 						int girlcumAmount = (int) (Math.min(room.getGirlcumStorage().get(entry.getKey()), 100));

@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Set;
 
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.body.FluidCum;
-import com.lilithsthrone.game.character.body.FluidMilk;
+import com.lilithsthrone.game.character.body.fluid.Cum;
+import com.lilithsthrone.game.character.body.fluid.Milk;
 import com.lilithsthrone.game.inventory.AbstractCoreType;
 import com.lilithsthrone.game.inventory.ItemTag;
 import com.lilithsthrone.game.inventory.Rarity;
@@ -155,13 +155,13 @@ public abstract class AbstractItemType extends AbstractCoreType implements Seria
 		};
 	}
 	
-	public static AbstractItem generateFilledCondom(Colour colour, GameCharacter character, FluidCum cum, int millilitres) {
+	public static AbstractItem generateFilledCondom(Colour colour, GameCharacter character, Cum cum, int millilitres) {
 		return new AbstractFilledCondom(ItemType.CONDOM_USED, colour, character, cum, millilitres) {
 			private static final long serialVersionUID = 1L;
 		};
 	}
 
-	public static AbstractItem generateFilledBreastPump(Colour colour, GameCharacter character, FluidMilk milk, int quantity) {
+	public static AbstractItem generateFilledBreastPump(Colour colour, GameCharacter character, Milk milk, int quantity) {
 		return new AbstractFilledBreastPump(ItemType.MOO_MILKER_FULL, colour, character, milk, quantity) {
 			private static final long serialVersionUID = 1L;
 		};

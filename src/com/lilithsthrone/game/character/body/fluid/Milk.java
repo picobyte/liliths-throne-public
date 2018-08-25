@@ -1,4 +1,4 @@
-package com.lilithsthrone.game.character.body;
+package com.lilithsthrone.game.character.body.fluid;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ import org.w3c.dom.Element;
 
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
+import com.lilithsthrone.game.character.body.Body;
 import com.lilithsthrone.game.character.body.types.BodyPartTypeInterface;
 import com.lilithsthrone.game.character.body.types.FluidType;
 import com.lilithsthrone.game.character.body.valueEnums.FluidFlavour;
@@ -23,19 +24,19 @@ import com.lilithsthrone.utils.Util;
  * @version 0.2.7
  * @author Innoxia
  */
-public class FluidMilk implements FluidInterface, Serializable {
+public class Milk implements FluidInterface, Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	protected FluidType type;
+
+	private FluidType type;
 	protected FluidFlavour flavour;
 	protected List<FluidModifier> fluidModifiers;
 	protected List<ItemEffect> transformativeEffects;
 
-	public FluidMilk(FluidType type) {
-		this.type = type;
+	public Milk(FluidType type) {
+		this.setType(type);
 		this.flavour = type.getFlavour();
 		transformativeEffects = new ArrayList<>();
-		
+
 		fluidModifiers = new ArrayList<>();
 		fluidModifiers.addAll(type.getFluidModifiers());
 	}
@@ -44,67 +45,67 @@ public class FluidMilk implements FluidInterface, Serializable {
 		Element element = doc.createElement("milk");
 		parentElement.appendChild(element);
 
-		CharacterUtils.addAttribute(doc, element, "type", this.type.toString());
+		CharacterUtils.addAttribute(doc, element, "type", this.getType().toString());
 		CharacterUtils.addAttribute(doc, element, "flavour", this.flavour.toString());
 		Element cumModifiers = doc.createElement("milkModifiers");
 		element.appendChild(cumModifiers);
 		for(FluidModifier fm : FluidModifier.values()) {
 			CharacterUtils.addAttribute(doc, cumModifiers, fm.toString(), String.valueOf(this.hasFluidModifier(fm)));
 		}
-		
+
 		return element;
 	}
-	
-	public static FluidMilk loadFromXML(Element parentElement, Document doc) {
+
+	public static Milk loadFromXML(Element parentElement, Document doc) {
 		return loadFromXML(parentElement, doc, null);
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param parentElement
 	 * @param doc
 	 * @param baseType If you pass in a baseType, this method will ignore the saved type in parentElement.
 	 */
-	public static FluidMilk loadFromXML(Element parentElement, Document doc, FluidType baseType) {
-		
+	public static Milk loadFromXML(Element parentElement, Document doc, FluidType baseType) {
+
 		Element milk = (Element)parentElement.getElementsByTagName("milk").item(0);
-		
+
 		FluidType fluidType = FluidType.MILK_HUMAN;
-		
+
 		if(baseType!=null) {
 			fluidType = baseType;
-			
+
 		} else {
 			try {
 				fluidType = FluidType.getTypeFromString(milk.getAttribute("type"));
 			} catch(Exception ex) {
 			}
 		}
-		
-		FluidMilk fluidMilk = new FluidMilk(fluidType);
-		
+
+		Milk fluidMilk = new Milk(fluidType);
+
 		fluidMilk.flavour = (FluidFlavour.valueOf(milk.getAttribute("flavour")));
-		
+
 		Element milkModifiersElement = (Element)milk.getElementsByTagName("milkModifiers").item(0);
 		Collection<FluidModifier> milkFluidModifiers = fluidMilk.fluidModifiers;
 		Body.handleLoadingOfModifiers(FluidModifier.values(), null, milkModifiersElement, milkFluidModifiers);
-		
+
 		return fluidMilk;
 	}
-	
+
 	@Override
 	public boolean equals (Object o) {
-		if(o instanceof FluidMilk){
-			if(((FluidMilk)o).getType().equals(this.getType())
-				&& ((FluidMilk)o).getFlavour() == this.getFlavour()
-				&& ((FluidMilk)o).getFluidModifiers().equals(this.getFluidModifiers())
-				&& ((FluidMilk)o).getTransformativeEffects().equals(this.getTransformativeEffects())){
+		if(o instanceof Milk){
+			if(((Milk)o).getType().equals(this.getType())
+				&& ((Milk)o).getFlavour() == this.getFlavour()
+				&& ((Milk)o).getFluidModifiers().equals(this.getFluidModifiers())
+				&& ((Milk)o).getTransformativeEffects().equals(this.getTransformativeEffects())){
 					return true;
 			}
 		}
 		return false;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int result = 17;
@@ -114,38 +115,38 @@ public class FluidMilk implements FluidInterface, Serializable {
 		result = 31 * result + this.getTransformativeEffects().hashCode();
 		return result;
 	}
-	
+
 	@Override
 	public String getDeterminer(GameCharacter gc) {
-		return type.getDeterminer(gc);
+		return getType().getDeterminer(gc);
 	}
 
 	@Override
 	public String getName(GameCharacter gc) {
-		return type.getName(gc);
+		return getType().getName(gc);
 	}
-	
+
 	@Override
 	public String getNameSingular(GameCharacter gc) {
-		return type.getNameSingular(gc);
+		return getType().getNameSingular(gc);
 	}
 
 	@Override
 	public String getNamePlural(GameCharacter gc) {
-		return type.getNamePlural(gc);
+		return getType().getNamePlural(gc);
 	}
-	
+
 	@Override
 	public String getDescriptor(GameCharacter gc) {
 		String modifierDescriptor = "";
 		if(!fluidModifiers.isEmpty()) {
 			modifierDescriptor = fluidModifiers.get(Util.random.nextInt(fluidModifiers.size())).getName();
 		}
-		
+
 		return UtilText.returnStringAtRandom(
 				modifierDescriptor,
 				flavour.getRandomFlavourDescriptor(),
-				type.getDescriptor(gc));
+				getType().getDescriptor(gc));
 	}
 
 	@Override
@@ -166,13 +167,13 @@ public class FluidMilk implements FluidInterface, Serializable {
 			this.flavour = flavour;
 			return "";
 		}
-		
+
 		if(this.flavour == flavour) {
 			return "<p style='text-align:center;'>[style.colourDisabled(Nothing happens...)]</p>";
 		}
 
 		this.flavour = flavour;
-		
+
 		if(owner.isPlayer()) {
 			return "<p>"
 						+ "A soothing warmth spreads up through your [pc.breasts], causing you to let out a contented little sigh.<br/>"
@@ -186,22 +187,22 @@ public class FluidMilk implements FluidInterface, Serializable {
 					+ "</p>");
 		}
 	}
-	
+
 	public boolean hasFluidModifier(FluidModifier fluidModifier) {
 		return fluidModifiers.contains(fluidModifier);
 	}
-	
+
 	public String addFluidModifier(GameCharacter owner, FluidModifier fluidModifier) {
 		if(fluidModifiers.contains(fluidModifier)) {
 			return "<p style='text-align:center;'>[style.colourDisabled(Nothing happens...)]</p>";
 		}
-		
+
 		fluidModifiers.add(fluidModifier);
-		
+
 		if(owner == null) {
 			return "";
 		}
-		
+
 		switch(fluidModifier) {
 			case ADDICTIVE:
 				if(owner.isPlayer()) {
@@ -308,21 +309,21 @@ public class FluidMilk implements FluidInterface, Serializable {
 							+ "</p>");
 				}
 		}
-		
+
 		return "<p style='text-align:center;'>[style.colourDisabled(Nothing happens...)]</p>";
 	}
-	
+
 	public String removeFluidModifier(GameCharacter owner, FluidModifier fluidModifier) {
 		if(!fluidModifiers.contains(fluidModifier)) {
 			return "<p style='text-align:center;'>[style.colourDisabled(Nothing happens...)]</p>";
 		}
-		
+
 		fluidModifiers.remove(fluidModifier);
-		
+
 		if(owner == null) {
 			return "";
 		}
-		
+
 		switch(fluidModifier) {
 			case ADDICTIVE:
 				if(owner.isPlayer()) {
@@ -429,14 +430,14 @@ public class FluidMilk implements FluidInterface, Serializable {
 							+ "</p>");
 				}
 		}
-		
+
 		return "<p style='text-align:center;'>[style.colourDisabled(Nothing happens...)]</p>";
 	}
-	
+
 	public List<ItemEffect> getTransformativeEffects() {
 		return transformativeEffects;
 	}
-	
+
 	public void addTransformativeEffect(ItemEffect ie) {
 		transformativeEffects.add(ie);
 	}
@@ -447,12 +448,16 @@ public class FluidMilk implements FluidInterface, Serializable {
 	public List<FluidModifier> getFluidModifiers() {
 		return fluidModifiers;
 	}
-	
+
 	public void clearFluidModifiers() {
 		fluidModifiers.clear();
 	}
-	
+
 	public float getValuePerMl() {
 		return 0.1f + this.getFluidModifiers().size()*0.4f + (this.getFlavour()!=FluidFlavour.MILK?0.5f:0);
+	}
+
+	public void setType(FluidType type) {
+		this.type = type;
 	}
 }

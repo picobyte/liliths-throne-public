@@ -3,6 +3,7 @@ package com.lilithsthrone.game.character.body;
 import java.io.Serializable;
 
 import com.lilithsthrone.game.character.GameCharacter;
+import com.lilithsthrone.game.character.body.fluid.Cum;
 import com.lilithsthrone.game.character.body.types.TesticleType;
 import com.lilithsthrone.game.character.body.valueEnums.CumProduction;
 import com.lilithsthrone.game.character.body.valueEnums.FluidExpulsion;
@@ -36,7 +37,7 @@ public class Testicle implements BodyPartInterface, Serializable {
 	protected int cumExpulsion;
 	protected boolean internal;
 	
-	protected FluidCum cum;
+	protected Cum cum;
 
 	public Testicle(TesticleType type, int testicleSize, int cumStorage, int testicleCount) {
 		this.type = type;
@@ -50,10 +51,10 @@ public class Testicle implements BodyPartInterface, Serializable {
 		
 		internal = type.isInternal();
 		
-		cum = new FluidCum(type.getFluidType());
+		cum = new Cum(type.getFluidType());
 	}
 
-	public FluidCum getCum() {
+	public Cum getCum() {
 		return cum;
 	}
 

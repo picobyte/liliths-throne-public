@@ -1,4 +1,4 @@
-package com.lilithsthrone.game.character.body;
+package com.lilithsthrone.game.character.body.fluid;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ import org.w3c.dom.Element;
 
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
+import com.lilithsthrone.game.character.body.Body;
 import com.lilithsthrone.game.character.body.types.FluidType;
 import com.lilithsthrone.game.character.body.valueEnums.FluidFlavour;
 import com.lilithsthrone.game.character.body.valueEnums.FluidModifier;
@@ -23,19 +24,19 @@ import com.lilithsthrone.utils.XMLSaving;
  * @version 0.2.7
  * @author Innoxia
  */
-public class FluidGirlCum implements FluidInterface, Serializable, XMLSaving {
+public class GirlCum implements FluidInterface, Serializable, XMLSaving {
 	private static final long serialVersionUID = 1L;
-	
+
 	protected FluidType type;
 	protected FluidFlavour flavour;
 	protected List<FluidModifier> fluidModifiers;
 	protected List<ItemEffect> transformativeEffects;
 
-	public FluidGirlCum(FluidType type) {
+	public GirlCum(FluidType type) {
 		this.type = type;
 		this.flavour = type.getFlavour();
 		transformativeEffects = new ArrayList<>();
-		
+
 		fluidModifiers = new ArrayList<>();
 		fluidModifiers.addAll(type.getFluidModifiers());
 	}
@@ -51,61 +52,61 @@ public class FluidGirlCum implements FluidInterface, Serializable, XMLSaving {
 		for(FluidModifier fm : FluidModifier.values()) {
 			CharacterUtils.addAttribute(doc, cumModifiers, fm.toString(), String.valueOf(this.hasFluidModifier(fm)));
 		}
-		
+
 		return element;
 	}
 
-	public static FluidGirlCum loadFromXML(Element parentElement, Document doc) {
+	public static GirlCum loadFromXML(Element parentElement, Document doc) {
 		return loadFromXML(parentElement, doc, null);
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param parentElement
 	 * @param doc
 	 * @param baseType If you pass in a baseType, this method will ignore the saved type in parentElement.
 	 */
-	public static FluidGirlCum loadFromXML(Element parentElement, Document doc, FluidType baseType) {
-		
+	public static GirlCum loadFromXML(Element parentElement, Document doc, FluidType baseType) {
+
 		Element girlcum = (Element)parentElement.getElementsByTagName("girlcum").item(0);
 
 		FluidType fluidType = FluidType.GIRL_CUM_HUMAN;
-		
+
 		if(baseType!=null) {
 			fluidType = baseType;
-			
+
 		} else {
 			try {
 				fluidType = FluidType.getTypeFromString(girlcum.getAttribute("type"));
 			} catch(Exception ex) {
 			}
 		}
-		
-		FluidGirlCum fluidGirlcum = new FluidGirlCum(fluidType);
-		
+
+		GirlCum fluidGirlcum = new GirlCum(fluidType);
+
 		fluidGirlcum.flavour = (FluidFlavour.valueOf(girlcum.getAttribute("flavour")));
-		
+
 
 		Element girlcumModifiersElement = (Element)girlcum.getElementsByTagName("girlcumModifiers").item(0);
 		Collection<FluidModifier> girlcumFluidModifiers = fluidGirlcum.fluidModifiers;
 		Body.handleLoadingOfModifiers(FluidModifier.values(), null, girlcumModifiersElement, girlcumFluidModifiers);
-		
+
 		return fluidGirlcum;
 	}
 
 	@Override
 	public boolean equals (Object o) {
-		if(o instanceof FluidGirlCum){
-			if(((FluidGirlCum)o).getType().equals(this.getType())
-				&& ((FluidGirlCum)o).getFlavour() == this.getFlavour()
-				&& ((FluidGirlCum)o).getFluidModifiers().equals(this.getFluidModifiers())
-				&& ((FluidGirlCum)o).getTransformativeEffects().equals(this.getTransformativeEffects())){
+		if(o instanceof GirlCum){
+			if(((GirlCum)o).getType().equals(this.getType())
+				&& ((GirlCum)o).getFlavour() == this.getFlavour()
+				&& ((GirlCum)o).getFluidModifiers().equals(this.getFluidModifiers())
+				&& ((GirlCum)o).getTransformativeEffects().equals(this.getTransformativeEffects())){
 					return true;
 			}
 		}
 		return false;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int result = 17;
@@ -115,7 +116,7 @@ public class FluidGirlCum implements FluidInterface, Serializable, XMLSaving {
 		result = 31 * result + this.getTransformativeEffects().hashCode();
 		return result;
 	}
-	
+
 	@Override
 	public String getDeterminer(GameCharacter gc) {
 		return type.getDeterminer(gc);
@@ -125,7 +126,7 @@ public class FluidGirlCum implements FluidInterface, Serializable, XMLSaving {
 	public String getName(GameCharacter gc) {
 		return type.getName(gc);
 	}
-	
+
 	@Override
 	public String getNameSingular(GameCharacter gc) {
 		return type.getNameSingular(gc);
@@ -135,14 +136,14 @@ public class FluidGirlCum implements FluidInterface, Serializable, XMLSaving {
 	public String getNamePlural(GameCharacter gc) {
 		return type.getNamePlural(gc);
 	}
-	
+
 	@Override
 	public String getDescriptor(GameCharacter gc) {
 		String modifierDescriptor = "";
 		if(!fluidModifiers.isEmpty()) {
 			modifierDescriptor = fluidModifiers.get(Util.random.nextInt(fluidModifiers.size())).getName();
 		}
-		
+
 		return UtilText.returnStringAtRandom(
 				modifierDescriptor,
 				flavour.getRandomFlavourDescriptor(),
@@ -172,7 +173,7 @@ public class FluidGirlCum implements FluidInterface, Serializable, XMLSaving {
 		}
 
 		this.flavour = flavour;
-		
+
 		if(owner.isPlayer()) {
 			return "<p>"
 						+ "A soothing warmth spreads down into your [pc.pussy], causing you to let out a contented little sigh.<br/>"
@@ -186,11 +187,11 @@ public class FluidGirlCum implements FluidInterface, Serializable, XMLSaving {
 					+ "</p>");
 		}
 	}
-	
+
 	public boolean hasFluidModifier(FluidModifier fluidModifier) {
 		return fluidModifiers.contains(fluidModifier);
 	}
-	
+
 	public String addFluidModifier(GameCharacter owner, FluidModifier fluidModifier) {
 		if(owner==null && !fluidModifiers.contains(fluidModifier)) {
 			fluidModifiers.add(fluidModifier);
@@ -199,9 +200,9 @@ public class FluidGirlCum implements FluidInterface, Serializable, XMLSaving {
 		if(fluidModifiers.contains(fluidModifier) || !owner.hasVagina()) {
 			return "<p style='text-align:center;'>[style.colourDisabled(Nothing happens...)]</p>";
 		}
-		
+
 		fluidModifiers.add(fluidModifier);
-		
+
 		switch(fluidModifier) {
 			case ADDICTIVE:
 				if(owner.isPlayer()) {
@@ -308,17 +309,17 @@ public class FluidGirlCum implements FluidInterface, Serializable, XMLSaving {
 							+ "</p>");
 				}
 		}
-		
+
 		return "<p style='text-align:center;'>[style.colourDisabled(Nothing happens...)]</p>";
 	}
-	
+
 	public String removeFluidModifier(GameCharacter owner, FluidModifier fluidModifier) {
 		if(!fluidModifiers.contains(fluidModifier) || !owner.hasVagina()) {
 			return "<p style='text-align:center;'>[style.colourDisabled(Nothing happens...)]</p>";
 		}
-		
+
 		fluidModifiers.remove(fluidModifier);
-		
+
 		switch(fluidModifier) {
 			case ADDICTIVE:
 				if(owner.isPlayer()) {
@@ -425,14 +426,14 @@ public class FluidGirlCum implements FluidInterface, Serializable, XMLSaving {
 							+ "</p>");
 				}
 		}
-		
+
 		return "<p style='text-align:center;'>[style.colourDisabled(Nothing happens...)]</p>";
 	}
-	
+
 	public List<ItemEffect> getTransformativeEffects() {
 		return transformativeEffects;
 	}
-	
+
 	public void addTransformativeEffect(ItemEffect ie) {
 		transformativeEffects.add(ie);
 	}
@@ -443,7 +444,7 @@ public class FluidGirlCum implements FluidInterface, Serializable, XMLSaving {
 	public List<FluidModifier> getFluidModifiers() {
 		return fluidModifiers;
 	}
-	
+
 	public void clearFluidModifiers() {
 		fluidModifiers.clear();
 	}

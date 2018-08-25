@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-import com.lilithsthrone.game.character.body.FluidCum;
-import com.lilithsthrone.game.character.body.FluidGirlCum;
-import com.lilithsthrone.game.character.body.FluidMilk;
+import com.lilithsthrone.game.character.body.fluid.Cum;
+import com.lilithsthrone.game.character.body.fluid.GirlCum;
+import com.lilithsthrone.game.character.body.fluid.Milk;
 import com.lilithsthrone.game.character.body.valueEnums.FluidFlavour;
 import com.lilithsthrone.game.character.body.valueEnums.FluidModifier;
 import com.lilithsthrone.game.character.quests.Quest;
@@ -257,7 +257,7 @@ public enum PlaceUpgrade {
 
 			milkyMilknessSB.append("<div class='container-full-width' style='color:"+Colour.MILK.toWebHexString()+"; margin-bottom:2px; text-align:center;'><b>Milk Stored:</b>");
 				if(!room.getMilkStorage().isEmpty()) {
-					for(Entry<FluidMilk, Float> entry : room.getMilkStorage().entrySet()) {
+					for(Entry<Milk, Float> entry : room.getMilkStorage().entrySet()) {
 						milkyMilknessSB.append("<div class='container-full-width' style='margin-top:2px; background:"+Colour.BACKGROUND_ALT.toWebHexString()+";'>");
 						
 							milkyMilknessSB.append(
@@ -312,7 +312,7 @@ public enum PlaceUpgrade {
 			
 			milkyMilknessSB.append("<div class='container-full-width' style='color:"+Colour.CUM.toWebHexString()+"; margin-bottom:2px; text-align:center;'><b>Cum Stored:</b>");
 				if(!room.getCumStorage().isEmpty()) {
-					for(Entry<FluidCum, Float> entry : room.getCumStorage().entrySet()) {
+					for(Entry<Cum, Float> entry : room.getCumStorage().entrySet()) {
 						milkyMilknessSB.append("<div class='container-full-width' style='margin-top:2px; background:"+Colour.BACKGROUND_ALT.toWebHexString()+";'>");
 						
 							milkyMilknessSB.append(
@@ -366,7 +366,7 @@ public enum PlaceUpgrade {
 			
 			milkyMilknessSB.append("<div class='container-full-width' style='color:"+Colour.GIRLCUM.toWebHexString()+"; margin-bottom:2px; text-align:center;'><b>Girlcum Stored:</b>");
 				if(!room.getGirlcumStorage().isEmpty()) {
-					for(Entry<FluidGirlCum, Float> entry : room.getGirlcumStorage().entrySet()) {
+					for(Entry<GirlCum, Float> entry : room.getGirlcumStorage().entrySet()) {
 						milkyMilknessSB.append("<div class='container-full-width' style='margin-top:2px; background:"+Colour.BACKGROUND_ALT.toWebHexString()+";'>");
 						
 							milkyMilknessSB.append(

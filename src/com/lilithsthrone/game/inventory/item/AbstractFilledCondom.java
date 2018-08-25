@@ -9,7 +9,7 @@ import org.w3c.dom.Element;
 
 import com.lilithsthrone.game.character.CharacterUtils;
 import com.lilithsthrone.game.character.GameCharacter;
-import com.lilithsthrone.game.character.body.FluidCum;
+import com.lilithsthrone.game.character.body.fluid.Cum;
 import com.lilithsthrone.game.character.body.types.FluidType;
 import com.lilithsthrone.game.character.body.valueEnums.FluidModifier;
 import com.lilithsthrone.game.character.fetishes.Fetish;
@@ -30,14 +30,14 @@ public class AbstractFilledCondom extends AbstractItem implements Serializable, 
 	private static final long serialVersionUID = 1L;
 	
 	private String cumProvidor;
-	private FluidCum cum;
+	private Cum cum;
 	private int millilitresStored;
 	
-	public AbstractFilledCondom(AbstractItemType itemType, Colour colour, GameCharacter cumProvidor, FluidCum cum, int millilitresStored) {
+	public AbstractFilledCondom(AbstractItemType itemType, Colour colour, GameCharacter cumProvidor, Cum cum, int millilitresStored) {
 		super(itemType);
 		
 		this.cumProvidor = cumProvidor.getId();
-		this.cum = new FluidCum(cum.getType());
+		this.cum = new Cum(cum.getType());
 		this.cum.setFlavour(cumProvidor, cum.getFlavour());
 		for(FluidModifier fm : cum.getFluidModifiers()) {
 			this.cum.addFluidModifier(cumProvidor, fm);
@@ -47,11 +47,11 @@ public class AbstractFilledCondom extends AbstractItem implements Serializable, 
 		this.millilitresStored = millilitresStored;
 	}
 	
-	public AbstractFilledCondom(AbstractItemType itemType, Colour colour, String cumProvidorId, FluidCum cum, int millilitresStored) {
+	public AbstractFilledCondom(AbstractItemType itemType, Colour colour, String cumProvidorId, Cum cum, int millilitresStored) {
 		super(itemType);
 		
 		this.cumProvidor = cumProvidorId;
-		this.cum = new FluidCum(cum.getType());
+		this.cum = new Cum(cum.getType());
 		this.cum.setFlavour(null, cum.getFlavour());
 		for(FluidModifier fm : cum.getFluidModifiers()) {
 			this.cum.addFluidModifier(null, fm);
@@ -109,8 +109,8 @@ public class AbstractFilledCondom extends AbstractItem implements Serializable, 
 				Colour.valueOf(parentElement.getAttribute("colour")),
 				parentElement.getAttribute("cumProvidor"),
 				((Element) parentElement.getElementsByTagName("cum").item(0)==null
-					?new FluidCum(FluidType.CUM_HUMAN)
-					:FluidCum.loadFromXML((Element) parentElement.getElementsByTagName("cum").item(0), doc)),
+					?new Cum(FluidType.CUM_HUMAN)
+					:Cum.loadFromXML((Element) parentElement.getElementsByTagName("cum").item(0), doc)),
 				(parentElement.getAttribute("millilitresStored").isEmpty()
 					?25
 					:Integer.valueOf(parentElement.getAttribute("millilitresStored"))));
@@ -180,7 +180,7 @@ public class AbstractFilledCondom extends AbstractItem implements Serializable, 
 		return Main.game.getNPCById(cumProvidor);
 	}
 
-	public FluidCum getCum() {
+	public Cum getCum() {
 		return cum;
 	}
 
